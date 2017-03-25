@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view alpha="0.90000000000000002" contentMode="scaleToFill" id="2rT-Hg-uWx">
+            <rect key="frame" x="0.0" y="0.0" width="326" height="25"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBK-Zv-H72">
+                    <rect key="frame" x="0.0" y="12" width="150.5" height="1"/>
+                    <color key="backgroundColor" red="0.30196078431372547" green="0.31372549019607843" blue="0.49019607843137253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="jn1-sa-PB4"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZe-GR-lfy">
+                    <rect key="frame" x="176" y="12" width="150" height="1"/>
+                    <color key="backgroundColor" red="0.30196078430000001" green="0.31372549020000001" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="t4a-aW-zBV"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7e-uZ-HJc">
+                    <rect key="frame" x="150.5" y="5.5" width="25.5" height="14"/>
+                    <color key="backgroundColor" red="0.15686274509803921" green="0.20784313725490194" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.15686274509803921" green="0.20784313725490194" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Q7e-uZ-HJc" firstAttribute="centerY" secondItem="2rT-Hg-uWx" secondAttribute="centerY" id="0I3-mU-LSa"/>
+                <constraint firstAttribute="trailing" secondItem="DZe-GR-lfy" secondAttribute="trailing" id="4EY-51-uud"/>
+                <constraint firstItem="Q7e-uZ-HJc" firstAttribute="trailing" secondItem="DZe-GR-lfy" secondAttribute="leading" id="CEV-Vp-84o"/>
+                <constraint firstItem="IBK-Zv-H72" firstAttribute="leading" secondItem="2rT-Hg-uWx" secondAttribute="leading" id="Dvg-Fn-c1T"/>
+                <constraint firstItem="IBK-Zv-H72" firstAttribute="centerY" secondItem="2rT-Hg-uWx" secondAttribute="centerY" id="Ub6-E2-Tm5"/>
+                <constraint firstItem="Q7e-uZ-HJc" firstAttribute="leading" secondItem="IBK-Zv-H72" secondAttribute="trailing" id="kLI-R6-Cm3"/>
+                <constraint firstItem="Q7e-uZ-HJc" firstAttribute="centerX" secondItem="2rT-Hg-uWx" secondAttribute="centerX" id="m2Y-ws-LpX"/>
+                <constraint firstItem="DZe-GR-lfy" firstAttribute="centerY" secondItem="2rT-Hg-uWx" secondAttribute="centerY" id="qeE-Kn-8Dh"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-18" y="-269.5"/>
+        </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ewq-Qh-zad">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+        </label>
+    </objects>
+</document>

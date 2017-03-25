@@ -13,6 +13,13 @@
 		02D383C61E867A7C00F5F61C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02D383C51E867A7C00F5F61C /* Assets.xcassets */; };
 		02D383C91E867A7C00F5F61C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D383C71E867A7C00F5F61C /* LaunchScreen.storyboard */; };
 		02D383D41E867A7C00F5F61C /* JustTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D383D31E867A7C00F5F61C /* JustTests.swift */; };
+		02D383E01E86980100F5F61C /* SectionTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383DF1E86980100F5F61C /* SectionTitleView.xib */; };
+		02D383E21E8698D900F5F61C /* DetailsDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383E11E8698D900F5F61C /* DetailsDescriptionCell.xib */; };
+		02D383E41E8698F600F5F61C /* DetailsStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383E31E8698F600F5F61C /* DetailsStatusCell.xib */; };
+		02D383E61E86992D00F5F61C /* DetailsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383E51E86992D00F5F61C /* DetailsTitleCell.xib */; };
+		02D383E81E86998A00F5F61C /* DetailsActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383E71E86998A00F5F61C /* DetailsActionCell.xib */; };
+		02D383EA1E86999F00F5F61C /* DashboardItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383E91E86999F00F5F61C /* DashboardItemCell.xib */; };
+		02D383EC1E8699E900F5F61C /* DashboardInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383EB1E8699E900F5F61C /* DashboardInputView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +43,13 @@
 		02D383CF1E867A7C00F5F61C /* JustTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JustTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D383D31E867A7C00F5F61C /* JustTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustTests.swift; sourceTree = "<group>"; };
 		02D383D51E867A7C00F5F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02D383DF1E86980100F5F61C /* SectionTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionTitleView.xib; sourceTree = "<group>"; };
+		02D383E11E8698D900F5F61C /* DetailsDescriptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsDescriptionCell.xib; sourceTree = "<group>"; };
+		02D383E31E8698F600F5F61C /* DetailsStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsStatusCell.xib; sourceTree = "<group>"; };
+		02D383E51E86992D00F5F61C /* DetailsTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsTitleCell.xib; sourceTree = "<group>"; };
+		02D383E71E86998A00F5F61C /* DetailsActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsActionCell.xib; sourceTree = "<group>"; };
+		02D383E91E86999F00F5F61C /* DashboardItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardItemCell.xib; sourceTree = "<group>"; };
+		02D383EB1E8699E900F5F61C /* DashboardInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardInputView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +91,7 @@
 		02D383BD1E867A7C00F5F61C /* Just */ = {
 			isa = PBXGroup;
 			children = (
+				02D383DE1E86976D00F5F61C /* Views */,
 				02D383BE1E867A7C00F5F61C /* AppDelegate.swift */,
 				02D383C01E867A7C00F5F61C /* ViewController.swift */,
 				02D383C21E867A7C00F5F61C /* Main.storyboard */,
@@ -94,6 +109,20 @@
 				02D383D51E867A7C00F5F61C /* Info.plist */,
 			);
 			path = JustTests;
+			sourceTree = "<group>";
+		};
+		02D383DE1E86976D00F5F61C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				02D383DF1E86980100F5F61C /* SectionTitleView.xib */,
+				02D383E11E8698D900F5F61C /* DetailsDescriptionCell.xib */,
+				02D383E31E8698F600F5F61C /* DetailsStatusCell.xib */,
+				02D383E51E86992D00F5F61C /* DetailsTitleCell.xib */,
+				02D383E71E86998A00F5F61C /* DetailsActionCell.xib */,
+				02D383E91E86999F00F5F61C /* DashboardItemCell.xib */,
+				02D383EB1E8699E900F5F61C /* DashboardInputView.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,9 +208,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02D383EA1E86999F00F5F61C /* DashboardItemCell.xib in Resources */,
 				02D383C91E867A7C00F5F61C /* LaunchScreen.storyboard in Resources */,
+				02D383EC1E8699E900F5F61C /* DashboardInputView.xib in Resources */,
 				02D383C61E867A7C00F5F61C /* Assets.xcassets in Resources */,
+				02D383E81E86998A00F5F61C /* DetailsActionCell.xib in Resources */,
 				02D383C41E867A7C00F5F61C /* Main.storyboard in Resources */,
+				02D383E61E86992D00F5F61C /* DetailsTitleCell.xib in Resources */,
+				02D383E21E8698D900F5F61C /* DetailsDescriptionCell.xib in Resources */,
+				02D383E41E8698F600F5F61C /* DetailsStatusCell.xib in Resources */,
+				02D383E01E86980100F5F61C /* SectionTitleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

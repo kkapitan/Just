@@ -95,6 +95,10 @@
 		02D383BD1E867A7C00F5F61C /* Just */ = {
 			isa = PBXGroup;
 			children = (
+				02D383F41E86F5A500F5F61C /* API */,
+				02D383F31E86F59A00F5F61C /* Other */,
+				02D383F21E86F59000F5F61C /* Model */,
+				02D383F11E86F58900F5F61C /* ViewControllers */,
 				02D383DE1E86976D00F5F61C /* Views */,
 				02D383BE1E867A7C00F5F61C /* AppDelegate.swift */,
 				02D383C01E867A7C00F5F61C /* ViewController.swift */,
@@ -129,6 +133,34 @@
 				02D383EF1E86E44C00F5F61C /* SettingsSwitchCell.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		02D383F11E86F58900F5F61C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		02D383F21E86F59000F5F61C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		02D383F31E86F59A00F5F61C /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		02D383F41E86F5A500F5F61C /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,6 +480,7 @@
 				02D383DA1E867A7C00F5F61C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02D383DB1E867A7C00F5F61C /* Build configuration list for PBXNativeTarget "JustTests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +489,7 @@
 				02D383DD1E867A7C00F5F61C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

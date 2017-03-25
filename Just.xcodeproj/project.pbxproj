@@ -20,6 +20,8 @@
 		02D383E81E86998A00F5F61C /* DetailsActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383E71E86998A00F5F61C /* DetailsActionCell.xib */; };
 		02D383EA1E86999F00F5F61C /* DashboardItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383E91E86999F00F5F61C /* DashboardItemCell.xib */; };
 		02D383EC1E8699E900F5F61C /* DashboardInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383EB1E8699E900F5F61C /* DashboardInputView.xib */; };
+		02D383EE1E86E40600F5F61C /* SettingsNavigationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383ED1E86E40600F5F61C /* SettingsNavigationCell.xib */; };
+		02D383F01E86E44C00F5F61C /* SettingsSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383EF1E86E44C00F5F61C /* SettingsSwitchCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		02D383E71E86998A00F5F61C /* DetailsActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsActionCell.xib; sourceTree = "<group>"; };
 		02D383E91E86999F00F5F61C /* DashboardItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardItemCell.xib; sourceTree = "<group>"; };
 		02D383EB1E8699E900F5F61C /* DashboardInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardInputView.xib; sourceTree = "<group>"; };
+		02D383ED1E86E40600F5F61C /* SettingsNavigationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsNavigationCell.xib; sourceTree = "<group>"; };
+		02D383EF1E86E44C00F5F61C /* SettingsSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsSwitchCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,8 @@
 				02D383E71E86998A00F5F61C /* DetailsActionCell.xib */,
 				02D383E91E86999F00F5F61C /* DashboardItemCell.xib */,
 				02D383EB1E8699E900F5F61C /* DashboardInputView.xib */,
+				02D383ED1E86E40600F5F61C /* SettingsNavigationCell.xib */,
+				02D383EF1E86E44C00F5F61C /* SettingsSwitchCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -209,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02D383EA1E86999F00F5F61C /* DashboardItemCell.xib in Resources */,
+				02D383EE1E86E40600F5F61C /* SettingsNavigationCell.xib in Resources */,
 				02D383C91E867A7C00F5F61C /* LaunchScreen.storyboard in Resources */,
 				02D383EC1E8699E900F5F61C /* DashboardInputView.xib in Resources */,
 				02D383C61E867A7C00F5F61C /* Assets.xcassets in Resources */,
@@ -217,6 +224,7 @@
 				02D383E61E86992D00F5F61C /* DetailsTitleCell.xib in Resources */,
 				02D383E21E8698D900F5F61C /* DetailsDescriptionCell.xib in Resources */,
 				02D383E41E8698F600F5F61C /* DetailsStatusCell.xib in Resources */,
+				02D383F01E86E44C00F5F61C /* SettingsSwitchCell.xib in Resources */,
 				02D383E01E86980100F5F61C /* SectionTitleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

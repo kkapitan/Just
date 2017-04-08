@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailsTitleCell" rowHeight="90" id="k7Z-QW-NsY" customClass="DetailsTitleCell" customModule="Just" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailsTitleCell" rowHeight="90" id="k7Z-QW-NsY" customClass="DetailsTitleCell" customModule="Just" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k7Z-QW-NsY" id="sne-xr-Bbm">
@@ -42,6 +42,7 @@
                             <constraint firstItem="XfP-9M-mz4" firstAttribute="top" secondItem="Ijn-Co-ZKG" secondAttribute="top" id="iFR-4m-S2b"/>
                             <constraint firstAttribute="bottom" secondItem="Ijn-Co-ZKG" secondAttribute="bottom" constant="10" id="kaU-sV-e6s"/>
                             <constraint firstItem="Ijn-Co-ZKG" firstAttribute="leading" secondItem="XfP-9M-mz4" secondAttribute="trailing" constant="18" id="tj6-Yv-jC0"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XfP-9M-mz4" secondAttribute="bottom" constant="6.5" id="zaI-ys-0af"/>
                         </constraints>
                     </view>
                 </subviews>

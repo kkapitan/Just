@@ -51,7 +51,7 @@ final class TaskListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50.0
+        return 30.0
     }
     
     func title(forSection section: Int) -> String {
@@ -61,12 +61,22 @@ final class TaskListViewController: UITableViewController {
         case 1:
             return "YESTERDAY"
         default:
-            return "Unknown"
+            fatalError("Wrong section id")
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat.leastNonzeroMagnitude
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let task = tasks[indexPath.section][indexPath.row]
+        let taskDetails = Wireframe.Main().taskDetails()
+        
+        taskDetails.task = task
+        
+        navigationController?.pushViewController(taskDetails, animated: true)
     }
 }
 

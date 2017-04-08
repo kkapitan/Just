@@ -15,7 +15,7 @@ extension DateFormatter {
         var string: String {
             switch self {
             case .full:
-                return ""
+                return "dd MMMM yyyy hh:mm"
             }
         }
     }

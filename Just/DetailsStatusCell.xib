@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailsStatusCell" id="Gpc-4m-gZI" customClass="DetailsStatusCell" customModule="Just" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailsStatusCell" id="Gpc-4m-gZI" customClass="DetailsStatusCell" customModule="Just" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gpc-4m-gZI" id="u3d-De-3tV">
@@ -30,6 +30,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="43" id="0hC-fb-tpL"/>
                             <constraint firstItem="E4v-bY-Cdl" firstAttribute="height" secondItem="r5D-2m-hfV" secondAttribute="height" id="84o-Aw-4Ms"/>
                             <constraint firstItem="E4v-bY-Cdl" firstAttribute="centerY" secondItem="r5D-2m-hfV" secondAttribute="centerY" id="Rc6-8a-fr1"/>
                             <constraint firstItem="E4v-bY-Cdl" firstAttribute="centerX" secondItem="r5D-2m-hfV" secondAttribute="centerX" id="X1f-gj-ApW"/>

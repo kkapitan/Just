@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Gpc-4m-gZI">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailsStatusCell" id="Gpc-4m-gZI" customClass="DetailsStatusCell" customModule="Just" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gpc-4m-gZI" id="u3d-De-3tV">
@@ -67,6 +67,10 @@
                     <constraint firstItem="r5D-2m-hfV" firstAttribute="leading" secondItem="u3d-De-3tV" secondAttribute="leading" constant="20" id="pMk-9N-Mz8"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="E4v-bY-Cdl" id="wo2-NB-iYK"/>
+                <outlet property="statusLabel" destination="l7i-GQ-x6p" id="TR6-PR-iTb"/>
+            </connections>
             <point key="canvasLocation" x="325" y="-477"/>
         </tableViewCell>
     </objects>

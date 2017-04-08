@@ -10,4 +10,8 @@ import Foundation
 
 enum Priority: String {
     case high, low, medium, urgent
+    
+    var description: String {
+        return "\(rawValue) Priority".capitalized
+    }
 }

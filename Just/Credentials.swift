@@ -9,7 +9,6 @@
 import Foundation
 
 struct Credentials {
-    
     let usernameOrEmail: String
     let password: String
 }

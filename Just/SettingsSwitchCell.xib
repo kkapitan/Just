@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="au2-dt-UpZ">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsSwitchCell" id="au2-dt-UpZ" customClass="SettingsSwitchCell" customModule="Just" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="au2-dt-UpZ" id="oag-CX-0Iw">
@@ -46,6 +46,10 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.15686274510000001" green="0.20784313730000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="settingSwitch" destination="kEX-Yw-mpd" id="dxV-Pz-xtJ"/>
+                <outlet property="titleLabel" destination="sdd-u7-yd8" id="Kgv-ld-XPd"/>
+            </connections>
             <point key="canvasLocation" x="-96" y="-373"/>
         </tableViewCell>
     </objects>

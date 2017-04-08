@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rCN-ul-os1">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailsActionCell" id="rCN-ul-os1" customClass="DetailsActionCell" customModule="Just" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rCN-ul-os1" id="8LT-aE-y7i">
@@ -44,6 +44,11 @@
                     <constraint firstItem="tWy-VD-edI" firstAttribute="leading" secondItem="8LT-aE-y7i" secondAttribute="leading" constant="30" id="rf3-5e-PFd"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="editButton" destination="U6E-FH-LV0" id="DZI-Tn-5yL"/>
+                <outlet property="tickButton" destination="r0c-au-2Pi" id="mK0-2E-9Hd"/>
+                <outlet property="trashButton" destination="r0Q-Ji-7mT" id="3Ts-jj-QAB"/>
+            </connections>
             <point key="canvasLocation" x="38" y="-393"/>
         </tableViewCell>
     </objects>

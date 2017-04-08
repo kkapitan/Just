@@ -27,9 +27,9 @@ final class DashboardItemCell: UITableViewCell, Reusable, NibLoadable {
         }
     }
     
-    var status: String? {
+    var status: Priority? {
         didSet {
-            statusLabel.text = status
+            statusLabel.text = status?.description
         }
     }
     

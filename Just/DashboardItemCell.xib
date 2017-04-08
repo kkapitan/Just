@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kr6-21-iPO" id="2Se-VX-plk">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x8W-Ts-cCH">
-                        <rect key="frame" x="231" y="0.0" width="144" height="93.5"/>
+                        <rect key="frame" x="211" y="0.0" width="144" height="93.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dil-Wh-fgN">
                                 <rect key="frame" x="0.0" y="27" width="40" height="40"/>
@@ -39,13 +39,13 @@
                         </constraints>
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZ1-0w-i2h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
+                        <rect key="frame" x="0.0" y="2" width="375" height="89.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tl-iv-o0j">
-                                <rect key="frame" x="20" y="0.0" width="335" height="93.5"/>
+                                <rect key="frame" x="20" y="0.0" width="335" height="89.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_ic" translatesAutoresizingMaskIntoConstraints="NO" id="ivR-5g-itg">
-                                        <rect key="frame" x="20" y="24.5" width="44" height="45"/>
+                                        <rect key="frame" x="20" y="22.5" width="44" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="nV2-Te-Euz"/>
                                         </constraints>
@@ -62,7 +62,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Tcd-92-28F">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcd-92-28F">
                                         <rect key="frame" x="82" y="54" width="235" height="19.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,6 +82,7 @@
                                     <constraint firstItem="X2V-Ty-3JI" firstAttribute="trailing" secondItem="Rc3-8X-SoO" secondAttribute="trailing" id="eOK-mY-eDP"/>
                                     <constraint firstItem="X2V-Ty-3JI" firstAttribute="top" secondItem="Rc3-8X-SoO" secondAttribute="bottom" id="euq-kU-lV0"/>
                                     <constraint firstItem="Rc3-8X-SoO" firstAttribute="leading" secondItem="ivR-5g-itg" secondAttribute="trailing" constant="18" id="mI7-4Z-Upw"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tcd-92-28F" secondAttribute="bottom" constant="16" id="vwX-Cy-ktU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -98,10 +99,10 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="cZ1-0w-i2h" secondAttribute="trailing" id="463-b9-dsr"/>
                     <constraint firstAttribute="bottom" secondItem="x8W-Ts-cCH" secondAttribute="bottom" id="KUS-xh-2sE"/>
-                    <constraint firstAttribute="trailing" secondItem="x8W-Ts-cCH" secondAttribute="trailing" id="NBF-BN-b6U"/>
-                    <constraint firstAttribute="bottom" secondItem="cZ1-0w-i2h" secondAttribute="bottom" id="agQ-Nj-AqQ"/>
+                    <constraint firstAttribute="trailing" secondItem="x8W-Ts-cCH" secondAttribute="trailing" constant="20" id="NBF-BN-b6U"/>
+                    <constraint firstAttribute="bottom" secondItem="cZ1-0w-i2h" secondAttribute="bottom" constant="2" id="agQ-Nj-AqQ"/>
                     <constraint firstItem="cZ1-0w-i2h" firstAttribute="leading" secondItem="2Se-VX-plk" secondAttribute="leading" id="ht6-Hg-bbQ"/>
-                    <constraint firstItem="cZ1-0w-i2h" firstAttribute="top" secondItem="2Se-VX-plk" secondAttribute="top" id="mgX-mw-1r3"/>
+                    <constraint firstItem="cZ1-0w-i2h" firstAttribute="top" secondItem="2Se-VX-plk" secondAttribute="top" constant="2" id="mgX-mw-1r3"/>
                     <constraint firstItem="x8W-Ts-cCH" firstAttribute="top" secondItem="2Se-VX-plk" secondAttribute="top" id="nLy-2A-YF6"/>
                 </constraints>
             </tableViewCellContentView>

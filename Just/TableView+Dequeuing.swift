@@ -16,4 +16,8 @@ extension UITableView {
     func registerNib<Cell: UITableViewCell>(for: Cell.Type) where Cell: Reusable & NibLoadable {
         register(Cell.nib, forCellReuseIdentifier: Cell.reuseIdentifier)
     }
+    
+    func dequeue<Cell: UITableViewCell>() -> Cell where Cell: Reusable {
+        return self.dequeueReusableCell(withIdentifier: Cell.reuseIdentifier) as! Cell
+    }
 }

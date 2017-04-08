@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Landing View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LandingViewController" id="BYZ-38-t0r" customClass="LandingViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -50,6 +50,9 @@
                                 <state key="normal" title="Sign in">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signInButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E4p-eH-dep"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAt-Jh-ao3">
                                 <rect key="frame" x="89" y="500.5" width="197" height="44"/>
@@ -57,6 +60,9 @@
                                 <state key="normal" title="Sign up">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUpButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VcV-3Z-esu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.15686274509803921" green="0.20784313725490194" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="0Fm-DI-8jY">
             <objects>
-                <viewController id="igB-rV-dBO" customClass="ViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="igB-rV-dBO" customClass="LoginViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FTK-YO-iSa"/>
                         <viewControllerLayoutGuide type="bottom" id="MOM-fT-DTc"/>
@@ -117,6 +123,9 @@
                                 <state key="normal" title="Continue">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="continueAction:" destination="igB-rV-dBO" eventType="touchUpInside" id="NO6-ag-Gly"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Pl-hp-i6b">
                                 <rect key="frame" x="63.5" y="189" width="248" height="46"/>
@@ -135,6 +144,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editingChanged:" destination="igB-rV-dBO" eventType="editingChanged" id="wEA-v4-KCo"/>
+                                        </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRq-QG-cMo">
                                         <rect key="frame" x="0.0" y="45" width="248" height="1"/>
@@ -176,6 +188,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editingChanged:" destination="igB-rV-dBO" eventType="editingChanged" id="14W-zC-oV7"/>
+                                        </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFK-OK-YKC">
                                         <rect key="frame" x="0.0" y="45" width="248" height="1"/>
@@ -227,15 +242,20 @@
                             <constraint firstItem="S7z-k5-UaH" firstAttribute="top" secondItem="P6j-3q-1RX" secondAttribute="bottom" constant="69" id="xkJ-rp-EQh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="continueButton" destination="nM7-nm-aqZ" id="htR-qs-zNF"/>
+                        <outlet property="passwordTextField" destination="oXf-gX-TKm" id="ftk-za-YeU"/>
+                        <outlet property="usernameOrEmailTextField" destination="OgW-XA-Y44" id="bzX-wz-abu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWC-hs-cTe" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="893.60000000000002" y="138.98050974512745"/>
         </scene>
-        <!--View Controller-->
+        <!--Registration View Controller-->
         <scene sceneID="nYq-U8-8Yl">
             <objects>
-                <viewController id="oH3-RF-bvR" customClass="ViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegistrationViewController" id="oH3-RF-bvR" customClass="RegistrationViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fq0-11-WAj"/>
                         <viewControllerLayoutGuide type="bottom" id="vf6-Gc-gxn"/>
@@ -267,6 +287,9 @@
                                 <state key="normal" title="Continue">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="continueAction:" destination="oH3-RF-bvR" eventType="touchUpInside" id="dwi-F6-Ijx"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHC-S7-oye">
                                 <rect key="frame" x="63.5" y="152" width="248" height="46"/>
@@ -285,6 +308,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editingChanged:" destination="oH3-RF-bvR" eventType="editingChanged" id="NKi-ku-KAB"/>
+                                        </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PD0-F8-wjB">
                                         <rect key="frame" x="0.0" y="45" width="248" height="1"/>
@@ -326,6 +352,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editingChanged:" destination="oH3-RF-bvR" eventType="editingChanged" id="8sJ-vV-7Y9"/>
+                                        </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wKf-Fd-Mzv">
                                         <rect key="frame" x="0.0" y="45" width="248" height="1"/>
@@ -367,6 +396,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editingChanged:" destination="oH3-RF-bvR" eventType="editingChanged" id="099-vY-byN"/>
+                                        </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydG-k7-j59">
                                         <rect key="frame" x="0.0" y="45" width="248" height="1"/>
@@ -408,6 +440,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editingChanged:" destination="oH3-RF-bvR" eventType="editingChanged" id="Ryk-c5-WFw"/>
+                                        </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EgO-C5-Tkt">
                                         <rect key="frame" x="0.0" y="45" width="248" height="1"/>
@@ -451,6 +486,13 @@
                             <constraint firstItem="Hnh-XX-dha" firstAttribute="top" secondItem="TQu-fK-uaa" secondAttribute="bottom" constant="51" id="yfi-FC-dTo"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="confirmationTextField" destination="wu0-8w-R8m" id="01Q-HQ-cyv"/>
+                        <outlet property="continueButton" destination="Hnh-XX-dha" id="8DZ-Q0-3TD"/>
+                        <outlet property="emailTextField" destination="BXv-3W-Z9b" id="qGW-aA-1A0"/>
+                        <outlet property="passwordTextField" destination="evf-3U-kEK" id="nOY-Oj-ROK"/>
+                        <outlet property="usernameTextField" destination="Cu3-pL-nq2" id="fcV-R8-ujP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lY-Bg-d9G" sceneMemberID="firstResponder"/>
             </objects>
@@ -459,7 +501,7 @@
         <!--SETTINGS-->
         <scene sceneID="gtB-ax-h9T">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Isk-7D-bCZ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" automaticallyAdjustsScrollViewInsets="NO" id="Isk-7D-bCZ" customClass="SettingsViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4LS-mi-1cJ"/>
                         <viewControllerLayoutGuide type="bottom" id="3eN-0q-cKh"/>
@@ -540,8 +582,8 @@
         <!--LIST TITLE-->
         <scene sceneID="PBU-4t-inV">
             <objects>
-                <tableViewController id="drg-QN-CYy" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tSW-an-aIz">
+                <tableViewController storyboardIdentifier="TaskDetailsViewController" id="drg-QN-CYy" customClass="TaskDetailsViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="tSW-an-aIz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.15686274509803921" green="0.20784313725490194" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -577,8 +619,8 @@
         <!--DASHBOARD-->
         <scene sceneID="CqZ-Q8-EOX">
             <objects>
-                <tableViewController id="xqg-jZ-vvz" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vzQ-X1-QV1">
+                <tableViewController storyboardIdentifier="TaskListViewController" id="xqg-jZ-vvz" customClass="TaskListViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="vzQ-X1-QV1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.15686274509803921" green="0.20784313725490194" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -593,10 +635,10 @@
             </objects>
             <point key="canvasLocation" x="894" y="873"/>
         </scene>
-        <!--View Controller-->
+        <!--Date Picker View Controller-->
         <scene sceneID="F8q-hz-j1C">
             <objects>
-                <viewController id="gjH-zv-MpN" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DatePickerViewController" id="gjH-zv-MpN" customClass="DatePickerViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pUa-sI-Vwm"/>
                         <viewControllerLayoutGuide type="bottom" id="GI0-Uc-9C5"/>
@@ -654,10 +696,10 @@
             </objects>
             <point key="canvasLocation" x="1980" y="859"/>
         </scene>
-        <!--View Controller-->
+        <!--List Picker View Controller-->
         <scene sceneID="qaX-Iy-ubV">
             <objects>
-                <viewController id="EaR-2f-djW" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListPickerViewController" id="EaR-2f-djW" customClass="ListPickerViewController" customModule="Just" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kW5-uJ-8b8"/>
                         <viewControllerLayoutGuide type="bottom" id="xrf-ol-MQc"/>

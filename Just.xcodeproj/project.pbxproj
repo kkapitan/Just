@@ -26,6 +26,23 @@
 		0242DA1A1E990CBA007BA970 /* DashboardItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA191E990CBA007BA970 /* DashboardItemCell.swift */; };
 		0242DA1C1E990CC7007BA970 /* SettingsNavigationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA1B1E990CC7007BA970 /* SettingsNavigationCell.swift */; };
 		0242DA1E1E990CD0007BA970 /* SettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA1D1E990CD0007BA970 /* SettingsSwitchCell.swift */; };
+		0242DA201E99145D007BA970 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA1F1E99145D007BA970 /* LandingViewController.swift */; };
+		0242DA221E991B5E007BA970 /* StoryboardIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA211E991B5E007BA970 /* StoryboardIdentifiable.swift */; };
+		0242DA241E991B80007BA970 /* StoryboardWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA231E991B80007BA970 /* StoryboardWireframe.swift */; };
+		0242DA261E991B87007BA970 /* Instantiator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA251E991B87007BA970 /* Instantiator.swift */; };
+		0242DA281E991C6A007BA970 /* Wireframes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA271E991C6A007BA970 /* Wireframes.swift */; };
+		0242DA2A1E991E42007BA970 /* TaskDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA291E991E42007BA970 /* TaskDetailsViewController.swift */; };
+		0242DA2C1E991E4C007BA970 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA2B1E991E4C007BA970 /* TaskListViewController.swift */; };
+		0242DA2E1E991E57007BA970 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA2D1E991E57007BA970 /* RegistrationViewController.swift */; };
+		0242DA301E991E5F007BA970 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA2F1E991E5F007BA970 /* LoginViewController.swift */; };
+		0242DA321E991E6B007BA970 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA311E991E6B007BA970 /* RootViewController.swift */; };
+		0242DA341E991FED007BA970 /* ListPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA331E991FED007BA970 /* ListPickerViewController.swift */; };
+		0242DA361E992026007BA970 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA351E992026007BA970 /* DatePickerViewController.swift */; };
+		0242DA381E992031007BA970 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA371E992031007BA970 /* SettingsViewController.swift */; };
+		0242DA3C1E993577007BA970 /* TransparentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA3B1E993577007BA970 /* TransparentNavigationController.swift */; };
+		0242DA3E1E99420B007BA970 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA3D1E99420B007BA970 /* Colors.swift */; };
+		0242DA401E99477A007BA970 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA3F1E99477A007BA970 /* Validations.swift */; };
+		0242DA421E994B56007BA970 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA411E994B56007BA970 /* MainNavigationController.swift */; };
 		02D383BF1E867A7C00F5F61C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D383BE1E867A7C00F5F61C /* AppDelegate.swift */; };
 		02D383C11E867A7C00F5F61C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D383C01E867A7C00F5F61C /* ViewController.swift */; };
 		02D383C41E867A7C00F5F61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D383C21E867A7C00F5F61C /* Main.storyboard */; };
@@ -73,6 +90,23 @@
 		0242DA191E990CBA007BA970 /* DashboardItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardItemCell.swift; sourceTree = "<group>"; };
 		0242DA1B1E990CC7007BA970 /* SettingsNavigationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigationCell.swift; sourceTree = "<group>"; };
 		0242DA1D1E990CD0007BA970 /* SettingsSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSwitchCell.swift; sourceTree = "<group>"; };
+		0242DA1F1E99145D007BA970 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		0242DA211E991B5E007BA970 /* StoryboardIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiable.swift; sourceTree = "<group>"; };
+		0242DA231E991B80007BA970 /* StoryboardWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardWireframe.swift; sourceTree = "<group>"; };
+		0242DA251E991B87007BA970 /* Instantiator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instantiator.swift; sourceTree = "<group>"; };
+		0242DA271E991C6A007BA970 /* Wireframes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wireframes.swift; sourceTree = "<group>"; };
+		0242DA291E991E42007BA970 /* TaskDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewController.swift; sourceTree = "<group>"; };
+		0242DA2B1E991E4C007BA970 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		0242DA2D1E991E57007BA970 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		0242DA2F1E991E5F007BA970 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0242DA311E991E6B007BA970 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		0242DA331E991FED007BA970 /* ListPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPickerViewController.swift; sourceTree = "<group>"; };
+		0242DA351E992026007BA970 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		0242DA371E992031007BA970 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0242DA3B1E993577007BA970 /* TransparentNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentNavigationController.swift; sourceTree = "<group>"; };
+		0242DA3D1E99420B007BA970 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0242DA3F1E99477A007BA970 /* Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
+		0242DA411E994B56007BA970 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		02D383BB1E867A7C00F5F61C /* Just.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Just.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D383BE1E867A7C00F5F61C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02D383C01E867A7C00F5F61C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +149,7 @@
 		0242D9F11E87E619007BA970 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				0242DA2F1E991E5F007BA970 /* LoginViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -122,6 +157,7 @@
 		0242D9F21E87E61B007BA970 /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				0242DA311E991E6B007BA970 /* RootViewController.swift */,
 			);
 			name = Root;
 			sourceTree = "<group>";
@@ -129,6 +165,7 @@
 		0242D9F41E87E63D007BA970 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				0242DA2D1E991E57007BA970 /* RegistrationViewController.swift */,
 			);
 			name = Registration;
 			sourceTree = "<group>";
@@ -136,6 +173,7 @@
 		0242D9F51E87E63F007BA970 /* ListsPicker */ = {
 			isa = PBXGroup;
 			children = (
+				0242DA331E991FED007BA970 /* ListPickerViewController.swift */,
 			);
 			name = ListsPicker;
 			sourceTree = "<group>";
@@ -143,6 +181,7 @@
 		0242D9F61E87E645007BA970 /* TaskList */ = {
 			isa = PBXGroup;
 			children = (
+				0242DA2B1E991E4C007BA970 /* TaskListViewController.swift */,
 			);
 			name = TaskList;
 			sourceTree = "<group>";
@@ -150,6 +189,7 @@
 		0242D9F71E87E646007BA970 /* TaskDetails */ = {
 			isa = PBXGroup;
 			children = (
+				0242DA291E991E42007BA970 /* TaskDetailsViewController.swift */,
 			);
 			name = TaskDetails;
 			sourceTree = "<group>";
@@ -157,6 +197,7 @@
 		0242D9F81E87E649007BA970 /* DatePicker */ = {
 			isa = PBXGroup;
 			children = (
+				0242DA351E992026007BA970 /* DatePickerViewController.swift */,
 			);
 			name = DatePicker;
 			sourceTree = "<group>";
@@ -164,6 +205,7 @@
 		0242D9F91E87E6F5007BA970 /* Landing */ = {
 			isa = PBXGroup;
 			children = (
+				0242DA1F1E99145D007BA970 /* LandingViewController.swift */,
 			);
 			name = Landing;
 			sourceTree = "<group>";
@@ -248,6 +290,23 @@
 			name = SectionSwitch;
 			sourceTree = "<group>";
 		};
+		0242DA391E992036007BA970 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0242DA371E992031007BA970 /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		0242DA3A1E993565007BA970 /* NavigationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0242DA3B1E993577007BA970 /* TransparentNavigationController.swift */,
+				0242DA411E994B56007BA970 /* MainNavigationController.swift */,
+			);
+			name = NavigationControllers;
+			sourceTree = "<group>";
+		};
 		02D383B21E867A7C00F5F61C = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +371,8 @@
 		02D383F11E86F58900F5F61C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0242DA3A1E993565007BA970 /* NavigationControllers */,
+				0242DA391E992036007BA970 /* Settings */,
 				0242D9F91E87E6F5007BA970 /* Landing */,
 				0242D9F81E87E649007BA970 /* DatePicker */,
 				0242D9F71E87E646007BA970 /* TaskDetails */,
@@ -345,6 +406,12 @@
 				0242DA021E87E8E6007BA970 /* TableView+Dequeuing.swift */,
 				0242DA041E87ECAB007BA970 /* TableView+IndexPath.swift */,
 				0242DA131E990843007BA970 /* DateFormatter.swift */,
+				0242DA211E991B5E007BA970 /* StoryboardIdentifiable.swift */,
+				0242DA231E991B80007BA970 /* StoryboardWireframe.swift */,
+				0242DA251E991B87007BA970 /* Instantiator.swift */,
+				0242DA271E991C6A007BA970 /* Wireframes.swift */,
+				0242DA3D1E99420B007BA970 /* Colors.swift */,
+				0242DA3F1E99477A007BA970 /* Validations.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -469,26 +536,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				0242DA141E990843007BA970 /* DateFormatter.swift in Sources */,
+				0242DA3E1E99420B007BA970 /* Colors.swift in Sources */,
 				02D383C11E867A7C00F5F61C /* ViewController.swift in Sources */,
+				0242DA201E99145D007BA970 /* LandingViewController.swift in Sources */,
 				0242DA011E87E8A9007BA970 /* Reusable.swift in Sources */,
 				02D383BF1E867A7C00F5F61C /* AppDelegate.swift in Sources */,
 				0242DA1C1E990CC7007BA970 /* SettingsNavigationCell.swift in Sources */,
+				0242DA221E991B5E007BA970 /* StoryboardIdentifiable.swift in Sources */,
 				0242DA051E87ECAB007BA970 /* TableView+IndexPath.swift in Sources */,
+				0242DA3C1E993577007BA970 /* TransparentNavigationController.swift in Sources */,
 				0242D9F01E87E2A3007BA970 /* Credentials.swift in Sources */,
 				0242D9FF1E87E8A3007BA970 /* NibLoadable.swift in Sources */,
 				0242D9FD1E87E84E007BA970 /* SectionTitleView.swift in Sources */,
 				0242D9EE1E87E27C007BA970 /* List.swift in Sources */,
+				0242DA281E991C6A007BA970 /* Wireframes.swift in Sources */,
 				0242D9EA1E87E26B007BA970 /* Task.swift in Sources */,
 				0242D9E61E87DEC0007BA970 /* User.swift in Sources */,
 				0242DA181E990A80007BA970 /* DetailsTitleCell.swift in Sources */,
+				0242DA261E991B87007BA970 /* Instantiator.swift in Sources */,
+				0242DA241E991B80007BA970 /* StoryboardWireframe.swift in Sources */,
+				0242DA341E991FED007BA970 /* ListPickerViewController.swift in Sources */,
+				0242DA301E991E5F007BA970 /* LoginViewController.swift in Sources */,
 				0242DA031E87E8E6007BA970 /* TableView+Dequeuing.swift in Sources */,
+				0242DA321E991E6B007BA970 /* RootViewController.swift in Sources */,
 				0242D9E81E87E265007BA970 /* Token.swift in Sources */,
 				0242D9EC1E87E275007BA970 /* Priority.swift in Sources */,
+				0242DA2C1E991E4C007BA970 /* TaskListViewController.swift in Sources */,
 				0242DA1E1E990CD0007BA970 /* SettingsSwitchCell.swift in Sources */,
+				0242DA421E994B56007BA970 /* MainNavigationController.swift in Sources */,
+				0242DA401E99477A007BA970 /* Validations.swift in Sources */,
+				0242DA361E992026007BA970 /* DatePickerViewController.swift in Sources */,
+				0242DA2A1E991E42007BA970 /* TaskDetailsViewController.swift in Sources */,
 				0242DA0F1E87FA87007BA970 /* DetailsDescriptionCell.swift in Sources */,
+				0242DA381E992031007BA970 /* SettingsViewController.swift in Sources */,
 				0242DA121E88368C007BA970 /* DetailsStatusCell.swift in Sources */,
 				0242DA1A1E990CBA007BA970 /* DashboardItemCell.swift in Sources */,
 				0242DA161E990A77007BA970 /* DetailsActionCell.swift in Sources */,
+				0242DA2E1E991E57007BA970 /* RegistrationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

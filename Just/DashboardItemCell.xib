@@ -19,18 +19,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x8W-Ts-cCH">
-                        <rect key="frame" x="211" y="0.0" width="144" height="94"/>
+                        <rect key="frame" x="211" y="0.0" width="144" height="93"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dil-Wh-fgN">
-                                <rect key="frame" x="0.0" y="27" width="40" height="40"/>
+                                <rect key="frame" x="0.0" y="26.5" width="40" height="40"/>
                                 <state key="normal" image="tick_button_ic"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTZ-Ne-Bvd">
-                                <rect key="frame" x="52.5" y="27" width="40" height="40"/>
+                                <rect key="frame" x="52.5" y="26.5" width="40" height="40"/>
                                 <state key="normal" image="edit_button_ic"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uyj-VQ-yAw">
-                                <rect key="frame" x="105" y="27.5" width="39" height="39"/>
+                                <rect key="frame" x="105" y="27" width="39" height="39"/>
                                 <state key="normal" image="trash_button_ic"/>
                             </button>
                         </subviews>
@@ -39,13 +39,13 @@
                         </constraints>
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZ1-0w-i2h">
-                        <rect key="frame" x="0.0" y="2" width="375" height="90"/>
+                        <rect key="frame" x="0.0" y="2" width="375" height="89"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tl-iv-o0j">
-                                <rect key="frame" x="20" y="0.0" width="335" height="90"/>
+                                <rect key="frame" x="20" y="0.0" width="335" height="89"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_ic" translatesAutoresizingMaskIntoConstraints="NO" id="ivR-5g-itg">
-                                        <rect key="frame" x="20" y="23" width="44" height="45"/>
+                                        <rect key="frame" x="20" y="22" width="44" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="nV2-Te-Euz"/>
                                         </constraints>
@@ -72,7 +72,6 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Tcd-92-28F" firstAttribute="top" secondItem="X2V-Ty-3JI" secondAttribute="bottom" constant="3" id="Bzy-Vg-5jU"/>
-                                    <constraint firstAttribute="bottom" secondItem="Tcd-92-28F" secondAttribute="bottom" constant="16.5" id="DYQ-VU-6Sj"/>
                                     <constraint firstItem="Tcd-92-28F" firstAttribute="trailing" secondItem="X2V-Ty-3JI" secondAttribute="trailing" id="KFN-eU-tVz"/>
                                     <constraint firstAttribute="trailing" secondItem="Rc3-8X-SoO" secondAttribute="trailing" constant="18" id="KnP-9h-I4l"/>
                                     <constraint firstItem="ivR-5g-itg" firstAttribute="leading" secondItem="4tl-iv-o0j" secondAttribute="leading" constant="20" id="KtP-av-2Ip"/>
@@ -83,6 +82,7 @@
                                     <constraint firstItem="X2V-Ty-3JI" firstAttribute="trailing" secondItem="Rc3-8X-SoO" secondAttribute="trailing" id="eOK-mY-eDP"/>
                                     <constraint firstItem="X2V-Ty-3JI" firstAttribute="top" secondItem="Rc3-8X-SoO" secondAttribute="bottom" id="euq-kU-lV0"/>
                                     <constraint firstItem="Rc3-8X-SoO" firstAttribute="leading" secondItem="ivR-5g-itg" secondAttribute="trailing" constant="18" id="mI7-4Z-Upw"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tcd-92-28F" secondAttribute="bottom" constant="15.5" id="pvu-c6-e5e"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -109,8 +109,10 @@
             <connections>
                 <outlet property="accessoryImageView" destination="ivR-5g-itg" id="7kZ-CP-HVv"/>
                 <outlet property="descriptionLabel" destination="Tcd-92-28F" id="SpB-dJ-axC"/>
+                <outlet property="leadingConstraint" destination="463-b9-dsr" id="uOm-Jd-aQg"/>
                 <outlet property="statusLabel" destination="X2V-Ty-3JI" id="Ffq-pF-Ivl"/>
                 <outlet property="titleLabel" destination="Rc3-8X-SoO" id="bcW-ou-qDh"/>
+                <outlet property="trailingConstraint" destination="ht6-Hg-bbQ" id="U0b-Rt-eUn"/>
             </connections>
             <point key="canvasLocation" x="233.5" y="-893"/>
         </tableViewCell>

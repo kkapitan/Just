@@ -46,8 +46,8 @@
 		0242DA3E1E99420B007BA970 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA3D1E99420B007BA970 /* Colors.swift */; };
 		0242DA401E99477A007BA970 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA3F1E99477A007BA970 /* Validations.swift */; };
 		0242DA421E994B56007BA970 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA411E994B56007BA970 /* MainNavigationController.swift */; };
+		02C79FB01E9A9FDC006F40D2 /* DashboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C79FAF1E9A9FDC006F40D2 /* DashboardInputView.swift */; };
 		02D383BF1E867A7C00F5F61C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D383BE1E867A7C00F5F61C /* AppDelegate.swift */; };
-		02D383C11E867A7C00F5F61C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D383C01E867A7C00F5F61C /* ViewController.swift */; };
 		02D383C41E867A7C00F5F61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D383C21E867A7C00F5F61C /* Main.storyboard */; };
 		02D383C61E867A7C00F5F61C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02D383C51E867A7C00F5F61C /* Assets.xcassets */; };
 		02D383C91E867A7C00F5F61C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D383C71E867A7C00F5F61C /* LaunchScreen.storyboard */; };
@@ -113,9 +113,9 @@
 		0242DA3D1E99420B007BA970 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0242DA3F1E99477A007BA970 /* Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		0242DA411E994B56007BA970 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		02C79FAF1E9A9FDC006F40D2 /* DashboardInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardInputView.swift; sourceTree = "<group>"; };
 		02D383BB1E867A7C00F5F61C /* Just.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Just.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D383BE1E867A7C00F5F61C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		02D383C01E867A7C00F5F61C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		02D383C31E867A7C00F5F61C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02D383C51E867A7C00F5F61C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02D383C81E867A7C00F5F61C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -265,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				02D383EB1E8699E900F5F61C /* DashboardInputView.xib */,
+				02C79FAF1E9A9FDC006F40D2 /* DashboardInputView.swift */,
 			);
 			name = DashboardInput;
 			sourceTree = "<group>";
@@ -340,7 +341,6 @@
 				02D383F11E86F58900F5F61C /* ViewControllers */,
 				02D383DE1E86976D00F5F61C /* Views */,
 				02D383BE1E867A7C00F5F61C /* AppDelegate.swift */,
-				02D383C01E867A7C00F5F61C /* ViewController.swift */,
 				02D383C21E867A7C00F5F61C /* Main.storyboard */,
 				02D383C51E867A7C00F5F61C /* Assets.xcassets */,
 				02D383C71E867A7C00F5F61C /* LaunchScreen.storyboard */,
@@ -546,7 +546,6 @@
 			files = (
 				0242DA141E990843007BA970 /* DateFormatter.swift in Sources */,
 				0242DA3E1E99420B007BA970 /* Colors.swift in Sources */,
-				02D383C11E867A7C00F5F61C /* ViewController.swift in Sources */,
 				0242DA201E99145D007BA970 /* LandingViewController.swift in Sources */,
 				0242DA011E87E8A9007BA970 /* Reusable.swift in Sources */,
 				02D383BF1E867A7C00F5F61C /* AppDelegate.swift in Sources */,
@@ -557,6 +556,7 @@
 				0242D9F01E87E2A3007BA970 /* Credentials.swift in Sources */,
 				0242D9FF1E87E8A3007BA970 /* NibLoadable.swift in Sources */,
 				0242D9FD1E87E84E007BA970 /* SectionTitleView.swift in Sources */,
+				02C79FB01E9A9FDC006F40D2 /* DashboardInputView.swift in Sources */,
 				0242D9EE1E87E27C007BA970 /* List.swift in Sources */,
 				0242DA281E991C6A007BA970 /* Wireframes.swift in Sources */,
 				0242D9EA1E87E26B007BA970 /* Task.swift in Sources */,

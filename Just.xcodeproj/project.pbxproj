@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0231B30A1E9A608F00868DB6 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231B3091E9A608F00868DB6 /* Keyboard.swift */; };
 		0242D9E61E87DEC0007BA970 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242D9E51E87DEC0007BA970 /* User.swift */; };
 		0242D9E81E87E265007BA970 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242D9E71E87E265007BA970 /* Token.swift */; };
 		0242D9EA1E87E26B007BA970 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242D9E91E87E26B007BA970 /* Task.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0231B3091E9A608F00868DB6 /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		0242D9E51E87DEC0007BA970 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0242D9E71E87E265007BA970 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		0242D9E91E87E26B007BA970 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				0242DA271E991C6A007BA970 /* Wireframes.swift */,
 				0242DA3D1E99420B007BA970 /* Colors.swift */,
 				0242DA3F1E99477A007BA970 /* Validations.swift */,
+				0231B3091E9A608F00868DB6 /* Keyboard.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				0242DA421E994B56007BA970 /* MainNavigationController.swift in Sources */,
 				0242DA401E99477A007BA970 /* Validations.swift in Sources */,
 				0242DA361E992026007BA970 /* DatePickerViewController.swift in Sources */,
+				0231B30A1E9A608F00868DB6 /* Keyboard.swift in Sources */,
 				0242DA2A1E991E42007BA970 /* TaskDetailsViewController.swift in Sources */,
 				0242DA0F1E87FA87007BA970 /* DetailsDescriptionCell.swift in Sources */,
 				0242DA381E992031007BA970 /* SettingsViewController.swift in Sources */,

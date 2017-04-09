@@ -16,7 +16,7 @@ final class RootViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        present(context: .signedIn)
+        present(context: .notSignedIn)
     }
     
     func present(context: EntranceContext) {

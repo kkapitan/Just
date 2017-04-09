@@ -15,9 +15,16 @@ final class LoginViewController: UIViewController {
     
     @IBOutlet weak var continueButton: UIButton!
     
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    
+    fileprivate let keyboard = Keyboard()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         editingChanged(nil)
+        
+        setupKeyboard()
+        hideKeyboardOnTap()
     }
     
     @IBAction func editingChanged(_ sender: UITextField?) {
@@ -45,6 +52,40 @@ final class LoginViewController: UIViewController {
             || Validations.isValid(username: usernameOrEmail))
             && Validations.isValid(password: password)
     }
-
     
+    
+    func hideKeyboardOnTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func tapHandler() {
+        view.endEditing(true)
+    }
+    
+    func setupKeyboard() {
+        
+        keyboard.onShow { [unowned self] keyboardFrame in
+            
+            let keyboardMinY = keyboardFrame.minY
+            let buttonMaxY = self.continueButton.frame.maxY
+            let additionalPadding: CGFloat = 10.0
+            
+            let topOffset = max(0, buttonMaxY - keyboardMinY + additionalPadding)
+            
+            self.topConstraint.constant -= topOffset
+            
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+            
+            self.keyboard.onHide { _ in
+                self.topConstraint.constant += topOffset
+                
+                UIView.animate(withDuration: 0.3) {
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }
+    }
 }

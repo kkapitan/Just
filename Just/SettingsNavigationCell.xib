@@ -11,15 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsNavigationCell" id="hpv-Ii-IxI" customClass="SettingsNavigationCell" customModule="Just" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsNavigationCell" id="hpv-Ii-IxI" customClass="SettingsNavigationCell" customModule="Just" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hpv-Ii-IxI" id="wFg-qm-neK">
-                <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUv-uY-IG6">
-                        <rect key="frame" x="0.0" y="42.5" width="342" height="1"/>
+                        <rect key="frame" x="0.0" y="42.5" width="375" height="1"/>
                         <color key="backgroundColor" red="0.2901960784" green="0.31372549020000001" blue="0.46666666670000001" alpha="0.79697986580000002" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="v2d-4S-aim"/>
@@ -35,12 +35,14 @@
                 <constraints>
                     <constraint firstItem="biA-NR-evR" firstAttribute="leading" secondItem="wFg-qm-neK" secondAttribute="leading" constant="30" id="N7u-Vp-WSM"/>
                     <constraint firstAttribute="bottom" secondItem="eUv-uY-IG6" secondAttribute="bottom" id="Ps5-Ts-3pb"/>
-                    <constraint firstAttribute="trailing" secondItem="eUv-uY-IG6" secondAttribute="trailing" id="Wdi-VB-kSh"/>
                     <constraint firstItem="biA-NR-evR" firstAttribute="centerY" secondItem="wFg-qm-neK" secondAttribute="centerY" id="ZQM-1Z-hFj"/>
                     <constraint firstItem="eUv-uY-IG6" firstAttribute="leading" secondItem="wFg-qm-neK" secondAttribute="leading" id="tVi-5z-Qxo"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.15686274510000001" green="0.20784313730000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="eUv-uY-IG6" secondAttribute="trailing" id="aNk-64-BfZ"/>
+            </constraints>
             <connections>
                 <outlet property="titleLabel" destination="biA-NR-evR" id="Ccs-Ms-MTY"/>
             </connections>

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0231B30A1E9A608F00868DB6 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231B3091E9A608F00868DB6 /* Keyboard.swift */; };
+		0231B30C1E9A65CE00868DB6 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231B30B1E9A65CE00868DB6 /* Setting.swift */; };
+		0231B30E1E9A78DE00868DB6 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231B30D1E9A78DE00868DB6 /* Notifications.swift */; };
 		0242D9E61E87DEC0007BA970 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242D9E51E87DEC0007BA970 /* User.swift */; };
 		0242D9E81E87E265007BA970 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242D9E71E87E265007BA970 /* Token.swift */; };
 		0242D9EA1E87E26B007BA970 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242D9E91E87E26B007BA970 /* Task.swift */; };
@@ -73,6 +75,8 @@
 
 /* Begin PBXFileReference section */
 		0231B3091E9A608F00868DB6 /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		0231B30B1E9A65CE00868DB6 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		0231B30D1E9A78DE00868DB6 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		0242D9E51E87DEC0007BA970 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0242D9E71E87E265007BA970 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		0242D9E91E87E26B007BA970 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 				0242D9E91E87E26B007BA970 /* Task.swift */,
 				0242D9EB1E87E275007BA970 /* Priority.swift */,
 				0242D9ED1E87E27C007BA970 /* List.swift */,
+				0231B30B1E9A65CE00868DB6 /* Setting.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 				0242DA3D1E99420B007BA970 /* Colors.swift */,
 				0242DA3F1E99477A007BA970 /* Validations.swift */,
 				0231B3091E9A608F00868DB6 /* Keyboard.swift */,
+				0231B30D1E9A78DE00868DB6 /* Notifications.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 				0242D9E61E87DEC0007BA970 /* User.swift in Sources */,
 				0242DA181E990A80007BA970 /* DetailsTitleCell.swift in Sources */,
 				0242DA261E991B87007BA970 /* Instantiator.swift in Sources */,
+				0231B30E1E9A78DE00868DB6 /* Notifications.swift in Sources */,
 				0242DA241E991B80007BA970 /* StoryboardWireframe.swift in Sources */,
 				0242DA341E991FED007BA970 /* ListPickerViewController.swift in Sources */,
 				0242DA301E991E5F007BA970 /* LoginViewController.swift in Sources */,
@@ -568,6 +575,7 @@
 				0242DA1E1E990CD0007BA970 /* SettingsSwitchCell.swift in Sources */,
 				0242DA421E994B56007BA970 /* MainNavigationController.swift in Sources */,
 				0242DA401E99477A007BA970 /* Validations.swift in Sources */,
+				0231B30C1E9A65CE00868DB6 /* Setting.swift in Sources */,
 				0242DA361E992026007BA970 /* DatePickerViewController.swift in Sources */,
 				0231B30A1E9A608F00868DB6 /* Keyboard.swift in Sources */,
 				0242DA2A1E991E42007BA970 /* TaskDetailsViewController.swift in Sources */,

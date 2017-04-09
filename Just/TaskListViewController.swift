@@ -69,6 +69,13 @@ final class TaskListViewController: UITableViewController {
         return CGFloat.leastNonzeroMagnitude
     }
     
+    @IBAction func settingsButtonAction(_ sender: Any) {
+        let settings = Wireframe.Main().settings()
+        let navigationController = MainNavigationController(rootViewController: settings)
+        
+        present(navigationController, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let task = tasks[indexPath.section][indexPath.row]

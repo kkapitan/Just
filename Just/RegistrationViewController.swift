@@ -43,10 +43,7 @@ final class RegistrationViewController: UIViewController {
         let password = passwordTextField.text!
         let confirmation = confirmationTextField.text!
         
-        let taskList = Wireframe.Main().taskList()
-        let navigationController = MainNavigationController(rootViewController: taskList)
-        
-        present(navigationController, animated: true)
+        NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
     }
     
     func isFormValid() -> Bool {

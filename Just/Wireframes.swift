@@ -6,7 +6,7 @@
 //  Copyright © 2017 CappSoft. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Wireframe {
     
@@ -43,6 +43,14 @@ struct Wireframe {
         
         func datePicker() -> DatePickerViewController {
             return instantiatior.identifiable()
+        }
+    }
+    
+    struct Launch: StoryboardWireframe {
+        let storyboardName: String = "LaunchScreen"
+        
+        func launchScreen() -> UIViewController {
+            return instantiatior.initial()
         }
     }
 }

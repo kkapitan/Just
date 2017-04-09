@@ -267,20 +267,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN UP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0i-Wq-iUQ">
-                                <rect key="frame" x="127.5" y="64" width="120" height="41"/>
+                                <rect key="frame" x="128" y="64" width="120" height="41"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="30"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spaceship_ic" translatesAutoresizingMaskIntoConstraints="NO" id="PNQ-3K-pWg">
-                                <rect key="frame" x="73.5" y="174" width="228" height="182"/>
+                                <rect key="frame" x="74" y="174" width="228" height="182"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="182" id="8br-UX-g62"/>
                                     <constraint firstAttribute="width" constant="228" id="jhG-Ma-F0s"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnh-XX-dha">
-                                <rect key="frame" x="89.5" y="417" width="197" height="44"/>
+                                <rect key="frame" x="90" y="417" width="197" height="44"/>
                                 <color key="backgroundColor" red="0.72549019609999998" green="0.75294117650000003" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="197" id="1QU-RC-X58"/>
@@ -294,7 +294,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHC-S7-oye">
-                                <rect key="frame" x="63.5" y="152" width="248" height="46"/>
+                                <rect key="frame" x="64" y="152" width="248" height="46"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Bu-0t-dd8">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="12"/>
@@ -338,7 +338,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zag-31-PhY">
-                                <rect key="frame" x="63.5" y="208" width="248" height="46"/>
+                                <rect key="frame" x="64" y="208" width="248" height="46"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7H-Vz-krd" userLabel="PASSWORD">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="12"/>
@@ -382,7 +382,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C59-U6-Rdt">
-                                <rect key="frame" x="63.5" y="264" width="248" height="46"/>
+                                <rect key="frame" x="64" y="264" width="248" height="46"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4TB-I6-d2R">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="12"/>
@@ -426,7 +426,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TQu-fK-uaa">
-                                <rect key="frame" x="63.5" y="320" width="248" height="46"/>
+                                <rect key="frame" x="64" y="320" width="248" height="46"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD CONFIRMATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-kd-uVh">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="12"/>
@@ -513,7 +513,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="03o-WZ-eKI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="03o-WZ-eKI">
                                 <rect key="frame" x="0.0" y="64" width="375" height="488"/>
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.20784313725490194" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <sections/>
@@ -528,6 +528,9 @@
                                 <state key="normal" title="Sign out">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signOutAction" destination="Isk-7D-bCZ" eventType="touchUpInside" id="e0J-ZO-CMG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.15686274510000001" green="0.20784313730000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -540,7 +543,16 @@
                             <constraint firstItem="03o-WZ-eKI" firstAttribute="leading" secondItem="6br-TX-O3w" secondAttribute="leading" id="q2a-5B-ses"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="SETTINGS" id="BJf-r7-Hi6"/>
+                    <navigationItem key="navigationItem" title="SETTINGS" id="BJf-r7-Hi6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="Z7i-gf-0Jr">
+                            <connections>
+                                <action selector="cancelButtonAction:" destination="Isk-7D-bCZ" id="znr-uF-EJQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="03o-WZ-eKI" id="Epy-48-2Oj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FmP-GO-iPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -632,7 +644,13 @@
                             <outlet property="delegate" destination="xqg-jZ-vvz" id="83Q-ET-G0G"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="DASHBOARD" id="msj-Bc-YsJ"/>
+                    <navigationItem key="navigationItem" title="DASHBOARD" id="msj-Bc-YsJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="lwh-lu-b4A">
+                            <connections>
+                                <action selector="settingsButtonAction:" destination="xqg-jZ-vvz" id="DYj-eT-3Dw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ZG-AV-Nxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

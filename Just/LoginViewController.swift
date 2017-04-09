@@ -38,10 +38,7 @@ final class LoginViewController: UIViewController {
         let usernameOrEmail = usernameOrEmailTextField.text!
         let password = passwordTextField.text!
         
-        let taskList = Wireframe.Main().taskList()
-        let navigationController = MainNavigationController(rootViewController: taskList)
-        
-        present(navigationController, animated: true)
+        NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
     }
     
     func isFormValid() -> Bool {

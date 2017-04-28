@@ -1,10 +1,66 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="70c-Ke-4Za" customClass="DashboardInputView" customModule="Just" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="397" height="61"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dES-aj-j9O">
+                    <rect key="frame" x="10" y="0.0" width="44" height="61"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="vKo-oO-MNU"/>
+                    </constraints>
+                    <state key="normal" image="clock_button_ic"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axJ-fC-oq9">
+                    <rect key="frame" x="64" y="-0.5" width="44" height="61"/>
+                    <state key="normal" image="lists_button_ic"/>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type things to be done..." translatesAutoresizingMaskIntoConstraints="NO" id="lMZ-nN-Nzn">
+                    <rect key="frame" x="120" y="15" width="267" height="31"/>
+                    <color key="backgroundColor" red="0.3529411764705882" green="0.40392156862745099" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" red="0.15686274509803921" green="0.20784313725490194" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="lMZ-nN-Nzn" secondAttribute="bottom" constant="15" id="7MX-At-4ke"/>
+                <constraint firstItem="axJ-fC-oq9" firstAttribute="centerY" secondItem="dES-aj-j9O" secondAttribute="centerY" id="FHO-eF-qy8"/>
+                <constraint firstItem="dES-aj-j9O" firstAttribute="leading" secondItem="70c-Ke-4Za" secondAttribute="leading" constant="10" id="MfE-AO-dO5"/>
+                <constraint firstAttribute="trailing" secondItem="lMZ-nN-Nzn" secondAttribute="trailing" constant="10" id="Otv-wE-XuP"/>
+                <constraint firstItem="axJ-fC-oq9" firstAttribute="height" secondItem="dES-aj-j9O" secondAttribute="height" id="crj-Lo-KJP"/>
+                <constraint firstItem="dES-aj-j9O" firstAttribute="height" secondItem="70c-Ke-4Za" secondAttribute="height" id="hgo-lf-pvp"/>
+                <constraint firstItem="lMZ-nN-Nzn" firstAttribute="leading" secondItem="axJ-fC-oq9" secondAttribute="trailing" constant="12" id="jVG-9H-B4g"/>
+                <constraint firstItem="axJ-fC-oq9" firstAttribute="leading" secondItem="dES-aj-j9O" secondAttribute="trailing" constant="10" id="mzz-ib-zRN"/>
+                <constraint firstItem="dES-aj-j9O" firstAttribute="centerY" secondItem="70c-Ke-4Za" secondAttribute="centerY" id="oR0-ux-nb7"/>
+                <constraint firstItem="axJ-fC-oq9" firstAttribute="width" secondItem="dES-aj-j9O" secondAttribute="width" id="qyr-BX-L5K"/>
+                <constraint firstItem="lMZ-nN-Nzn" firstAttribute="top" secondItem="70c-Ke-4Za" secondAttribute="top" constant="15" id="x9T-7V-1Lh"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="clockButton" destination="dES-aj-j9O" id="vHZ-bf-prW"/>
+                <outlet property="inputTextView" destination="lMZ-nN-Nzn" id="eSd-Qe-UyS"/>
+                <outlet property="leadingConstraint" destination="MfE-AO-dO5" id="MXU-M9-G7q"/>
+                <outlet property="listButton" destination="axJ-fC-oq9" id="wK2-hE-jUF"/>
+            </connections>
+            <point key="canvasLocation" x="190.5" y="434.5"/>
+        </view>
     </objects>
+    <resources>
+        <image name="clock_button_ic" width="28" height="28"/>
+        <image name="lists_button_ic" width="28" height="28"/>
+    </resources>
 </document>

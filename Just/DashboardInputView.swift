@@ -8,20 +8,54 @@
 
 import UIKit
 
-final class DashboardInputView: UITableViewCell, Reusable, NibLoadable {
+final class DashboardInputView: UIView, Reusable, NibLoadable {
+   
+    @IBOutlet weak var clockButton: UIButton!
+   
+    @IBOutlet weak var listButton: UIButton!
     
-    @IBOutlet weak var accessoryImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var inputTextView: UITextView!
     
-    var accessoryImage: UIImage? {
-        didSet {
-            accessoryImageView.image = accessoryImage
-        }
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        applyState(.inactive, animated: false)
     }
     
-    var title: String? {
-        didSet {
-            titleLabel.text = title
+    func activate() {
+        applyState(.active, animated: true)
+    }
+    
+    func deactivate() {
+        applyState(.inactive, animated: true)
+    }
+}
+
+extension DashboardInputView {
+    struct State {
+        let text: String
+        let offset: CGFloat
+    }
+    
+    func applyState(_ state: State, animated: Bool) {
+        leadingConstraint.constant = state.offset
+        inputTextView.text = state.text
+        
+        guard animated else { return }
+        
+        UIView.animate(withDuration: 0.5) {
+            self.layoutIfNeeded()
         }
     }
+}
+
+extension DashboardInputView.State {
+    static let active: DashboardInputView.State = {
+        return .init(text: "", offset: 10)
+    }()
+    
+    static let inactive: DashboardInputView.State = {
+        return .init(text: "Type things to be done...", offset: -100)
+    }()
 }

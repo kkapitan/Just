@@ -61,6 +61,8 @@
 		02D383EC1E8699E900F5F61C /* DashboardInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383EB1E8699E900F5F61C /* DashboardInputView.xib */; };
 		02D383EE1E86E40600F5F61C /* SettingsNavigationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383ED1E86E40600F5F61C /* SettingsNavigationCell.xib */; };
 		02D383F01E86E44C00F5F61C /* SettingsSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D383EF1E86E44C00F5F61C /* SettingsSwitchCell.xib */; };
+		02DCFF801EBFA2260096A5D0 /* ListEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DCFF7F1EBFA2260096A5D0 /* ListEntryCell.swift */; };
+		02DCFF821EBFA23D0096A5D0 /* ListEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02DCFF811EBFA23D0096A5D0 /* ListEntryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,8 @@
 		02D383EB1E8699E900F5F61C /* DashboardInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardInputView.xib; sourceTree = "<group>"; };
 		02D383ED1E86E40600F5F61C /* SettingsNavigationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsNavigationCell.xib; sourceTree = "<group>"; };
 		02D383EF1E86E44C00F5F61C /* SettingsSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsSwitchCell.xib; sourceTree = "<group>"; };
+		02DCFF7F1EBFA2260096A5D0 /* ListEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEntryCell.swift; sourceTree = "<group>"; };
+		02DCFF811EBFA23D0096A5D0 /* ListEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListEntryCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +365,7 @@
 		02D383DE1E86976D00F5F61C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				02DCFF7E1EBFA2100096A5D0 /* ListEntry */,
 				0242DA0D1E87F93F007BA970 /* SectionSwitch */,
 				0242DA0C1E87F937007BA970 /* SettingsNavigation */,
 				0242DA0B1E87F8D8007BA970 /* DashboardItem */,
@@ -432,6 +437,15 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		02DCFF7E1EBFA2100096A5D0 /* ListEntry */ = {
+			isa = PBXGroup;
+			children = (
+				02DCFF7F1EBFA2260096A5D0 /* ListEntryCell.swift */,
+				02DCFF811EBFA23D0096A5D0 /* ListEntryCell.xib */,
+			);
+			name = ListEntry;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -477,7 +491,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = CappSoft;
 				TargetAttributes = {
 					02D383BA1E867A7C00F5F61C = {
@@ -522,6 +536,7 @@
 				02D383C61E867A7C00F5F61C /* Assets.xcassets in Resources */,
 				02D383E81E86998A00F5F61C /* DetailsActionCell.xib in Resources */,
 				02D383C41E867A7C00F5F61C /* Main.storyboard in Resources */,
+				02DCFF821EBFA23D0096A5D0 /* ListEntryCell.xib in Resources */,
 				02D383E61E86992D00F5F61C /* DetailsTitleCell.xib in Resources */,
 				02D383E21E8698D900F5F61C /* DetailsDescriptionCell.xib in Resources */,
 				02D383E41E8698F600F5F61C /* DetailsStatusCell.xib in Resources */,
@@ -568,6 +583,7 @@
 				0242DA341E991FED007BA970 /* ListPickerViewController.swift in Sources */,
 				0242DA301E991E5F007BA970 /* LoginViewController.swift in Sources */,
 				0242DA031E87E8E6007BA970 /* TableView+Dequeuing.swift in Sources */,
+				02DCFF801EBFA2260096A5D0 /* ListEntryCell.swift in Sources */,
 				0242DA321E991E6B007BA970 /* RootViewController.swift in Sources */,
 				0242D9E81E87E265007BA970 /* Token.swift in Sources */,
 				0242D9EC1E87E275007BA970 /* Priority.swift in Sources */,
@@ -644,6 +660,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -693,6 +710,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

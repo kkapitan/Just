@@ -23,10 +23,11 @@ final class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        editingChanged(nil)
         
         setupKeyboard()
         hideKeyboardOnTap()
+        
+        editingChanged(nil)
     }
     
     @IBAction func editingChanged(_ sender: UITextField?) {
@@ -34,16 +35,6 @@ final class RegistrationViewController: UIViewController {
         
         continueButton.isEnabled = valid
         continueButton.backgroundColor = valid ? .buttonGreen : .buttonGray
-    }
-    
-    @IBAction func continueAction(_ sender: UIButton) {
-      
-        let username = usernameTextField.text!
-        let email = emailTextField.text!
-        let password = passwordTextField.text!
-        let confirmation = confirmationTextField.text!
-        
-        NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
     }
     
     func isFormValid() -> Bool {
@@ -57,6 +48,17 @@ final class RegistrationViewController: UIViewController {
             && Validations.isValid(confirmation: confirmation, of: password)
             && Validations.isValid(password: password)
     }
+    
+    @IBAction func continueAction(_ sender: UIButton) {
+      
+        let username = usernameTextField.text!
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+        let confirmation = confirmationTextField.text!
+        
+        NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
+    }
+    
     
     func hideKeyboardOnTap() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapHandler))

@@ -9,7 +9,7 @@
 import Foundation
 
 struct List {
-    let id: Int
+    let id: String
     let name: String
     
     let tasks: [Int]

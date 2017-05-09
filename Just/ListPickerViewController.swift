@@ -9,11 +9,15 @@
 import UIKit
 
 final class ListPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    typealias SelectAction = (List) -> ()
+    var onSelect: SelectAction?
+    
     @IBOutlet weak var tableView: UITableView!
     
     var lists: [List] = {
         return (1..<10).map {
-            List(id: $0, name: "Test \($0)", tasks: [])
+            List(id: "\($0)", name: "Test \($0)", tasks: [])
         }
     }()
     
@@ -52,6 +56,10 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
         return .leastNonzeroMagnitude
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onSelect?(lists[indexPath.row])
+    }
+    
     @IBAction func addButtonAction() {
         let alert = UIAlertController(title: "New list", message: "Enter name", preferredStyle: .alert)
         alert.addTextField { textField in
@@ -61,7 +69,7 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             guard let name = alert.textFields?.first?.text else { return }
             
-            let list = List(id: 0, name: name, tasks: [])
+            let list = List(id: "0", name: name, tasks: [])
             
             self.lists.append(list)
             self.tableView.reloadData()
@@ -78,5 +86,4 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
     @IBAction func cancelButtonAction(_ sender: Any) {
         dismiss(animated: true)
     }
-
 }

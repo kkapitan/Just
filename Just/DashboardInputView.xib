@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,28 +33,48 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vb5-NN-u9U">
+                    <rect key="frame" x="10" y="46" width="98" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="iD4-gc-qd3">
+                    <rect key="frame" x="10" y="3" width="98" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.15686274509803921" green="0.20784313725490194" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="lMZ-nN-Nzn" secondAttribute="bottom" constant="15" id="7MX-At-4ke"/>
                 <constraint firstItem="axJ-fC-oq9" firstAttribute="centerY" secondItem="dES-aj-j9O" secondAttribute="centerY" id="FHO-eF-qy8"/>
+                <constraint firstItem="iD4-gc-qd3" firstAttribute="leading" secondItem="dES-aj-j9O" secondAttribute="leading" id="KAq-pv-ACW"/>
                 <constraint firstItem="dES-aj-j9O" firstAttribute="leading" secondItem="70c-Ke-4Za" secondAttribute="leading" constant="10" id="MfE-AO-dO5"/>
                 <constraint firstAttribute="trailing" secondItem="lMZ-nN-Nzn" secondAttribute="trailing" constant="10" id="Otv-wE-XuP"/>
                 <constraint firstItem="axJ-fC-oq9" firstAttribute="height" secondItem="dES-aj-j9O" secondAttribute="height" id="crj-Lo-KJP"/>
+                <constraint firstItem="iD4-gc-qd3" firstAttribute="trailing" secondItem="axJ-fC-oq9" secondAttribute="trailing" id="gfL-J4-QAJ"/>
                 <constraint firstItem="dES-aj-j9O" firstAttribute="height" secondItem="70c-Ke-4Za" secondAttribute="height" id="hgo-lf-pvp"/>
                 <constraint firstItem="lMZ-nN-Nzn" firstAttribute="leading" secondItem="axJ-fC-oq9" secondAttribute="trailing" constant="12" id="jVG-9H-B4g"/>
+                <constraint firstItem="vb5-NN-u9U" firstAttribute="leading" secondItem="dES-aj-j9O" secondAttribute="leading" id="lwD-hF-yAF"/>
                 <constraint firstItem="axJ-fC-oq9" firstAttribute="leading" secondItem="dES-aj-j9O" secondAttribute="trailing" constant="10" id="mzz-ib-zRN"/>
                 <constraint firstItem="dES-aj-j9O" firstAttribute="centerY" secondItem="70c-Ke-4Za" secondAttribute="centerY" id="oR0-ux-nb7"/>
                 <constraint firstItem="axJ-fC-oq9" firstAttribute="width" secondItem="dES-aj-j9O" secondAttribute="width" id="qyr-BX-L5K"/>
+                <constraint firstAttribute="bottom" secondItem="vb5-NN-u9U" secondAttribute="bottom" constant="3" id="tdv-oc-KIG"/>
+                <constraint firstItem="iD4-gc-qd3" firstAttribute="top" secondItem="70c-Ke-4Za" secondAttribute="top" constant="3" id="vHJ-Hn-dXp"/>
+                <constraint firstItem="vb5-NN-u9U" firstAttribute="trailing" secondItem="axJ-fC-oq9" secondAttribute="trailing" id="wge-O7-bMN"/>
                 <constraint firstItem="lMZ-nN-Nzn" firstAttribute="top" secondItem="70c-Ke-4Za" secondAttribute="top" constant="15" id="x9T-7V-1Lh"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="clockButton" destination="dES-aj-j9O" id="vHZ-bf-prW"/>
+                <outlet property="dateLabel" destination="iD4-gc-qd3" id="dax-6g-Xud"/>
                 <outlet property="inputTextView" destination="lMZ-nN-Nzn" id="eSd-Qe-UyS"/>
                 <outlet property="leadingConstraint" destination="MfE-AO-dO5" id="MXU-M9-G7q"/>
                 <outlet property="listButton" destination="axJ-fC-oq9" id="wK2-hE-jUF"/>
+                <outlet property="listLabel" destination="vb5-NN-u9U" id="d5f-8R-a9y"/>
             </connections>
             <point key="canvasLocation" x="190.5" y="434.5"/>
         </view>

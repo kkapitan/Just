@@ -669,28 +669,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVb-8r-iZ0">
-                                <rect key="frame" x="12" y="57" width="347" height="1"/>
+                                <rect key="frame" x="12" y="67" width="347" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="EkE-fR-Rvr"/>
                                 </constraints>
                             </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ZFS-Xp-s3h">
-                                <rect key="frame" x="0.0" y="58" width="375" height="216"/>
+                                <rect key="frame" x="10" y="68" width="355" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="512161602.675816">
                                     <!--2017-03-25 19:06:42 +0000-->
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7Y-oO-9ly">
-                                <rect key="frame" x="12" y="19" width="29" height="28"/>
+                                <rect key="frame" x="12" y="29" width="29" height="28"/>
                                 <state key="normal" image="small_tick_button_ic"/>
+                                <connections>
+                                    <action selector="tickAction:" destination="gjH-zv-MpN" eventType="touchUpInside" id="pWa-b8-SaY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dL4-Ti-HjY">
-                                <rect key="frame" x="331" y="19" width="28" height="28"/>
+                                <rect key="frame" x="331" y="29" width="28" height="28"/>
                                 <state key="normal" image="small_cross_button_ic"/>
+                                <connections>
+                                    <action selector="crossAction:" destination="gjH-zv-MpN" eventType="touchUpInside" id="bKh-gI-tgH"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNX-uH-Drj">
-                                <rect key="frame" x="150" y="20" width="75" height="25"/>
+                                <rect key="frame" x="150" y="30" width="75" height="25"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -701,17 +707,20 @@
                             <constraint firstItem="dL4-Ti-HjY" firstAttribute="trailing" secondItem="CVb-8r-iZ0" secondAttribute="trailing" id="3pu-M6-hcv"/>
                             <constraint firstAttribute="trailing" secondItem="dL4-Ti-HjY" secondAttribute="trailing" constant="16" id="4sr-K4-iwc"/>
                             <constraint firstItem="CVb-8r-iZ0" firstAttribute="leading" secondItem="h7Y-oO-9ly" secondAttribute="leading" id="5QU-dl-2HG"/>
-                            <constraint firstAttribute="trailing" secondItem="ZFS-Xp-s3h" secondAttribute="trailing" id="Bnf-gL-XQ2"/>
+                            <constraint firstAttribute="trailing" secondItem="ZFS-Xp-s3h" secondAttribute="trailing" constant="10" id="Bnf-gL-XQ2"/>
                             <constraint firstItem="CVb-8r-iZ0" firstAttribute="leading" secondItem="FJj-1a-3iB" secondAttribute="leading" constant="12" id="CT9-Jc-FZh"/>
-                            <constraint firstItem="ZFS-Xp-s3h" firstAttribute="leading" secondItem="FJj-1a-3iB" secondAttribute="leading" id="Spg-HH-jvy"/>
+                            <constraint firstItem="ZFS-Xp-s3h" firstAttribute="leading" secondItem="FJj-1a-3iB" secondAttribute="leading" constant="10" id="Spg-HH-jvy"/>
                             <constraint firstItem="PNX-uH-Drj" firstAttribute="centerY" secondItem="dL4-Ti-HjY" secondAttribute="centerY" id="eOv-Lj-0fB"/>
                             <constraint firstItem="ZFS-Xp-s3h" firstAttribute="top" secondItem="CVb-8r-iZ0" secondAttribute="bottom" id="eSg-Pl-bAb"/>
                             <constraint firstItem="h7Y-oO-9ly" firstAttribute="centerY" secondItem="PNX-uH-Drj" secondAttribute="centerY" id="hzo-f2-tjc"/>
                             <constraint firstItem="CVb-8r-iZ0" firstAttribute="top" secondItem="PNX-uH-Drj" secondAttribute="bottom" constant="12" id="oLW-AK-h1b"/>
-                            <constraint firstItem="PNX-uH-Drj" firstAttribute="top" secondItem="pUa-sI-Vwm" secondAttribute="bottom" id="vIU-CN-IOj"/>
+                            <constraint firstItem="PNX-uH-Drj" firstAttribute="top" secondItem="pUa-sI-Vwm" secondAttribute="bottom" constant="10" id="vIU-CN-IOj"/>
                             <constraint firstItem="PNX-uH-Drj" firstAttribute="centerX" secondItem="FJj-1a-3iB" secondAttribute="centerX" id="wfE-R4-NRF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="picker" destination="ZFS-Xp-s3h" id="aYd-Sk-ao2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1FL-7j-T2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

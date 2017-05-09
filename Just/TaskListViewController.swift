@@ -101,26 +101,54 @@ final class TaskListViewController: UITableViewController {
     
     func listButtonAction(sender: UIButton) {
         let listPicker = Wireframe.Main().listPicker()
-        listPicker.modalPresentationStyle = .popover
-        listPicker.preferredContentSize = CGSize(width: 184, height: 260)
+        let contentSize = CGSize(width: 184, height: 260)
         
-        let popoverController = listPicker.popoverPresentationController
-
-        popoverController?.sourceRect = sender.bounds
-        popoverController?.sourceView = sender
+        listPicker.onSelect = { [unowned self] list in
+            self.dashboardInputView.list = list
+        }
+        
+        presentPopover(listPicker, sourceView: sender, size: contentSize)
+    }
+    
+    func clockButtonAction(sender: UIButton) {
+        let datePicker = Wireframe.Main().datePicker()
+        let contentSize = CGSize(width: 300, height: 250)
+        
+        datePicker.onPick = { [unowned self] date in
+            self.dashboardInputView.date = date
+        }
+        
+        datePicker.onClear = { [unowned self] in
+            self.dashboardInputView.date = nil
+        }
+        
+        presentPopover(datePicker, sourceView: sender, size: contentSize)
+    }
+    
+    func presentPopover(_ popover: UIViewController, sourceView: UIView, size: CGSize) {
+        popover.modalPresentationStyle = .popover
+        popover.preferredContentSize = size
+        
+        let popoverController = popover.popoverPresentationController
+        
+        popoverController?.sourceRect = sourceView.bounds
+        popoverController?.sourceView = sourceView
         popoverController?.delegate = self
         popoverController?.permittedArrowDirections = .init(rawValue: 0)
         
-        present(listPicker, animated: true)
+        present(popover, animated: true)
     }
+
     
     func setupInputView() {
         dashboardInputView.listButton
             .addTarget(self, action: #selector(listButtonAction), for: .touchUpInside)
+        
+        dashboardInputView.clockButton
+            .addTarget(self, action: #selector(clockButtonAction), for: .touchUpInside)
+        
         dashboardInputView.inputTextView.delegate = self
     }
-    
-    
     
 }
 
@@ -142,6 +170,7 @@ extension TaskListViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         dashboardInputView.activate()
+        tableView.isScrollEnabled = false
         
         self.view.addSubview(overlayView)
         
@@ -156,6 +185,7 @@ extension TaskListViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         dashboardInputView.deactivate()
+        tableView.isScrollEnabled = true
         
         UIView.animate(withDuration: 0.5, animations: {
             self.overlayView.alpha = 0.0
@@ -165,6 +195,7 @@ extension TaskListViewController: UITextViewDelegate {
     }
     
     func overlayTapAction() {
+        tableView.isScrollEnabled = true
         dashboardInputView.inputTextView.resignFirstResponder()
     }
 }
@@ -177,7 +208,7 @@ extension TaskListViewController: UIPopoverPresentationControllerDelegate {
 
 extension TaskListViewController {
     func mock() {
-        let task = Task(id: "1231", title: "Title2222", dueDate: Date(), priority: .high, taskDescription: "Vryasd asdopk asdkpas kdpoask sd kdaosd kaskd appp daspdk asopdkasp asda oasjdioj aosjda jsd jsaoidjaosj dasdoiajsod asjdoasidi jajsdoiasj jasjdjioaj asdasdasoijdoajojdaoid jsad jasjdj jasdj ojd iojoasdj")
+        let task = Task(id: "1231", listId: "12", title: "Title2222", dueDate: Date(), priority: .high, taskDescription: "Vryasd asdopk asdkpas kdpoask sd kdaosd kaskd appp daspdk asopdkasp asda oasjdioj aosjda jsd jsaoidjaosj dasdoiajsod asjdoasidi jajsdoiasj jasjdjioaj asdasdasoijdoajojdaoid jsad jasjdj jasdj ojd iojoasdj")
         
         tasks = [
             [

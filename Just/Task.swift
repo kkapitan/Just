@@ -10,6 +10,7 @@ import Foundation
 
 struct Task {
     let id: String
+    let listId: String
     
     let title: String
     let dueDate: Date

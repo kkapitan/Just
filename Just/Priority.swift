@@ -14,4 +14,8 @@ enum Priority: String {
     var description: String {
         return "\(rawValue) Priority".capitalized
     }
+    
+    static var all: [Priority] {
+        return [.urgent, .high, .medium, .low]
+    }
 }

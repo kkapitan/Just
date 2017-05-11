@@ -26,7 +26,7 @@
                     <rect key="frame" x="64" y="-0.5" width="44" height="61"/>
                     <state key="normal" image="lists_button_ic"/>
                 </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type things to be done..." translatesAutoresizingMaskIntoConstraints="NO" id="lMZ-nN-Nzn">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Type things to be done..." translatesAutoresizingMaskIntoConstraints="NO" id="lMZ-nN-Nzn">
                     <rect key="frame" x="120" y="15" width="267" height="31"/>
                     <color key="backgroundColor" red="0.3529411764705882" green="0.40392156862745099" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

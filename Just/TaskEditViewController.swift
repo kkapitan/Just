@@ -1,42 +1,16 @@
 //
-//  TaskDetailsViewController.swift
+//  EditItemViewController.swift
 //  Just
 //
-//  Created by Krzysztof Kapitan on 08.04.2017.
+//  Created by Krzysztof Kapitan on 09.05.2017.
 //  Copyright © 2017 CappSoft. All rights reserved.
 //
 
 import UIKit
 
-final class TaskDetailsViewController: UITableViewController {
+final class TaskEditViewController: UITableViewController {
     
-    var enablesEdition: Bool = false
     var task: Task!
-    
-    func enableEdition(_ edition: Bool) {
-        enablesEdition = edition
-        tableView.reloadData()
-        
-        if enablesEdition {
-            let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveAction))
-            
-            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelAction))
-            
-            navigationItem.leftBarButtonItem = cancelButton
-            navigationItem.rightBarButtonItem = saveButton
-        } else {
-            navigationItem.leftBarButtonItem = nil
-            navigationItem.rightBarButtonItem = nil
-        }
-    }
-    
-    func saveAction() {
-        enableEdition(false)
-    }
-    
-    func cancelAction() {
-        enableEdition(false)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +24,7 @@ final class TaskDetailsViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return enablesEdition ? 3 : 4
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,13 +37,11 @@ final class TaskDetailsViewController: UITableViewController {
         case 0:
             let cell: DetailsTitleCell = tableView.dequeue()
             cell.title = task.title
-            cell.allowEditing = enablesEdition
             
             return cell
         case 1:
             let cell: DetailsStatusCell = tableView.dequeue()
             cell.date = task.dueDate
-            cell.allowEditing = enablesEdition
             
             return cell
         case 2:
@@ -79,9 +51,7 @@ final class TaskDetailsViewController: UITableViewController {
             return cell
         case 3:
             let cell: DetailsActionCell = tableView.dequeue()
-            cell.editButton.addTarget(self, action: #selector(editAction), for: .touchUpInside)
-            cell.tickButton.addTarget(self, action: #selector(doneAction), for: .touchUpInside)
-            cell.trashButton.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
+            
             return cell
         default:
             fatalError("Wrong section id")
@@ -133,16 +103,5 @@ final class TaskDetailsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat.leastNonzeroMagnitude
     }
-    
-    func doneAction() {
-        
-    }
-    
-    func editAction() {
-        enableEdition(true)
-    }
-    
-    func deleteAction() {
-        
-    }
 }
+

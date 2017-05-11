@@ -46,6 +46,9 @@
 		0242DA3E1E99420B007BA970 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA3D1E99420B007BA970 /* Colors.swift */; };
 		0242DA401E99477A007BA970 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA3F1E99477A007BA970 /* Validations.swift */; };
 		0242DA421E994B56007BA970 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242DA411E994B56007BA970 /* MainNavigationController.swift */; };
+		029B24731EC26FC60009F828 /* TaskEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B24721EC26FC60009F828 /* TaskEditViewController.swift */; };
+		029B24761EC272070009F828 /* EditTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B24751EC272070009F828 /* EditTitleCell.swift */; };
+		029B24781EC2721C0009F828 /* EditTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029B24771EC2721C0009F828 /* EditTitleCell.xib */; };
 		02C79FB01E9A9FDC006F40D2 /* DashboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C79FAF1E9A9FDC006F40D2 /* DashboardInputView.swift */; };
 		02D383BF1E867A7C00F5F61C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D383BE1E867A7C00F5F61C /* AppDelegate.swift */; };
 		02D383C41E867A7C00F5F61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D383C21E867A7C00F5F61C /* Main.storyboard */; };
@@ -115,6 +118,9 @@
 		0242DA3D1E99420B007BA970 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0242DA3F1E99477A007BA970 /* Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		0242DA411E994B56007BA970 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		029B24721EC26FC60009F828 /* TaskEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEditViewController.swift; sourceTree = "<group>"; };
+		029B24751EC272070009F828 /* EditTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTitleCell.swift; sourceTree = "<group>"; };
+		029B24771EC2721C0009F828 /* EditTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTitleCell.xib; sourceTree = "<group>"; };
 		02C79FAF1E9A9FDC006F40D2 /* DashboardInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardInputView.swift; sourceTree = "<group>"; };
 		02D383BB1E867A7C00F5F61C /* Just.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Just.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D383BE1E867A7C00F5F61C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -318,6 +324,23 @@
 			name = NavigationControllers;
 			sourceTree = "<group>";
 		};
+		029B24711EC26FA80009F828 /* TaskEdit */ = {
+			isa = PBXGroup;
+			children = (
+				029B24721EC26FC60009F828 /* TaskEditViewController.swift */,
+			);
+			name = TaskEdit;
+			sourceTree = "<group>";
+		};
+		029B24741EC2716A0009F828 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				029B24751EC272070009F828 /* EditTitleCell.swift */,
+				029B24771EC2721C0009F828 /* EditTitleCell.xib */,
+			);
+			name = Progress;
+			sourceTree = "<group>";
+		};
 		02D383B21E867A7C00F5F61C = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +388,7 @@
 		02D383DE1E86976D00F5F61C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				029B24741EC2716A0009F828 /* Progress */,
 				02DCFF7E1EBFA2100096A5D0 /* ListEntry */,
 				0242DA0D1E87F93F007BA970 /* SectionSwitch */,
 				0242DA0C1E87F937007BA970 /* SettingsNavigation */,
@@ -382,6 +406,7 @@
 		02D383F11E86F58900F5F61C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				029B24711EC26FA80009F828 /* TaskEdit */,
 				0242DA3A1E993565007BA970 /* NavigationControllers */,
 				0242DA391E992036007BA970 /* Settings */,
 				0242D9F91E87E6F5007BA970 /* Landing */,
@@ -537,6 +562,7 @@
 				02D383E81E86998A00F5F61C /* DetailsActionCell.xib in Resources */,
 				02D383C41E867A7C00F5F61C /* Main.storyboard in Resources */,
 				02DCFF821EBFA23D0096A5D0 /* ListEntryCell.xib in Resources */,
+				029B24781EC2721C0009F828 /* EditTitleCell.xib in Resources */,
 				02D383E61E86992D00F5F61C /* DetailsTitleCell.xib in Resources */,
 				02D383E21E8698D900F5F61C /* DetailsDescriptionCell.xib in Resources */,
 				02D383E41E8698F600F5F61C /* DetailsStatusCell.xib in Resources */,
@@ -564,6 +590,7 @@
 				0242DA201E99145D007BA970 /* LandingViewController.swift in Sources */,
 				0242DA011E87E8A9007BA970 /* Reusable.swift in Sources */,
 				02D383BF1E867A7C00F5F61C /* AppDelegate.swift in Sources */,
+				029B24731EC26FC60009F828 /* TaskEditViewController.swift in Sources */,
 				0242DA1C1E990CC7007BA970 /* SettingsNavigationCell.swift in Sources */,
 				0242DA221E991B5E007BA970 /* StoryboardIdentifiable.swift in Sources */,
 				0242DA051E87ECAB007BA970 /* TableView+IndexPath.swift in Sources */,
@@ -588,6 +615,7 @@
 				0242D9E81E87E265007BA970 /* Token.swift in Sources */,
 				0242D9EC1E87E275007BA970 /* Priority.swift in Sources */,
 				0242DA2C1E991E4C007BA970 /* TaskListViewController.swift in Sources */,
+				029B24761EC272070009F828 /* EditTitleCell.swift in Sources */,
 				0242DA1E1E990CD0007BA970 /* SettingsSwitchCell.swift in Sources */,
 				0242DA421E994B56007BA970 /* MainNavigationController.swift in Sources */,
 				0242DA401E99477A007BA970 /* Validations.swift in Sources */,

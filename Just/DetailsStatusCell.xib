@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,62 +15,62 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gpc-4m-gZI" id="u3d-De-3tV">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r5D-2m-hfV">
-                        <rect key="frame" x="20" y="0.0" width="165" height="43"/>
+                        <rect key="frame" x="20" y="0.0" width="164.5" height="43"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29 June 2017 12:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E4v-bY-Cdl">
-                                <rect key="frame" x="0.0" y="0.0" width="165" height="43"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="29 June 2017 12:30" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAv-AM-IOm">
+                                <rect key="frame" x="0.0" y="-0.5" width="164.5" height="43"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="43" id="0hC-fb-tpL"/>
-                            <constraint firstItem="E4v-bY-Cdl" firstAttribute="height" secondItem="r5D-2m-hfV" secondAttribute="height" id="84o-Aw-4Ms"/>
-                            <constraint firstItem="E4v-bY-Cdl" firstAttribute="centerY" secondItem="r5D-2m-hfV" secondAttribute="centerY" id="Rc6-8a-fr1"/>
-                            <constraint firstItem="E4v-bY-Cdl" firstAttribute="centerX" secondItem="r5D-2m-hfV" secondAttribute="centerX" id="X1f-gj-ApW"/>
-                            <constraint firstItem="E4v-bY-Cdl" firstAttribute="width" secondItem="r5D-2m-hfV" secondAttribute="width" id="pYB-5g-f2q"/>
+                            <constraint firstItem="nAv-AM-IOm" firstAttribute="centerY" secondItem="r5D-2m-hfV" secondAttribute="centerY" id="3Fy-92-eUL"/>
+                            <constraint firstItem="nAv-AM-IOm" firstAttribute="centerX" secondItem="r5D-2m-hfV" secondAttribute="centerX" id="4bj-pB-4e5"/>
+                            <constraint firstItem="nAv-AM-IOm" firstAttribute="width" secondItem="r5D-2m-hfV" secondAttribute="width" id="RaW-of-dvL"/>
+                            <constraint firstItem="nAv-AM-IOm" firstAttribute="height" secondItem="r5D-2m-hfV" secondAttribute="height" id="sPi-Lp-3iC"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Syq-8g-pdW">
-                        <rect key="frame" x="191" y="0.0" width="164" height="43"/>
+                        <rect key="frame" x="190.5" y="0.0" width="164.5" height="43"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Priority" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7i-GQ-x6p">
-                                <rect key="frame" x="0.0" y="0.0" width="164" height="43"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="High Priority" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c3j-MH-hT1">
+                                <rect key="frame" x="0.0" y="-0.5" width="164.5" height="43"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="l7i-GQ-x6p" firstAttribute="height" secondItem="Syq-8g-pdW" secondAttribute="height" id="208-FI-ugU"/>
-                            <constraint firstItem="l7i-GQ-x6p" firstAttribute="centerX" secondItem="Syq-8g-pdW" secondAttribute="centerX" id="Fvs-Oc-LeX"/>
-                            <constraint firstItem="l7i-GQ-x6p" firstAttribute="width" secondItem="Syq-8g-pdW" secondAttribute="width" id="MEl-8t-uRg"/>
-                            <constraint firstItem="l7i-GQ-x6p" firstAttribute="centerY" secondItem="Syq-8g-pdW" secondAttribute="centerY" id="aJh-9f-tSh"/>
+                            <constraint firstItem="c3j-MH-hT1" firstAttribute="centerY" secondItem="Syq-8g-pdW" secondAttribute="centerY" id="8Fe-wL-f3C"/>
+                            <constraint firstItem="c3j-MH-hT1" firstAttribute="height" secondItem="Syq-8g-pdW" secondAttribute="height" id="bc5-G7-wpK"/>
+                            <constraint firstItem="c3j-MH-hT1" firstAttribute="centerX" secondItem="Syq-8g-pdW" secondAttribute="centerX" id="t83-yB-3ni"/>
+                            <constraint firstItem="c3j-MH-hT1" firstAttribute="width" secondItem="Syq-8g-pdW" secondAttribute="width" id="y0J-Fg-dkp"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.15686274509803921" green="0.20784313725490194" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="r5D-2m-hfV" firstAttribute="top" secondItem="u3d-De-3tV" secondAttribute="top" id="5D5-8d-TpW"/>
-                    <constraint firstItem="l7i-GQ-x6p" firstAttribute="leading" secondItem="E4v-bY-Cdl" secondAttribute="trailing" constant="6" id="6dt-63-EhV"/>
                     <constraint firstAttribute="bottom" secondItem="Syq-8g-pdW" secondAttribute="bottom" id="Abv-JI-6Ss"/>
                     <constraint firstItem="Syq-8g-pdW" firstAttribute="width" secondItem="r5D-2m-hfV" secondAttribute="width" id="DuS-UI-BWA"/>
                     <constraint firstItem="Syq-8g-pdW" firstAttribute="top" secondItem="u3d-De-3tV" secondAttribute="top" id="SWl-8z-j0V"/>
                     <constraint firstAttribute="trailing" secondItem="Syq-8g-pdW" secondAttribute="trailing" constant="20" id="arS-Wz-i7q"/>
                     <constraint firstAttribute="bottom" secondItem="r5D-2m-hfV" secondAttribute="bottom" id="eNc-Ky-rDZ"/>
+                    <constraint firstItem="c3j-MH-hT1" firstAttribute="leading" secondItem="nAv-AM-IOm" secondAttribute="trailing" constant="6" id="fQJ-uG-csA"/>
                     <constraint firstItem="r5D-2m-hfV" firstAttribute="leading" secondItem="u3d-De-3tV" secondAttribute="leading" constant="20" id="pMk-9N-Mz8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="dateLabel" destination="E4v-bY-Cdl" id="wo2-NB-iYK"/>
-                <outlet property="statusLabel" destination="l7i-GQ-x6p" id="TR6-PR-iTb"/>
+                <outlet property="dateTextField" destination="nAv-AM-IOm" id="BNW-7o-yjp"/>
+                <outlet property="statusTextField" destination="c3j-MH-hT1" id="miI-Sr-LNH"/>
             </connections>
             <point key="canvasLocation" x="325" y="-477"/>
         </tableViewCell>

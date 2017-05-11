@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k7Z-QW-NsY" id="sne-xr-Bbm">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pew-wA-z0W">
@@ -27,21 +27,21 @@
                                     <constraint firstAttribute="width" constant="44" id="rTn-pg-JFy"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Ijn-Co-ZKG">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TyY-sB-dUU">
                                 <rect key="frame" x="82" y="10" width="235" height="41.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="XfP-9M-mz4" firstAttribute="leading" secondItem="pew-wA-z0W" secondAttribute="leading" constant="20" id="3RS-Ob-aFl"/>
-                            <constraint firstAttribute="trailing" secondItem="Ijn-Co-ZKG" secondAttribute="trailing" constant="18" id="PYI-a6-5uS"/>
-                            <constraint firstItem="Ijn-Co-ZKG" firstAttribute="top" secondItem="pew-wA-z0W" secondAttribute="top" constant="10" id="d9Z-48-gJa"/>
-                            <constraint firstItem="XfP-9M-mz4" firstAttribute="top" secondItem="Ijn-Co-ZKG" secondAttribute="top" id="iFR-4m-S2b"/>
-                            <constraint firstAttribute="bottom" secondItem="Ijn-Co-ZKG" secondAttribute="bottom" constant="10" id="kaU-sV-e6s"/>
-                            <constraint firstItem="Ijn-Co-ZKG" firstAttribute="leading" secondItem="XfP-9M-mz4" secondAttribute="trailing" constant="18" id="tj6-Yv-jC0"/>
+                            <constraint firstAttribute="bottom" secondItem="TyY-sB-dUU" secondAttribute="bottom" constant="10" id="CqO-Jc-naT"/>
+                            <constraint firstItem="TyY-sB-dUU" firstAttribute="top" secondItem="pew-wA-z0W" secondAttribute="top" constant="10" id="Lxa-zX-s20"/>
+                            <constraint firstAttribute="trailing" secondItem="TyY-sB-dUU" secondAttribute="trailing" constant="18" id="eat-sJ-iZu"/>
+                            <constraint firstItem="TyY-sB-dUU" firstAttribute="top" secondItem="XfP-9M-mz4" secondAttribute="top" id="krv-rR-PPY"/>
+                            <constraint firstItem="TyY-sB-dUU" firstAttribute="leading" secondItem="XfP-9M-mz4" secondAttribute="trailing" constant="18" id="rp0-jW-kbo"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XfP-9M-mz4" secondAttribute="bottom" constant="6.5" id="zaI-ys-0af"/>
                         </constraints>
                     </view>
@@ -56,7 +56,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="accessoryImageView" destination="XfP-9M-mz4" id="GNB-o5-Jbm"/>
-                <outlet property="titleLabel" destination="Ijn-Co-ZKG" id="E22-7c-2Cb"/>
+                <outlet property="titleTextField" destination="TyY-sB-dUU" id="oqT-7S-qSR"/>
             </connections>
             <point key="canvasLocation" x="361.5" y="-761"/>
         </tableViewCell>

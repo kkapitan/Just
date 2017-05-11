@@ -10,19 +10,26 @@ import UIKit
 
 final class DetailsStatusCell: UITableViewCell, Reusable, NibLoadable {
     
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var statusTextField: UITextField!
+    @IBOutlet weak var dateTextField: UITextField!
     
     var status: Priority? {
         didSet {
-            statusLabel.text = status?.description
+            statusTextField.text = status?.description
         }
     }
     
     var date: Date? {
         didSet {
             let formatter = DateFormatter.full
-            dateLabel.text = formatter.string(for: date)
+            dateTextField.text = formatter.string(for: date)
+        }
+    }
+    
+    var allowEditing: Bool = false {
+        didSet {
+            statusTextField.isUserInteractionEnabled = allowEditing
+            dateTextField.isUserInteractionEnabled = allowEditing
         }
     }
 }

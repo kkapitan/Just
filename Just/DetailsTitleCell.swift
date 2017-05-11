@@ -11,7 +11,7 @@ import UIKit
 final class DetailsTitleCell: UITableViewCell, Reusable, NibLoadable {
     
     @IBOutlet weak var accessoryImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleTextField: UITextField!
     
     var accessoryImage: UIImage? {
         didSet {
@@ -21,7 +21,15 @@ final class DetailsTitleCell: UITableViewCell, Reusable, NibLoadable {
     
     var title: String? {
         didSet {
-            titleLabel.text = title
+            titleTextField.text = title
         }
     }
+    
+    var allowEditing: Bool = false {
+        didSet {
+            titleTextField.isUserInteractionEnabled = allowEditing
+        }
+    }
+    
+    
 }

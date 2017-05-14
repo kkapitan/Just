@@ -6,7 +6,7 @@
 //  Copyright © 2017 CappSoft. All rights reserved.
 //
 
-import Foundation
+import JSONCodable
 
 struct Credentials {
     let usernameOrEmail: String

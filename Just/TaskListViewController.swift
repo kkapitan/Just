@@ -25,6 +25,8 @@ final class TaskListViewController: UITableViewController {
         
         mock()
         setupInputView()
+        
+        fetchLists()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,6 +69,29 @@ final class TaskListViewController: UITableViewController {
             return "YESTERDAY"
         default:
             fatalError("Wrong section id")
+        }
+    }
+    
+    func fetchLists() {
+        let service = ListService()
+        
+        service.fetchLists { [weak self] result in
+            switch result {
+            case .success(let lists):
+                guard let list = lists.first else { return }
+                
+                service.fetchTasks(for: list) { result in
+                    switch result {
+                    case .success(let list):
+                        self?.tasks = [list.tasks]
+                        self?.tableView.reloadData()
+                    case .failure(let error):
+                        self?.showError(error)
+                    }
+                }
+            case .failure(let error):
+                self?.showError(error)
+            }
         }
     }
     

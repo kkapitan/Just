@@ -19,7 +19,7 @@ final class ListService {
     
     func fetchLists(completion: @escaping (ApiResponse<[List]>) -> ()) {
         let requester = ApiRequester()
-        let request = RegisterRequest()
+        let request = FetchListsRequest()
         
         requester.request(request: request, completion: completion)
     }

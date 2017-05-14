@@ -56,8 +56,6 @@ struct LoginRequest: Request {
 }
 
 struct LogoutRequest: Request {
-    let user: User
-    
     var method: HTTPMethod {
         return .delete
     }

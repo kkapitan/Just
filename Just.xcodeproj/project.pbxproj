@@ -51,6 +51,9 @@
 		026F19651EC8972000A8B9EF /* RequestParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19641EC8972000A8B9EF /* RequestParams.swift */; };
 		026F19681EC89FFB00A8B9EF /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19671EC89FFB00A8B9EF /* KeychainStorage.swift */; };
 		026F196A1EC8B47200A8B9EF /* Forms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19691EC8B47200A8B9EF /* Forms.swift */; };
+		026F196D1EC8B98100A8B9EF /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F196C1EC8B98100A8B9EF /* UserService.swift */; };
+		026F19701EC8B99300A8B9EF /* TasksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F196F1EC8B99300A8B9EF /* TasksService.swift */; };
+		026F19721EC8B99E00A8B9EF /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19711EC8B99E00A8B9EF /* ListService.swift */; };
 		029B24731EC26FC60009F828 /* TaskEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B24721EC26FC60009F828 /* TaskEditViewController.swift */; };
 		029B24761EC272070009F828 /* EditTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B24751EC272070009F828 /* EditTitleCell.swift */; };
 		029B24781EC2721C0009F828 /* EditTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029B24771EC2721C0009F828 /* EditTitleCell.xib */; };
@@ -130,6 +133,9 @@
 		026F19641EC8972000A8B9EF /* RequestParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestParams.swift; sourceTree = "<group>"; };
 		026F19671EC89FFB00A8B9EF /* KeychainStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		026F19691EC8B47200A8B9EF /* Forms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forms.swift; sourceTree = "<group>"; };
+		026F196C1EC8B98100A8B9EF /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		026F196F1EC8B99300A8B9EF /* TasksService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksService.swift; sourceTree = "<group>"; };
+		026F19711EC8B99E00A8B9EF /* ListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		029B24721EC26FC60009F828 /* TaskEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEditViewController.swift; sourceTree = "<group>"; };
 		029B24751EC272070009F828 /* EditTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTitleCell.swift; sourceTree = "<group>"; };
 		029B24771EC2721C0009F828 /* EditTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTitleCell.xib; sourceTree = "<group>"; };
@@ -344,6 +350,16 @@
 			name = NavigationControllers;
 			sourceTree = "<group>";
 		};
+		026F196B1EC8B97700A8B9EF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				026F196C1EC8B98100A8B9EF /* UserService.swift */,
+				026F196F1EC8B99300A8B9EF /* TasksService.swift */,
+				026F19711EC8B99E00A8B9EF /* ListService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		029B24711EC26FA80009F828 /* TaskEdit */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,6 +496,7 @@
 		02D383F41E86F5A500F5F61C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				026F196B1EC8B97700A8B9EF /* Services */,
 				026F195E1EC8970000A8B9EF /* ApiClient.swift */,
 				026F19601EC8970600A8B9EF /* ApiRequester.swift */,
 				026F19621EC8971500A8B9EF /* Request.swift */,
@@ -757,6 +774,7 @@
 				0242DA261E991B87007BA970 /* Instantiator.swift in Sources */,
 				0231B30E1E9A78DE00868DB6 /* Notifications.swift in Sources */,
 				0242DA241E991B80007BA970 /* StoryboardWireframe.swift in Sources */,
+				026F196D1EC8B98100A8B9EF /* UserService.swift in Sources */,
 				0242DA341E991FED007BA970 /* ListPickerViewController.swift in Sources */,
 				0242DA301E991E5F007BA970 /* LoginViewController.swift in Sources */,
 				0242DA031E87E8E6007BA970 /* TableView+Dequeuing.swift in Sources */,
@@ -771,8 +789,10 @@
 				0242DA401E99477A007BA970 /* Validations.swift in Sources */,
 				0231B30C1E9A65CE00868DB6 /* Setting.swift in Sources */,
 				0242DA361E992026007BA970 /* DatePickerViewController.swift in Sources */,
+				026F19721EC8B99E00A8B9EF /* ListService.swift in Sources */,
 				0231B30A1E9A608F00868DB6 /* Keyboard.swift in Sources */,
 				0242DA2A1E991E42007BA970 /* TaskDetailsViewController.swift in Sources */,
+				026F19701EC8B99300A8B9EF /* TasksService.swift in Sources */,
 				0242DA0F1E87FA87007BA970 /* DetailsDescriptionCell.swift in Sources */,
 				0242DA381E992031007BA970 /* SettingsViewController.swift in Sources */,
 				0242DA121E88368C007BA970 /* DetailsStatusCell.swift in Sources */,

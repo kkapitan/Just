@@ -15,11 +15,7 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
     
     @IBOutlet weak var tableView: UITableView!
     
-    var lists: [List] = {
-        return (1..<10).map {
-            List(id: $0, name: "Test \($0)", tasks: [])
-        }
-    }()
+    var lists: [List] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +25,22 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.delegate = self
         tableView.dataSource = self
+        
+        fetchLists()
+    }
+    
+    func fetchLists() {
+        let service = ListService()
+        
+        service.fetchLists { [weak self] result in
+            switch result {
+            case .success(let lists):
+                self?.lists = lists
+                self?.tableView.reloadData()
+            case .failure(let error):
+                self?.showError(error)
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

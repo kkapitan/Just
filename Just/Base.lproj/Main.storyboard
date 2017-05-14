@@ -142,7 +142,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="2T2-KS-TEm"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -186,9 +186,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="4Fg-EE-B9q"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
                                             <action selector="editingChanged:" destination="igB-rV-dBO" eventType="editingChanged" id="14W-zC-oV7"/>
                                         </connections>
@@ -307,7 +307,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="yBM-7g-tUt"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -351,7 +351,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="0rO-i5-F5I"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -395,9 +395,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="yKo-0c-Ept"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
                                             <action selector="editingChanged:" destination="oH3-RF-bvR" eventType="editingChanged" id="099-vY-byN"/>
                                         </connections>
@@ -439,9 +439,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="5y8-fD-Ljl"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
                                             <action selector="editingChanged:" destination="oH3-RF-bvR" eventType="editingChanged" id="Ryk-c5-WFw"/>
                                         </connections>
@@ -767,7 +767,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="wSr-qW-V3E">
                                 <rect key="frame" x="12" y="68" width="347" height="587"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.15686274510000001" green="0.20784313730000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

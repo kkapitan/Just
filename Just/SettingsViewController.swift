@@ -98,6 +98,10 @@ final class SettingsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func signOutAction() {
+        let service = UserService()
+        service.logout(completion: { _ in })
+        
+        KeychainStorage().deleteUser()
         NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.notSignedIn)
     }
     

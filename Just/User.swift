@@ -9,7 +9,7 @@
 import JSONCodable
 
 struct User {
-    let id: String
+    let id: Int
     
     let username: String
     let email: String

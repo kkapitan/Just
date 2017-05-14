@@ -47,6 +47,10 @@ extension KeychainStorage {
         put(user, forKey: userKey)
     }
     
+    func deleteUser() {
+        delete(key: userKey)
+    }
+    
     var userKey: String {
         return "com.cappsoft.just.keychain.user.key"
     }

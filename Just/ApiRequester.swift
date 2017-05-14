@@ -49,7 +49,7 @@ final class ApiRequester {
                     .flatMap({ $0 as? [String: Any] })
                     .flatMap({ try? T(object: $0) })
                 else {
-                    completion(.failure(nil))
+                    completion(.failure(result.error))
                     return
                 }
 
@@ -66,7 +66,7 @@ final class ApiRequester {
                     .flatMap({ $0 as? [[String: Any]] })
                     .flatMap({ try? [T](JSONArray: $0) })
                     else {
-                        completion(.failure(nil))
+                        completion(.failure(result.error))
                         return
                 }
                 

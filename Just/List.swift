@@ -9,7 +9,7 @@
 import JSONCodable
 
 struct List {
-    let id: String
+    let id: Int
     let name: String
     
     let tasks: [Task]

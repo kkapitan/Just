@@ -56,7 +56,21 @@ final class RegistrationViewController: UIViewController {
         let password = passwordTextField.text!
         let confirmation = confirmationTextField.text!
         
-        NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
+        let userForm = UserForm(username: username, email: email, password: password, confirmation: confirmation)
+        let service = UserService()
+        
+        showHud()
+        service.register(with: userForm) { [weak self] result in
+            self?.hideHud()
+            
+            switch result {
+            case .success(let user):
+                KeychainStorage().setUser(user)
+                NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
+            case .failure(let error):
+                self?.showError(error)
+            }
+        }
     }
     
     

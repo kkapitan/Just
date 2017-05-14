@@ -54,6 +54,7 @@
 		026F196D1EC8B98100A8B9EF /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F196C1EC8B98100A8B9EF /* UserService.swift */; };
 		026F19701EC8B99300A8B9EF /* TasksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F196F1EC8B99300A8B9EF /* TasksService.swift */; };
 		026F19721EC8B99E00A8B9EF /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19711EC8B99E00A8B9EF /* ListService.swift */; };
+		026F19741EC8C5AF00A8B9EF /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19731EC8C5AF00A8B9EF /* UIViewController+Common.swift */; };
 		029B24731EC26FC60009F828 /* TaskEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B24721EC26FC60009F828 /* TaskEditViewController.swift */; };
 		029B24761EC272070009F828 /* EditTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B24751EC272070009F828 /* EditTitleCell.swift */; };
 		029B24781EC2721C0009F828 /* EditTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029B24771EC2721C0009F828 /* EditTitleCell.xib */; };
@@ -136,6 +137,7 @@
 		026F196C1EC8B98100A8B9EF /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		026F196F1EC8B99300A8B9EF /* TasksService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksService.swift; sourceTree = "<group>"; };
 		026F19711EC8B99E00A8B9EF /* ListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
+		026F19731EC8C5AF00A8B9EF /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		029B24721EC26FC60009F828 /* TaskEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEditViewController.swift; sourceTree = "<group>"; };
 		029B24751EC272070009F828 /* EditTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTitleCell.swift; sourceTree = "<group>"; };
 		029B24771EC2721C0009F828 /* EditTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTitleCell.xib; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				0231B3091E9A608F00868DB6 /* Keyboard.swift */,
 				0231B30D1E9A78DE00868DB6 /* Notifications.swift */,
 				026F19671EC89FFB00A8B9EF /* KeychainStorage.swift */,
+				026F19731EC8C5AF00A8B9EF /* UIViewController+Common.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -759,6 +762,7 @@
 				0242DA1C1E990CC7007BA970 /* SettingsNavigationCell.swift in Sources */,
 				0242DA221E991B5E007BA970 /* StoryboardIdentifiable.swift in Sources */,
 				026F196A1EC8B47200A8B9EF /* Forms.swift in Sources */,
+				026F19741EC8C5AF00A8B9EF /* UIViewController+Common.swift in Sources */,
 				0242DA051E87ECAB007BA970 /* TableView+IndexPath.swift in Sources */,
 				026F19651EC8972000A8B9EF /* RequestParams.swift in Sources */,
 				0242DA3C1E993577007BA970 /* TransparentNavigationController.swift in Sources */,

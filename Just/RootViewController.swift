@@ -9,7 +9,8 @@
 import UIKit
 
 enum SessionStatus {
-    case signedIn, notSignedIn
+    case signedIn
+    case notSignedIn
 }
 
 final class RootViewController: UIViewController {
@@ -30,7 +31,13 @@ final class RootViewController: UIViewController {
         
         if isInitialPresentation {
             subscribeForNotifications()
-            NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
+            
+            if let _ = KeychainStorage().getUser() {
+                NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
+            } else {
+                NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.notSignedIn)
+            }
+            
             isInitialPresentation = false
         }
     }

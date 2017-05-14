@@ -38,7 +38,21 @@ final class LoginViewController: UIViewController {
         let usernameOrEmail = usernameOrEmailTextField.text!
         let password = passwordTextField.text!
         
-        NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
+        let credentials = Credentials(usernameOrEmail: usernameOrEmail, password: password)
+        let service = UserService()
+        
+        showHud()
+        service.login(with: credentials) { [weak self] result in
+            self?.hideHud()
+            
+            switch result {
+            case .success(let user):
+                KeychainStorage().setUser(user)
+                NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
+            case .failure(let error):
+                self?.showError(error)
+            }
+        }
     }
     
     func isFormValid() -> Bool {

@@ -14,4 +14,14 @@ final class DetailsActionCell: UITableViewCell, Reusable, NibLoadable {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var trashButton: UIButton!
     
+    var isDone: Bool? {
+        didSet {
+            let image = isDone.flatMap {
+                $0 ? UIImage(named: "cross_button_ic") : UIImage(named: "tick_button_ic")
+            }
+            
+            tickButton.setImage(image, for: .normal)
+        }
+    }
+    
 }

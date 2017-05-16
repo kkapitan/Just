@@ -95,9 +95,12 @@ final class TaskDetailsViewController: UITableViewController {
             return cell
         case 3:
             let cell: DetailsActionCell = tableView.dequeue()
+            cell.isDone = task.isDone
+            
             cell.editButton.addTarget(self, action: #selector(editAction(_:forEvent:)), for: .touchUpInside)
             cell.tickButton.addTarget(self, action: #selector(doneAction(_:forEvent:)), for: .touchUpInside)
             cell.trashButton.addTarget(self, action: #selector(deleteAction(_:forEvent:)), for: .touchUpInside)
+            
             return cell
         default:
             fatalError("Wrong section id")

@@ -90,6 +90,16 @@ final class DashboardItemCell: UITableViewCell, Reusable, NibLoadable {
             descriptionLabel.text = taskDescription
         }
     }
+    
+    var isDone: Bool? {
+        didSet {
+            let image = isDone.flatMap {
+                $0 ? UIImage(named: "cross_button_ic") : UIImage(named: "tick_button_ic")
+            }
+            
+            tickButton.setImage(image, for: .normal)
+        }
+    }
 }
 
 extension DashboardItemCell {

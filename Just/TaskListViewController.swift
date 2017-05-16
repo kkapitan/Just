@@ -58,6 +58,7 @@ final class TaskListViewController: UITableViewController {
         cell.title = task.title
         cell.taskDescription = task.taskDescription
         cell.status = task.priority
+        cell.isDone = task.isDone
         
         cell.editButton.addTarget(self, action: #selector(editAction(_:forEvent:)), for: .touchUpInside)
         cell.tickButton.addTarget(self, action: #selector(doneAction(_:forEvent:)), for: .touchUpInside)

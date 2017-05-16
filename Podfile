@@ -10,6 +10,7 @@ target 'Just' do
   pod 'JSONCodable', '~> 3.0.1'
   pod 'KeychainAccess'
   pod 'PKHUD', '~> 4.0'
+  pod 'RealmSwift'
   
   # Pods for Just
   target 'JustTests' do

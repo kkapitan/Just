@@ -11,7 +11,11 @@ import UIKit
 final class TaskDetailsViewController: UITableViewController {
     
     var enablesEdition: Bool = false
+    
     var task: Task!
+    let storage: TasksStorage = {
+       return try! .init()
+    }()
     
     func enableEdition(_ edition: Bool) {
         enablesEdition = edition
@@ -38,6 +42,7 @@ final class TaskDetailsViewController: UITableViewController {
             switch result {
             case .success(let updatedTask):
                 self?.task = updatedTask
+                try! self?.storage.add(updatedTask, update: true)
                 self?.enableEdition(false)
             case .failure(let error):
                 self?.showError(error)
@@ -152,6 +157,8 @@ final class TaskDetailsViewController: UITableViewController {
             switch result {
             case .success(let updatedTask):
                 self?.task = updatedTask
+                try! self?.storage.add(updatedTask, update: true)
+                
                 self?.tableView.reloadData()
             case .failure(let error):
                 self?.showError(error)
@@ -166,6 +173,7 @@ final class TaskDetailsViewController: UITableViewController {
     func deleteAction(_ sender: UIButton, forEvent: UIEvent) {
         let service = TasksService()
         service.deleteTask(task: task) { _ in }
+        try! storage.add(task, update: true)
         
         navigationController?.popViewController(animated: true)
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class TaskListViewController: UITableViewController {
     
@@ -14,14 +15,15 @@ final class TaskListViewController: UITableViewController {
         return .view
     }()
 
-    var tasks: [Task] = []
+    let storage: TasksStorage = {
+        return try! .init()
+    }()
     
     var sections: [[Task]] {
-        return [
-            tasks.filter { !$0.isDone },
-            tasks.filter { $0.isDone }
-        ].filter { !$0.isEmpty }
+        return [storage.tasks(false), storage.tasks(true)]
     }
+    
+    var token: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,12 @@ final class TaskListViewController: UITableViewController {
         
         setupInputView()
         fetchLists()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,7 +100,7 @@ final class TaskListViewController: UITableViewController {
                 service.fetchTasks(for: list) { result in
                     switch result {
                     case .success(let list):
-                        self?.tasks = list.tasks
+                        try! self?.storage.add(list.tasks, update: true)
                         self?.tableView.reloadData()
                     case .failure(let error):
                         self?.showError(error)
@@ -118,10 +126,9 @@ final class TaskListViewController: UITableViewController {
             
             switch result {
             case .success(let task):
-                self?.tasks.insert(task, at: 0)
+                try! self?.storage.add(task)
                 
-                let indexPath = IndexPath(row: 0, section: 0)
-                self?.tableView.insertRows(at: [indexPath], with: .fade)
+                self?.tableView.reloadData()
             case .failure(let error):
                 self?.showError(error)
             }
@@ -220,8 +227,7 @@ extension TaskListViewController {
         service.updateStatus(task: task) { [weak self] result in
             switch result {
             case .success(let updatedTask):
-                self?.tasks.remove(element: task)
-                self?.tasks.append(updatedTask)
+                try! self?.storage.add(updatedTask, update: true)
                 self?.tableView.reloadData()
             case .failure(let error):
                 self?.showError(error)
@@ -249,10 +255,9 @@ extension TaskListViewController {
         
         let service = TasksService()
         service.deleteTask(task: task) { _ in }
-        
-        tasks.remove(element: task)
+        try! storage.remove(task)
 
-        tableView.deleteRows(at: [indexPath], with: .fade)
+        tableView.reloadData()
     }
 }
 

@@ -3,19 +3,27 @@ PODS:
   - JSONCodable (3.0.1)
   - KeychainAccess (3.0.1)
   - PKHUD (4.2.0)
+  - Realm (2.4.3):
+    - Realm/Headers (= 2.4.3)
+  - Realm/Headers (2.4.3)
+  - RealmSwift (2.4.3):
+    - Realm (= 2.4.3)
 
 DEPENDENCIES:
   - Alamofire
   - JSONCodable (~> 3.0.1)
   - KeychainAccess
   - PKHUD (~> 4.0)
+  - RealmSwift
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   JSONCodable: bd8616ae881befe2b82fbbf56d98b2dd377ac662
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
+  Realm: e08d60b0048ccccd3949c8c28a92c4db5712d7e9
+  RealmSwift: 30d49739ccb3385d201242736ca4dda56aec9dfc
 
-PODFILE CHECKSUM: c77d7c0bdeb23647996d6d47f6d8691d29e3ee2e
+PODFILE CHECKSUM: 6ae607e7df1ffd9d724484e5e1dd58ccbe729ceb
 
 COCOAPODS: 1.2.0

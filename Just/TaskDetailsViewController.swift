@@ -31,7 +31,18 @@ final class TaskDetailsViewController: UITableViewController {
     }
     
     func saveAction() {
-        enableEdition(false)
+        let service = TasksService()
+        let form = TaskForm()
+        
+        service.updateTask(task: task, with: form) { [weak self] result in
+            switch result {
+            case .success(let updatedTask):
+                self?.task = updatedTask
+                self?.enableEdition(false)
+            case .failure(let error):
+                self?.showError(error)
+            }
+        }
     }
     
     func cancelAction() {
@@ -79,9 +90,9 @@ final class TaskDetailsViewController: UITableViewController {
             return cell
         case 3:
             let cell: DetailsActionCell = tableView.dequeue()
-            cell.editButton.addTarget(self, action: #selector(editAction), for: .touchUpInside)
-            cell.tickButton.addTarget(self, action: #selector(doneAction), for: .touchUpInside)
-            cell.trashButton.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
+            cell.editButton.addTarget(self, action: #selector(editAction(_:forEvent:)), for: .touchUpInside)
+            cell.tickButton.addTarget(self, action: #selector(doneAction(_:forEvent:)), for: .touchUpInside)
+            cell.trashButton.addTarget(self, action: #selector(deleteAction(_:forEvent:)), for: .touchUpInside)
             return cell
         default:
             fatalError("Wrong section id")
@@ -134,15 +145,28 @@ final class TaskDetailsViewController: UITableViewController {
         return CGFloat.leastNonzeroMagnitude
     }
     
-    func doneAction() {
+    func doneAction(_ sender: UIButton, forEvent: UIEvent) {
         
+        let service = TasksService()
+        service.updateStatus(task: task) { [weak self] result in
+            switch result {
+            case .success(let updatedTask):
+                self?.task = updatedTask
+                self?.tableView.reloadData()
+            case .failure(let error):
+                self?.showError(error)
+            }
+        }
     }
     
-    func editAction() {
+    func editAction(_ sender: UIButton, forEvent: UIEvent) {
         enableEdition(true)
     }
     
-    func deleteAction() {
+    func deleteAction(_ sender: UIButton, forEvent: UIEvent) {
+        let service = TasksService()
+        service.deleteTask(task: task) { _ in }
         
+        navigationController?.popViewController(animated: true)
     }
 }

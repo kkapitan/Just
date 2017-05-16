@@ -17,6 +17,14 @@ final class TasksService {
         requester.request(request: request, completion: completion)
     }
     
+    func updateStatus(task: Task, completion: @escaping (ApiResponse<Task>) -> ()) {
+        let requester = ApiRequester()
+        let request = UpdateTaskRequest(task: task)
+        let params = UpdateStatusParams(task: task)
+        
+        requester.request(request: request, params: params, completion: completion)
+    }
+    
     func createTask(with form: TaskForm, completion: @escaping (ApiResponse<Task>) -> ()) {
         let requester = ApiRequester()
         let request = CreateTaskRequest()
@@ -25,7 +33,7 @@ final class TasksService {
         requester.request(request: request, params: params, completion: completion)
     }
     
-    func updateTask(task: Task, with form: TaskForm, completion: @escaping (ApiResponse<List>) -> ()) {
+    func updateTask(task: Task, with form: TaskForm, completion: @escaping (ApiResponse<Task>) -> ()) {
         let requester = ApiRequester()
         let request = UpdateTaskRequest(task: task)
         let params = UpdateTaskParams(form: form)
@@ -33,7 +41,7 @@ final class TasksService {
         requester.request(request: request, params: params, completion: completion)
     }
     
-    func deleteTask(task: Task, completion: @escaping (ApiResponse<Bool>) -> ()) {
+    func deleteTask(task: Task, completion: @escaping (ApiResponse<Void>) -> ()) {
         let requester = ApiRequester()
         let request = DeleteTaskRequest(task: task)
         

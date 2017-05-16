@@ -74,7 +74,7 @@ final class ApiRequester {
         }
     }
     
-    func request(request: Request, params: RequestParams? = nil, completion: @escaping (ApiResponse<Bool>) -> ()) {
+    func request(request: Request, params: RequestParams? = nil, completion: @escaping (ApiResponse<Void>) -> ()) {
         manager.request(request.url, method: request.method, parameters: params?.params, encoding: JSONEncoding(), headers: nil)
             .validate()
             .responseJSON { result in
@@ -84,7 +84,7 @@ final class ApiRequester {
                     return
                 }
                 
-                completion(.success(true))
+                completion(.success(()))
         }
     }
 }

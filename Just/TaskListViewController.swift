@@ -14,7 +14,14 @@ final class TaskListViewController: UITableViewController {
         return .view
     }()
 
-    var tasks: [[Task]] = []
+    var tasks: [Task] = []
+    
+    var sections: [[Task]] {
+        return [
+            tasks.filter { !$0.isDone },
+            tasks.filter { $0.isDone }
+        ].filter { !$0.isEmpty }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,28 +30,30 @@ final class TaskListViewController: UITableViewController {
         tableView.estimatedRowHeight = 85.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        mock()
         setupInputView()
-        
         fetchLists()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return tasks.count
+        return sections.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks[section].count
+        return sections[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let task = tasks[indexPath.section][indexPath.row]
+        let task = sections[indexPath.section][indexPath.row]
         let cell: DashboardItemCell = tableView.dequeue()
         
         cell.title = task.title
         cell.taskDescription = task.taskDescription
         cell.status = task.priority
+        
+        cell.editButton.addTarget(self, action: #selector(editAction(_:forEvent:)), for: .touchUpInside)
+        cell.tickButton.addTarget(self, action: #selector(doneAction(_:forEvent:)), for: .touchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(deleteAction(_:forEvent:)), for: .touchUpInside)
         
         return cell
     }
@@ -66,7 +75,7 @@ final class TaskListViewController: UITableViewController {
         case 0:
             return "RECENT"
         case 1:
-            return "YESTERDAY"
+            return "DONE"
         default:
             fatalError("Wrong section id")
         }
@@ -83,7 +92,7 @@ final class TaskListViewController: UITableViewController {
                 service.fetchTasks(for: list) { result in
                     switch result {
                     case .success(let list):
-                        self?.tasks = [list.tasks]
+                        self?.tasks = list.tasks
                         self?.tableView.reloadData()
                     case .failure(let error):
                         self?.showError(error)
@@ -93,6 +102,31 @@ final class TaskListViewController: UITableViewController {
                 self?.showError(error)
             }
         }
+    }
+    
+    func createTask() {
+        let service = TasksService()
+        
+        var form = TaskForm()
+        form.title = dashboardInputView.text
+        form.due = dashboardInputView.date
+        form.listId = dashboardInputView.list?.id
+        
+        showHud()
+        service.createTask(with: form) { [weak self] result in
+            self?.hideHud()
+            
+            switch result {
+            case .success(let task):
+                self?.tasks.insert(task, at: 0)
+                
+                let indexPath = IndexPath(row: 0, section: 0)
+                self?.tableView.insertRows(at: [indexPath], with: .fade)
+            case .failure(let error):
+                self?.showError(error)
+            }
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -108,7 +142,7 @@ final class TaskListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let task = tasks[indexPath.section][indexPath.row]
+        let task = sections[indexPath.section][indexPath.row]
         let taskDetails = Wireframe.Main().taskDetails()
         
         taskDetails.task = task
@@ -172,12 +206,57 @@ final class TaskListViewController: UITableViewController {
         dashboardInputView.clockButton
             .addTarget(self, action: #selector(clockButtonAction), for: .touchUpInside)
         
-        dashboardInputView.inputTextView.delegate = self
+        dashboardInputView.inputTextField.delegate = self
     }
-    
 }
 
-extension TaskListViewController: UITextViewDelegate {
+extension TaskListViewController {
+    func doneAction(_ sender: UIButton, forEvent: UIEvent) {
+        guard let indexPath = tableView.indexPath(forEvent: forEvent) else { return }
+        
+        let task = sections[indexPath.section][indexPath.row]
+        
+        let service = TasksService()
+        service.updateStatus(task: task) { [weak self] result in
+            switch result {
+            case .success(let updatedTask):
+                self?.tasks.remove(element: task)
+                self?.tasks.append(updatedTask)
+                self?.tableView.reloadData()
+            case .failure(let error):
+                self?.showError(error)
+            }
+        }
+    }
+    
+    func editAction(_ sender: UIButton, forEvent: UIEvent) {
+        guard let indexPath = tableView.indexPath(forEvent: forEvent) else { return }
+        
+        let task = sections[indexPath.section][indexPath.row]
+        
+        let taskDetails = Wireframe.Main().taskDetails()
+        
+        taskDetails.task = task
+        taskDetails.enablesEdition = true
+        
+        navigationController?.pushViewController(taskDetails, animated: true)
+    }
+    
+    func deleteAction(_ sender: UIButton, forEvent: UIEvent) {
+        guard let indexPath = tableView.indexPath(forEvent: forEvent) else { return }
+
+        let task = sections[indexPath.section][indexPath.row]
+        
+        let service = TasksService()
+        service.deleteTask(task: task) { _ in }
+        
+        tasks.remove(element: task)
+
+        tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+}
+
+extension TaskListViewController: UITextFieldDelegate {
     
     var overlayView: UIView {
         let tag = 100
@@ -193,7 +272,7 @@ extension TaskListViewController: UITextViewDelegate {
         }()
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         dashboardInputView.activate()
         tableView.isScrollEnabled = false
         
@@ -208,7 +287,7 @@ extension TaskListViewController: UITextViewDelegate {
         }
     }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         dashboardInputView.deactivate()
         tableView.isScrollEnabled = true
         
@@ -219,38 +298,19 @@ extension TaskListViewController: UITextViewDelegate {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        createTask()
+        return true
+    }
+    
     func overlayTapAction() {
         tableView.isScrollEnabled = true
-        dashboardInputView.inputTextView.resignFirstResponder()
+        dashboardInputView.inputTextField.resignFirstResponder()
     }
 }
 
 extension TaskListViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
-    }
-}
-
-extension TaskListViewController {
-    func mock() {
-        let task = Task(id: 0, title: "Title2222", dueDate: Date(), priority: .high, taskDescription: "Vryasd asdopk asdkpas kdpoask sd kdaosd kaskd appp daspdk asopdkasp asda oasjdioj aosjda jsd jsaoidjaosj dasdoiajsod asjdoasidi jajsdoiasj jasjdjioaj asdasdasoijdoajojdaoid jsad jasjdj jasdj ojd iojoasdj", isDone: false)
-        
-        tasks = [
-            [
-                task,
-                task,
-                task,
-                task,
-                task,
-                task
-            ],
-            [
-                task,
-                task,
-                task,
-                task
-            ]
-        ]
-        
     }
 }

@@ -26,7 +26,7 @@ final class UserService {
         requester.request(request: request, params: params, completion: completion)
     }
     
-    func logout(completion: @escaping (ApiResponse<Bool>) -> ()) {
+    func logout(completion: @escaping (ApiResponse<Void>) -> ()) {
         let requester = ApiRequester()
         let request = LogoutRequest()
         

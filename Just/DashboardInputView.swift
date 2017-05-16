@@ -13,7 +13,7 @@ final class DashboardInputView: UIView, Reusable, NibLoadable {
     @IBOutlet weak var clockButton: UIButton!
     @IBOutlet weak var listButton: UIButton!
     
-    @IBOutlet weak var inputTextView: UITextView!
+    @IBOutlet weak var inputTextField: UITextField!
     
     @IBOutlet weak var listLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -23,6 +23,13 @@ final class DashboardInputView: UIView, Reusable, NibLoadable {
     override func awakeFromNib() {
         super.awakeFromNib()
         applyState(.inactive, animated: false)
+        inputTextField.delegate = self
+        
+        // Set padding for text field
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: inputTextField.frame.height))
+        
+        inputTextField.leftView = paddingView
+        inputTextField.leftViewMode = .always
     }
     
     func activate() {
@@ -49,6 +56,14 @@ final class DashboardInputView: UIView, Reusable, NibLoadable {
             listLabel.text = list?.name ?? ""
         }
     }
+    
+    var text: String? {
+        return inputTextField.text
+    }
+}
+
+extension DashboardInputView: UITextFieldDelegate {
+    
 }
 
 extension DashboardInputView {
@@ -60,7 +75,7 @@ extension DashboardInputView {
     
     func applyState(_ state: State, animated: Bool) {
         leadingConstraint.constant = state.offset
-        inputTextView.text = state.text
+        inputTextField.text = state.text
         
         if state.clearsInput {
             date = nil

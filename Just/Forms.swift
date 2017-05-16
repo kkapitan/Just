@@ -16,12 +16,14 @@ struct UserForm {
 }
 
 struct TaskForm {
-    var description: String?
     var title: String?
     var due: Date?
+    var listId: Int?
+    
+    var description: String?
+    
     var priority: Priority?
-    var isDone: Bool?
-    var listId: String?
+    var isDone: Bool?    
 }
 
 struct ListForm {

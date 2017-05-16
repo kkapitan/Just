@@ -17,10 +17,12 @@ struct RegisterParams: RequestParams {
     
     var params: [String: Any] {
         return [
-            "username" : form.username ?? "",
-            "email" : form.email ?? "",
-            "password" : form.password ?? "",
-            "password_confirmation" : form.confirmation ?? ""
+            "user" : [
+                "username" : form.username ?? "",
+                "email" : form.email ?? "",
+                "password" : form.password ?? "",
+                "password_confirmation" : form.confirmation ?? ""
+            ]
         ]
     }
 }
@@ -56,6 +58,14 @@ struct CreateTaskParams: RequestParams {
             "priority" : (form.priority ?? .medium).rawValue,
             "list_id" : form.listId ?? "",
         ]
+    }
+}
+
+struct UpdateStatusParams: RequestParams {
+    let task: Task
+    
+    var params: [String: Any] {
+        return ["done": !task.isDone]
     }
 }
 

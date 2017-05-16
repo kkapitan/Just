@@ -20,6 +20,11 @@ struct Task {
     let isDone: Bool
 }
 
+extension Task: Equatable {
+    public static func ==(lhs: Task, rhs: Task) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
 
 extension Task: JSONCodable {
     init(object: JSONObject) throws {

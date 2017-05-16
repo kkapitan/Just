@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kr6-21-iPO" id="2Se-VX-plk">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x8W-Ts-cCH">
@@ -108,9 +108,12 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="accessoryImageView" destination="ivR-5g-itg" id="7kZ-CP-HVv"/>
+                <outlet property="deleteButton" destination="Uyj-VQ-yAw" id="tzC-72-TS1"/>
                 <outlet property="descriptionLabel" destination="Tcd-92-28F" id="SpB-dJ-axC"/>
+                <outlet property="editButton" destination="PTZ-Ne-Bvd" id="jHZ-Iu-wOH"/>
                 <outlet property="leadingConstraint" destination="463-b9-dsr" id="uOm-Jd-aQg"/>
                 <outlet property="statusLabel" destination="X2V-Ty-3JI" id="Ffq-pF-Ivl"/>
+                <outlet property="tickButton" destination="dil-Wh-fgN" id="3bQ-4K-3eK"/>
                 <outlet property="titleLabel" destination="Rc3-8X-SoO" id="bcW-ou-qDh"/>
                 <outlet property="trailingConstraint" destination="ht6-Hg-bbQ" id="U0b-Rt-eUn"/>
             </connections>

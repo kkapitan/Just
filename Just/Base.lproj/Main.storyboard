@@ -216,7 +216,7 @@
                                     <constraint firstAttribute="trailing" secondItem="bFK-OK-YKC" secondAttribute="trailing" id="zbA-Gt-uFx"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g79-g9-xJE">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g79-g9-xJE">
                                 <rect key="frame" x="133" y="293" width="111" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="jEq-fP-ypE"/>

@@ -8,6 +8,4 @@
 
 import Alamofire
 
-final class ApiClient: Alamofire.SessionManager {
-    
-}
+final class ApiClient: Alamofire.SessionManager {}

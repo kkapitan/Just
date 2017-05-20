@@ -118,7 +118,7 @@ final class TaskListViewController: UITableViewController {
         form.due = dashboardInputView.date
         form.listId = dashboardInputView.list?.id
         
-        showHud()
+        showProgress("Creating...")
         service.createTask(with: form) { [weak self] result in
             self?.hideHud()
             
@@ -126,6 +126,7 @@ final class TaskListViewController: UITableViewController {
             case .success(let task):
                 try! self?.storage.add(task)
                 
+                self?.showSuccess("Success!")
                 self?.tableView.reloadData()
             case .failure(let error):
                 self?.showError(error)

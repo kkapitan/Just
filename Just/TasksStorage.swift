@@ -21,6 +21,7 @@ final class TasksStorage: Storage {
     func tasks(for list: List, done: Bool) -> [Task] {
         let predicate = NSPredicate(format: "isDone == %@ AND listId == %@", NSNumber(value: done), NSNumber(value: list.id))
         
-        return get().filter(predicate).map(Task.init(entity:))
+        
+        return get().filter(predicate).sorted(byKeyPath: "id", ascending: false).map(Task.init(entity:))
     }
 }

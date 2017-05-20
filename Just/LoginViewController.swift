@@ -41,7 +41,7 @@ final class LoginViewController: UIViewController {
         let credentials = Credentials(usernameOrEmail: usernameOrEmail, password: password)
         let service = UserService()
         
-        showHud()
+        showProgress("Signing in")
         service.login(with: credentials) { [weak self] result in
             self?.hideHud()
             

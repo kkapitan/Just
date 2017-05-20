@@ -59,7 +59,7 @@ final class RegistrationViewController: UIViewController {
         let userForm = UserForm(username: username, email: email, password: password, confirmation: confirmation)
         let service = UserService()
         
-        showHud()
+        showProgress("Signing up...")
         service.register(with: userForm) { [weak self] result in
             self?.hideHud()
             

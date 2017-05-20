@@ -15,9 +15,15 @@ extension UIViewController {
         present(alert, animated: true)
     }
     
-    func showHud() {
+    func showProgress(_ message: String) {
         HUD.hide()
-        HUD.show(.progress)
+        HUD.show(.label(message))
+    }
+    
+    func showSuccess(_ message: String) {
+        HUD.hide()
+        HUD.show(.label(message))
+        HUD.hide(afterDelay: 0.5)
     }
     
     func hideHud() {

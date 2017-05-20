@@ -22,10 +22,13 @@ final class TaskListViewController: UITableViewController {
     }()
     
     var sections: [[Task]] {
-        return [storage.tasks(false), storage.tasks(true)].filter { !$0.isEmpty }
+        return list.map {
+            [
+                storage.tasks(for: $0, done: false),
+                storage.tasks(for: $0, done: true)
+            ]
+        } ?? []
     }
-    
-    var token: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,7 @@ final class TaskListViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         setupInputView()
-        fetchLists()
+        fetchTasks()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,29 +95,21 @@ final class TaskListViewController: UITableViewController {
         }
     }
     
-    func fetchLists() {
-        let service = ListService()
+    func fetchTasks() {
+        guard let list = list else { return }
         
-        service.fetchLists { [weak self] result in
+        let service = ListService()
+        service.fetchTasks(for: list) { [weak self] result in
             switch result {
-            case .success(let lists):
-                guard let list = lists.first else { return }
-                
-                service.fetchTasks(for: list) { result in
-                    switch result {
-                    case .success(let list):
-                        try! self?.storage.add(list.tasks, update: true)
-                        self?.tableView.reloadData()
-                    case .failure(let error):
-                        self?.showError(error)
-                    }
-                }
+            case .success(let list):
+                try! self?.storage.add(list.tasks, update: true)
+                self?.tableView.reloadData()
             case .failure(let error):
                 self?.showError(error)
             }
         }
     }
-    
+
     func createTask() {
         let service = TasksService()
         
@@ -146,10 +141,12 @@ final class TaskListViewController: UITableViewController {
     @IBAction func listsButtonAction(_ sender: Any) {
         let listPicker = Wireframe.Main().listPicker()
         
+        listPicker.selected = list
         listPicker.allowAdding = true
         listPicker.onSelect = { [unowned self] list in
             self.list = list
             self.tableView.reloadData()
+            self.fetchTasks()
         }
         
         present(listPicker, animated: true)
@@ -184,6 +181,7 @@ final class TaskListViewController: UITableViewController {
         let listPicker = Wireframe.Main().listPicker()
         let contentSize = CGSize(width: 184, height: 260)
         
+        listPicker.selected = dashboardInputView.list
         listPicker.onSelect = { [unowned self] list in
             self.dashboardInputView.list = list
         }
@@ -294,6 +292,8 @@ extension TaskListViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         dashboardInputView.activate()
+        dashboardInputView.list = list
+        
         tableView.isScrollEnabled = false
         
         self.view.addSubview(overlayView)

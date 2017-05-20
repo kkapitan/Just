@@ -13,7 +13,7 @@ final class SettingsViewController: UIViewController, UITableViewDelegate, UITab
     let settings: [[Setting]] = {
         return [
             [.link(.aboutUs), .link(.support), .link(.terms)],
-            [.switch(.storeInCloud), .switch(.notificationsOn)]
+            //[.switch(.storeInCloud), .switch(.notificationsOn)]
         ]
     }()
     

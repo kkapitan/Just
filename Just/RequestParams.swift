@@ -17,12 +17,10 @@ struct RegisterParams: RequestParams {
     
     var params: [String: Any] {
         return [
-            "user" : [
-                "username" : form.username ?? "",
-                "email" : form.email ?? "",
-                "password" : form.password ?? "",
-                "password_confirmation" : form.confirmation ?? ""
-            ]
+            "username" : form.username ?? "",
+            "email" : form.email ?? "",
+            "password" : form.password ?? "",
+            "password_confirmation" : form.confirmation ?? ""
         ]
     }
 }
@@ -52,12 +50,18 @@ struct CreateTaskParams: RequestParams {
     let form: TaskForm
     
     var params: [String: Any] {
-        return [
+        var base: [String: Any] = [
             "title" : form.title ?? "",
             "description" : form.description ?? "",
             "priority" : (form.priority ?? .medium).rawValue,
-            "list_id" : form.listId ?? "",
+            "list_id" : form.listId ?? 0,
         ]
+        
+        if let deadline = form.due {
+            base["deadline"] = deadline.timeIntervalSince1970
+        }
+        
+        return base
     }
 }
 

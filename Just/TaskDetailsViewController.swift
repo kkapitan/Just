@@ -94,6 +94,21 @@ final class TaskDetailsViewController: UITableViewController, UITextViewDelegate
         return .init()
     }()
     
+    func fetchDetails() {
+        let service = TasksService()
+        service.fetchTaskDetails(for: task) { [weak self] (result) in
+            switch result {
+            case .success(let updatedTask):
+                self?.task = updatedTask
+                try! self?.storage.add(updatedTask, update: true)
+                
+                self?.tableView.reloadData()
+            case .failure(let error):
+                self?.showError(error)
+            }
+        }
+    }
+    
     func enableEdition(_ edition: Bool) {
         enablesEdition = edition
         tableView.reloadData()

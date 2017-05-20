@@ -17,6 +17,8 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    var selected: List?
+    
     var lists: [List] {
         return storage.lists()
     }
@@ -46,10 +48,19 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
             switch result {
             case .success(let lists):
                 try! self?.storage.add(lists, update: true)
-                self?.tableView.reloadData()
+                self?.tableView.reloadDataPreservingSelection()
             case .failure(let error):
                 self?.showError(error)
             }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let list = selected, let index = lists.index(where: { $0.id == list.id }) {
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.selectRow(at: indexPath)
         }
     }
     
@@ -66,7 +77,7 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
         
         let cell: ListEntryCell = tableView.dequeue()
         cell.title = list.name
-            
+       
         return cell
     }
     
@@ -79,7 +90,10 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        onSelect?(lists[indexPath.row])
+        let list = lists[indexPath.row]
+        
+        selected = list
+        onSelect?(list)
     }
     
     @IBAction func addButtonAction() {
@@ -97,13 +111,11 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
                 switch result {
                 case .success(let list):
                     try! self?.storage.add(list, update: true)
-                    self?.tableView.reloadData()
+                    self?.tableView.reloadDataPreservingSelection()
                 case .failure(let error):
                     self?.showError(error)
                 }
             }
-        
-            self.tableView.reloadData()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -116,5 +128,18 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
     
     @IBAction func cancelButtonAction(_ sender: Any) {
         dismiss(animated: true)
+    }
+}
+
+extension UITableView {
+    func selectRow(at indexPath: IndexPath, animated: Bool = false) {
+        selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        delegate?.tableView?(self, didSelectRowAt: indexPath)
+    }
+    
+    func reloadDataPreservingSelection() {
+        let indexPath = indexPathForSelectedRow
+        reloadData()
+        selectRow(at: indexPath, animated: false, scrollPosition: .none)
     }
 }

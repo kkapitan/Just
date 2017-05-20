@@ -22,7 +22,7 @@ final class DetailsStatusCell: UITableViewCell, Reusable, NibLoadable {
     var date: Date? {
         didSet {
             let formatter = DateFormatter.full
-            dateTextField.text = formatter.string(for: date)
+            dateTextField.text = formatter.string(for: date) ?? "N/A"
         }
     }
     

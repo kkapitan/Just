@@ -76,10 +76,24 @@ final class RootViewController: UIViewController {
     }
     
     func presentTaskList() {
-        let taskList = Wireframe.Main().taskList()
-        let navigationController = MainNavigationController(rootViewController: taskList)
+        let storage = try! ListStorage()
+        let service = ListService()
         
-        present(navigationController, animated: true)
+        service.fetchLists { [weak self] result in
+            switch result {
+            case .success(let lists):
+                try! storage.add(lists, update: true)
+                
+                let taskList = Wireframe.Main().taskList()
+                let navigationController = MainNavigationController(rootViewController: taskList)
+                
+                taskList.list = lists.first
+                
+                self?.present(navigationController, animated: true)
+            case .failure(let error):
+                self?.showError(error)
+            }
+        }
     }
     
     deinit {

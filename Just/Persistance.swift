@@ -19,6 +19,7 @@ protocol Persistable {
 final class TaskEntity: Object {
     
     dynamic var id: Int = 0
+    dynamic var listId: Int = 0
     dynamic var title: String = ""
     dynamic var dueDate: Date?
     dynamic var priority: String = Priority.medium.rawValue
@@ -37,6 +38,7 @@ extension Task: Persistable {
     
     init(entity: TaskEntity) {
         id = entity.id
+        listId = entity.id
         title = entity.title
         dueDate = entity.dueDate
         priority = Priority(rawValue: entity.priority) ?? .medium
@@ -53,6 +55,7 @@ extension Task: Persistable {
         entity.priority = priority.rawValue
         entity.taskDescription = taskDescription
         entity.isDone = isDone
+        entity.listId = listId
         
         return entity
     }
@@ -109,12 +112,8 @@ final class TasksStorage: Storage {
         self.realm = try Realm()
     }
     
-    func tasks() -> [Task] {
-        return get().map(Task.init(entity:))
-    }
-    
-    func tasks(_ done: Bool) -> [Task] {
-        let predicate = NSPredicate(format: "isDone == %@", NSNumber(value: done))
+    func tasks(for list: List, done: Bool) -> [Task] {
+        let predicate = NSPredicate(format: "isDone == %@ AND listId == %@", NSNumber(value: done), NSNumber(value: list.id))
         
         return get().filter(predicate).map(Task.init(entity:))
     }

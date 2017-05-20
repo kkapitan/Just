@@ -10,6 +10,7 @@ import JSONCodable
 
 struct Task {
     let id: Int
+    let listId: Int
     
     let title: String
     let dueDate: Date?
@@ -36,10 +37,17 @@ extension Task: JSONCodable {
         taskDescription = try decoder.decode("description")
         isDone = try decoder.decode("done")
         
-        //dueDate = try decoder.decode("date")
-        dueDate = nil
+        dueDate = try decoder.decode("deadline", transformer: dateTransformer)
         
         let priorityString: String? = try decoder.decode("priority")
         priority = priorityString.flatMap({ Priority(rawValue: $0) }) ?? .medium
+        
+        listId = try decoder.decode("list_id")
     }
+}
+
+let dateTransformer = JSONTransformer<TimeInterval, Date>(decoding: { value in
+    return Date(timeIntervalSince1970: value)
+}) { date -> TimeInterval? in
+    return date.timeIntervalSince1970
 }

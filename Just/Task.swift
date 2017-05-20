@@ -37,7 +37,7 @@ extension Task: JSONCodable {
         taskDescription = try decoder.decode("description")
         isDone = try decoder.decode("done")
         
-        dueDate = try decoder.decode("deadline", transformer: dateTransformer)
+        dueDate = try decoder.decode("due", transformer: dateTransformer)
         
         let priorityString: String? = try decoder.decode("priority")
         priority = priorityString.flatMap({ Priority(rawValue: $0) }) ?? .medium

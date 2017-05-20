@@ -19,3 +19,9 @@ enum Priority: String {
         return [.urgent, .high, .medium, .low]
     }
 }
+
+extension Priority: PickerItem {
+    var title: String {
+        return description
+    }
+}

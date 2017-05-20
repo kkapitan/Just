@@ -56,9 +56,15 @@
 		026F19721EC8B99E00A8B9EF /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19711EC8B99E00A8B9EF /* ListService.swift */; };
 		026F19741EC8C5AF00A8B9EF /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19731EC8C5AF00A8B9EF /* UIViewController+Common.swift */; };
 		026F19761EC8EC2000A8B9EF /* Collection+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19751EC8EC2000A8B9EF /* Collection+Equatable.swift */; };
-		026F19961ECB8C6300A8B9EF /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19951ECB8C6300A8B9EF /* Persistance.swift */; };
+		026F19961ECB8C6300A8B9EF /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19951ECB8C6300A8B9EF /* Storage.swift */; };
 		029B24761EC272070009F828 /* EditTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B24751EC272070009F828 /* EditTitleCell.swift */; };
 		029B24781EC2721C0009F828 /* EditTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029B24771EC2721C0009F828 /* EditTitleCell.xib */; };
+		02A1D3461ED0C0FC0038C551 /* ListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1D3451ED0C0FC0038C551 /* ListStorage.swift */; };
+		02A1D3481ED0C1010038C551 /* TasksStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1D3471ED0C1010038C551 /* TasksStorage.swift */; };
+		02A1D34A1ED0C10D0038C551 /* TaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1D3491ED0C10D0038C551 /* TaskEntity.swift */; };
+		02A1D34C1ED0C11B0038C551 /* ListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1D34B1ED0C11B0038C551 /* ListEntity.swift */; };
+		02A1D34E1ED0C1D10038C551 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1D34D1ED0C1D10038C551 /* PickerView.swift */; };
+		02A1D3501ED0C1D70038C551 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1D34F1ED0C1D70038C551 /* DatePicker.swift */; };
 		02C79FB01E9A9FDC006F40D2 /* DashboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C79FAF1E9A9FDC006F40D2 /* DashboardInputView.swift */; };
 		02D383BF1E867A7C00F5F61C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D383BE1E867A7C00F5F61C /* AppDelegate.swift */; };
 		02D383C41E867A7C00F5F61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D383C21E867A7C00F5F61C /* Main.storyboard */; };
@@ -140,9 +146,15 @@
 		026F19711EC8B99E00A8B9EF /* ListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		026F19731EC8C5AF00A8B9EF /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		026F19751EC8EC2000A8B9EF /* Collection+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Equatable.swift"; sourceTree = "<group>"; };
-		026F19951ECB8C6300A8B9EF /* Persistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
+		026F19951ECB8C6300A8B9EF /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		029B24751EC272070009F828 /* EditTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTitleCell.swift; sourceTree = "<group>"; };
 		029B24771EC2721C0009F828 /* EditTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTitleCell.xib; sourceTree = "<group>"; };
+		02A1D3451ED0C0FC0038C551 /* ListStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListStorage.swift; sourceTree = "<group>"; };
+		02A1D3471ED0C1010038C551 /* TasksStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksStorage.swift; sourceTree = "<group>"; };
+		02A1D3491ED0C10D0038C551 /* TaskEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEntity.swift; sourceTree = "<group>"; };
+		02A1D34B1ED0C11B0038C551 /* ListEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEntity.swift; sourceTree = "<group>"; };
+		02A1D34D1ED0C1D10038C551 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		02A1D34F1ED0C1D70038C551 /* DatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		02C79FAF1E9A9FDC006F40D2 /* DashboardInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardInputView.swift; sourceTree = "<group>"; };
 		02D383BB1E867A7C00F5F61C /* Just.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Just.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D383BE1E867A7C00F5F61C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -433,6 +445,8 @@
 				0242DA071E87F804007BA970 /* DetailsStatus */,
 				0242DA061E87F7FB007BA970 /* DetailsDescription */,
 				0242D9FB1E87E819007BA970 /* SectionTitle */,
+				02A1D34D1ED0C1D10038C551 /* PickerView.swift */,
+				02A1D34F1ED0C1D70038C551 /* DatePicker.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -486,7 +500,11 @@
 				026F19671EC89FFB00A8B9EF /* KeychainStorage.swift */,
 				026F19731EC8C5AF00A8B9EF /* UIViewController+Common.swift */,
 				026F19751EC8EC2000A8B9EF /* Collection+Equatable.swift */,
-				026F19951ECB8C6300A8B9EF /* Persistance.swift */,
+				026F19951ECB8C6300A8B9EF /* Storage.swift */,
+				02A1D3451ED0C0FC0038C551 /* ListStorage.swift */,
+				02A1D3471ED0C1010038C551 /* TasksStorage.swift */,
+				02A1D3491ED0C10D0038C551 /* TaskEntity.swift */,
+				02A1D34B1ED0C11B0038C551 /* ListEntity.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -746,12 +764,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02A1D34E1ED0C1D10038C551 /* PickerView.swift in Sources */,
 				0242DA141E990843007BA970 /* DateFormatter.swift in Sources */,
 				0242DA3E1E99420B007BA970 /* Colors.swift in Sources */,
 				0242DA201E99145D007BA970 /* LandingViewController.swift in Sources */,
 				026F19631EC8971500A8B9EF /* Request.swift in Sources */,
 				026F19611EC8970600A8B9EF /* ApiRequester.swift in Sources */,
 				0242DA011E87E8A9007BA970 /* Reusable.swift in Sources */,
+				02A1D34A1ED0C10D0038C551 /* TaskEntity.swift in Sources */,
 				02D383BF1E867A7C00F5F61C /* AppDelegate.swift in Sources */,
 				0242DA1C1E990CC7007BA970 /* SettingsNavigationCell.swift in Sources */,
 				0242DA221E991B5E007BA970 /* StoryboardIdentifiable.swift in Sources */,
@@ -767,6 +787,7 @@
 				0242D9EE1E87E27C007BA970 /* List.swift in Sources */,
 				0242DA281E991C6A007BA970 /* Wireframes.swift in Sources */,
 				0242D9EA1E87E26B007BA970 /* Task.swift in Sources */,
+				02A1D34C1ED0C11B0038C551 /* ListEntity.swift in Sources */,
 				0242D9E61E87DEC0007BA970 /* User.swift in Sources */,
 				0242DA181E990A80007BA970 /* DetailsTitleCell.swift in Sources */,
 				0242DA261E991B87007BA970 /* Instantiator.swift in Sources */,
@@ -783,9 +804,10 @@
 				0242DA2C1E991E4C007BA970 /* TaskListViewController.swift in Sources */,
 				029B24761EC272070009F828 /* EditTitleCell.swift in Sources */,
 				0242DA1E1E990CD0007BA970 /* SettingsSwitchCell.swift in Sources */,
-				026F19961ECB8C6300A8B9EF /* Persistance.swift in Sources */,
+				026F19961ECB8C6300A8B9EF /* Storage.swift in Sources */,
 				0242DA421E994B56007BA970 /* MainNavigationController.swift in Sources */,
 				0242DA401E99477A007BA970 /* Validations.swift in Sources */,
+				02A1D3481ED0C1010038C551 /* TasksStorage.swift in Sources */,
 				0231B30C1E9A65CE00868DB6 /* Setting.swift in Sources */,
 				0242DA361E992026007BA970 /* DatePickerViewController.swift in Sources */,
 				026F19721EC8B99E00A8B9EF /* ListService.swift in Sources */,
@@ -797,9 +819,11 @@
 				0242DA381E992031007BA970 /* SettingsViewController.swift in Sources */,
 				0242DA121E88368C007BA970 /* DetailsStatusCell.swift in Sources */,
 				0242DA1A1E990CBA007BA970 /* DashboardItemCell.swift in Sources */,
+				02A1D3461ED0C0FC0038C551 /* ListStorage.swift in Sources */,
 				026F19681EC89FFB00A8B9EF /* KeychainStorage.swift in Sources */,
 				0242DA161E990A77007BA970 /* DetailsActionCell.swift in Sources */,
 				0242DA2E1E991E57007BA970 /* RegistrationViewController.swift in Sources */,
+				02A1D3501ED0C1D70038C551 /* DatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

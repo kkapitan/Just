@@ -57,8 +57,8 @@ struct CreateTaskParams: RequestParams {
             "list_id" : form.listId ?? 0,
         ]
         
-        if let deadline = form.due {
-            base["deadline"] = deadline.timeIntervalSince1970
+        if let due = form.due {
+            base["due"] = due.timeIntervalSince1970
         }
         
         return base
@@ -77,11 +77,17 @@ struct UpdateTaskParams: RequestParams {
     let form: TaskForm
     
     var params: [String: Any] {
-        return [
+        var base: [String: Any] = [
             "title" : form.title ?? "",
             "description" : form.description ?? "",
             "priority" : (form.priority ?? .medium).rawValue,
             "done" : form.isDone ?? false,
         ]
+        
+        if let due = form.due {
+            base["due"] = due.timeIntervalSince1970
+        }
+        
+        return base
     }
 }

@@ -101,6 +101,9 @@ final class SettingsViewController: UIViewController, UITableViewDelegate, UITab
         let service = UserService()
         service.logout(completion: { _ in })
         
+        try? ListStorage().removeAll()
+        try? TasksStorage().removeAll()
+        
         KeychainStorage().deleteUser()
         NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.notSignedIn)
     }

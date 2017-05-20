@@ -8,13 +8,90 @@
 
 import UIKit
 
-final class TaskDetailsViewController: UITableViewController {
+protocol PickerItem {
+    var title: String { get }
+}
+
+final class PickerView<T: PickerItem>: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
+    typealias SelectionBlock = (T) -> ()
+    var onSelect: SelectionBlock?
+    
+    let items: [T]
+    
+    init(items: [T]) {
+        self.items = items
+        
+        super.init(frame: .zero)
+        
+        delegate = self
+        dataSource = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return items.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        onSelect?(items[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return items[row].title
+    }
+}
+
+final class DatePicker: UIDatePicker {
+    
+    typealias SelectionBlock = (Date) -> ()
+    
+    var onSelect: SelectionBlock?
+    
+    init() {
+        super.init(frame: .zero)
+        
+        addTarget(self, action: #selector(valueChanged), for: .valueChanged)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func valueChanged(_ picker: UIDatePicker) {
+        onSelect?(date)
+    }
+}
+
+extension Priority: PickerItem {
+    var title: String {
+        return description
+    }
+}
+
+final class TaskDetailsViewController: UITableViewController, UITextViewDelegate {
     
     var enablesEdition: Bool = false
     
+    var taskForm: TaskForm?
     var task: Task!
+    
     let storage: TasksStorage = {
-       return try! .init()
+        return try! .init()
+    }()
+    
+    let priorityPicker: PickerView = {
+        return  PickerView(items: Priority.all)
+    }()
+    
+    let datePicker: DatePicker = {
+        return .init()
     }()
     
     func enableEdition(_ edition: Bool) {
@@ -36,7 +113,7 @@ final class TaskDetailsViewController: UITableViewController {
     
     func saveAction() {
         let service = TasksService()
-        let form = TaskForm()
+        guard let form = taskForm, let title = form.title, !title.isEmpty else { return }
         
         service.updateTask(task: task, with: form) { [weak self] result in
             switch result {
@@ -63,6 +140,8 @@ final class TaskDetailsViewController: UITableViewController {
         tableView.registerNib(for: DetailsTitleCell.self)
         
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        taskForm = TaskForm(task: task)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,16 +160,34 @@ final class TaskDetailsViewController: UITableViewController {
             cell.title = task.title
             cell.allowEditing = enablesEdition
             
+            cell.titleTextField.addTarget(self, action: #selector(titleChangedAction), for: .editingChanged)
+            
             return cell
         case 1:
             let cell: DetailsStatusCell = tableView.dequeue()
             cell.date = task.dueDate
+            cell.status = task.priority
+            
             cell.allowEditing = enablesEdition
+            
+            cell.dateTextField.inputView = datePicker
+            datePicker.onSelect = { [weak cell, weak self] date in
+                cell?.date = date
+                self?.taskForm?.due = date
+            }
+            
+            cell.statusTextField.inputView = priorityPicker
+            priorityPicker.onSelect = { [weak cell, weak self] item in
+                cell?.status = item
+                self?.taskForm?.priority = item
+            }
             
             return cell
         case 2:
             let cell: DetailsDescriptionCell = tableView.dequeue()
             cell.taskDescription = task.taskDescription
+            cell.allowEditing = enablesEdition
+            cell.descriptionTextView.delegate = self
             
             return cell
         case 3:
@@ -179,5 +276,13 @@ final class TaskDetailsViewController: UITableViewController {
         try! storage.add(task, update: true)
         
         navigationController?.popViewController(animated: true)
+    }
+    
+    func titleChangedAction(textField: UITextField) {
+        taskForm?.title = textField.text
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        taskForm?.description = textView.text
     }
 }

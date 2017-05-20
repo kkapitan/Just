@@ -20,7 +20,7 @@ final class TaskListViewController: UITableViewController {
     }()
     
     var sections: [[Task]] {
-        return [storage.tasks(false), storage.tasks(true)]
+        return [storage.tasks(false), storage.tasks(true)].filter { !$0.isEmpty }
     }
     
     var token: NotificationToken?

@@ -23,7 +23,23 @@ struct TaskForm {
     var description: String?
     
     var priority: Priority?
-    var isDone: Bool?    
+    var isDone: Bool?
+    
+    init(task: Task) {
+        title = task.title
+        due = task.dueDate
+        description = task.taskDescription
+        priority = task.priority
+        isDone = task.isDone
+    }
+    
+    init() {
+        title = nil
+        due = nil
+        description = nil
+        priority = nil
+        isDone = nil
+    }
 }
 
 struct ListForm {

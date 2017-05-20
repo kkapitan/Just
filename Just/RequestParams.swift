@@ -78,7 +78,6 @@ struct UpdateTaskParams: RequestParams {
             "description" : form.description ?? "",
             "priority" : (form.priority ?? .medium).rawValue,
             "done" : form.isDone ?? false,
-            "list_id" : form.listId ?? "",
         ]
     }
 }

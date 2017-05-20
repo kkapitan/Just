@@ -35,6 +35,12 @@ final class DashboardItemCell: UITableViewCell, Reusable, NibLoadable {
         addGestureRecognizer(leftSwipeGesture)
         
         applyState(.normal, animated: false)
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 1.0
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
     }
     
     override func prepareForReuse() {

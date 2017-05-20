@@ -17,4 +17,10 @@ final class DetailsDescriptionCell: UITableViewCell, Reusable, NibLoadable {
             descriptionTextView.text = taskDescription
         }
     }
+    
+    var allowEditing: Bool = false {
+        didSet {
+            descriptionTextView.isEditable = allowEditing
+        }
+    }
 }

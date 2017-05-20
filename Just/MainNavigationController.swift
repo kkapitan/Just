@@ -19,6 +19,13 @@ final class MainNavigationController: UINavigationController {
         navigationBar.shadowImage = UIImage()
         
         navigationBar.tintColor = .white
+        
+        navigationBar.layer.shadowColor = UIColor.black.cgColor
+        navigationBar.layer.shadowOpacity = 0.5
+        navigationBar.layer.shadowOffset = CGSize.zero
+        navigationBar.layer.shadowRadius = 1.0
+        navigationBar.layer.shadowPath = UIBezierPath(rect: navigationBar.bounds).cgPath
+        
         delegate = self
     }
     

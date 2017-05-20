@@ -30,6 +30,12 @@ final class DashboardInputView: UIView, Reusable, NibLoadable {
         
         inputTextField.leftView = paddingView
         inputTextField.leftViewMode = .always
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize.zero
+        layer.shadowRadius = 1.0
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
     }
     
     func activate() {

@@ -119,3 +119,52 @@ final class TasksStorage: Storage {
         return get().filter(predicate).map(Task.init(entity:))
     }
 }
+
+final class ListStorage: Storage {
+    typealias T = List
+    
+    let realm: Realm
+    
+    init() throws {
+        self.realm = try Realm()
+    }
+    
+    func lists() -> [List] {
+        return get().map(List.init(entity:))
+    }
+}
+
+final class ListEntity: Object {
+    dynamic var id: Int = 0
+    dynamic var name: String = ""
+    
+    let tasks = RealmSwift.List<TaskEntity>()
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+}
+
+extension List: Persistable {
+    var primaryKey: Any? {
+        return id
+    }
+    
+    init(entity: ListEntity) {
+        id = entity.id
+        name = entity.name
+        tasks = entity.tasks.lazy.map(Task.init(entity:))
+    }
+    
+    func toEntity() -> ListEntity {
+        let entity = ListEntity()
+        
+        entity.id = id
+        entity.name = name
+        
+        let tasks = self.tasks.lazy.map { $0.toEntity() }
+        entity.tasks.append(objectsIn: tasks)
+        
+        return entity
+    }
+}

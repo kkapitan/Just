@@ -14,6 +14,8 @@ final class TaskListViewController: UITableViewController {
     let dashboardInputView: DashboardInputView = {
         return .view
     }()
+    
+    var list: List?
 
     let storage: TasksStorage = {
         return try! .init()
@@ -139,6 +141,18 @@ final class TaskListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat.leastNonzeroMagnitude
+    }
+    
+    @IBAction func listsButtonAction(_ sender: Any) {
+        let listPicker = Wireframe.Main().listPicker()
+        
+        listPicker.allowAdding = true
+        listPicker.onSelect = { [unowned self] list in
+            self.list = list
+            self.tableView.reloadData()
+        }
+        
+        present(listPicker, animated: true)
     }
     
     @IBAction func settingsButtonAction(_ sender: Any) {

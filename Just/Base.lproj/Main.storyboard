@@ -645,6 +645,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="DASHBOARD" id="msj-Bc-YsJ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="UrD-wq-QjQ">
+                            <connections>
+                                <action selector="listsButtonAction:" destination="xqg-jZ-vvz" id="GKa-pY-eej"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="organize" id="lwh-lu-b4A">
                             <connections>
                                 <action selector="settingsButtonAction:" destination="xqg-jZ-vvz" id="DYj-eT-3Dw"/>
@@ -788,6 +793,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="qvn-2b-HcJ" id="ELf-1f-qiT"/>
                         <outlet property="tableView" destination="wSr-qW-V3E" id="8U5-KN-uoP"/>
                     </connections>
                 </viewController>

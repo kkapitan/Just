@@ -12,10 +12,18 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
     
     typealias SelectAction = (List) -> ()
     var onSelect: SelectAction?
+    var allowAdding: Bool = false
     
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var lists: [List] = []
+    var lists: [List] {
+        return storage.lists()
+    }
+    
+    fileprivate let storage: ListStorage = {
+        return try! .init()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +34,8 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
         tableView.delegate = self
         tableView.dataSource = self
         
+        addButton.isHidden = !allowAdding
+        
         fetchLists()
     }
     
@@ -35,7 +45,7 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
         service.fetchLists { [weak self] result in
             switch result {
             case .success(let lists):
-                self?.lists = lists
+                try! self?.storage.add(lists, update: true)
                 self?.tableView.reloadData()
             case .failure(let error):
                 self?.showError(error)
@@ -81,9 +91,18 @@ final class ListPickerViewController: UIViewController, UITableViewDelegate, UIT
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             guard let name = alert.textFields?.first?.text else { return }
             
-            let list = List(id: 0, name: name, tasks: [])
-            
-            self.lists.append(list)
+            let form = ListForm(title: name)
+            let service = ListService()
+            service.createList(with: form) { [weak self] result in
+                switch result {
+                case .success(let list):
+                    try! self?.storage.add(list, update: true)
+                    self?.tableView.reloadData()
+                case .failure(let error):
+                    self?.showError(error)
+                }
+            }
+        
             self.tableView.reloadData()
         }
         

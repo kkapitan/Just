@@ -85,7 +85,7 @@ struct CreateListRequest: Request {
     }
     
     var path: String {
-        return "tasks"
+        return "lists"
     }
 }
 

@@ -6,24 +6,24 @@
 //  Copyright © 2017 CappSoft. All rights reserved.
 //
 
-import Foundation
+import RxSwift
 
 final class UserService {
     
-    func login(with credentials: Credentials, completion: @escaping (ApiResponse<User>) -> ()) {
+    func login(with credentials: Credentials) -> Observable<ApiResponse<User>> {
         let requester = ApiRequester()
         let request = LoginRequest()
         let params = LoginParams(credentials: credentials)
         
-        requester.request(request: request, params: params, completion: completion)
+        return requester.request(request: request, params: params)
     }
     
-    func register(with form: UserForm, completion: @escaping (ApiResponse<User>) -> ()) {
+    func register(with form: UserForm) -> Observable<ApiResponse<User>> {
         let requester = ApiRequester()
         let request = RegisterRequest()
         let params = RegisterParams(form: form)
         
-        requester.request(request: request, params: params, completion: completion)
+        return requester.request(request: request, params: params)
     }
     
     func logout(completion: @escaping (ApiResponse<Void>) -> ()) {

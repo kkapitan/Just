@@ -11,6 +11,10 @@ target 'Just' do
   pod 'KeychainAccess'
   pod 'PKHUD', '~> 4.0'
   pod 'RealmSwift'
+  pod 'RxSwift'
+  pod 'RxOptional'
+  pod 'RxCocoa'
+  pod 'RxRealm'
   
   # Pods for Just
   target 'JustTests' do

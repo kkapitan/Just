@@ -8,6 +8,65 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+import RxOptional
+
+final class LoginViewModel {
+    
+    enum LoginResult {
+        case success
+        case failure(Error?)
+    }
+    
+    // Input
+    let email: Variable<String?> = Variable(nil)
+    let password: Variable<String?> = Variable(nil)
+    
+    // Output
+    let isValid: Observable<Bool>
+    
+    init() {
+        let isEmailValid = email
+            .asObservable()
+            .filterNil()
+            .map(Validations.isValid(email:))
+        
+        let isPasswordValid = email
+            .asObservable()
+            .filterNil()
+            .map(Validations.isValid(password:))
+    
+        isValid = Observable
+            .combineLatest([isEmailValid, isPasswordValid]) {
+                $0.reduce(true) { $1 && $0 }
+            }.startWith(false)
+    }
+    
+    func login() -> Observable<LoginResult> {
+        guard let email = email.value, let password = password.value else {
+            return Observable.just(.failure(nil))
+        }
+        
+        let service = UserService()
+        let credentials = Credentials(usernameOrEmail: email, password: password)
+        
+        return service.login(with: credentials).flatMap { response -> Observable<LoginResult> in
+            switch response {
+            case .failure(let error):
+                return Observable.just(.failure(error))
+            case .success(let user):
+                
+                KeychainStorage().setUser(user)
+                NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
+                
+                return Observable.just(.success)
+            }
+        }
+    }
+    
+}
+
 final class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameOrEmailTextField: UITextField!
@@ -19,59 +78,65 @@ final class LoginViewController: UIViewController {
     
     fileprivate let keyboard = Keyboard()
     
+    let viewModel = LoginViewModel()
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        editingChanged(nil)
         
         setupKeyboard()
         hideKeyboardOnTap()
+        
+        setupBindings()
     }
     
-    @IBAction func editingChanged(_ sender: UITextField?) {
-        let valid = isFormValid()
+    func setupBindings() {
         
-        continueButton.isEnabled = valid
-        continueButton.backgroundColor = valid ? .buttonGreen : .buttonGray
+        usernameOrEmailTextField.rx
+            .text
+            .asObservable()
+            .bindTo(viewModel.email)
+            .addDisposableTo(disposeBag)
+        
+        passwordTextField.rx
+            .text
+            .asObservable()
+            .bindTo(viewModel.password)
+            .addDisposableTo(disposeBag)
+        
+        viewModel
+            .isValid
+            .distinctUntilChanged()
+            .subscribe(onNext: { [unowned self] valid in
+                self.continueButton.isEnabled = valid
+                self.continueButton.backgroundColor = valid ? .buttonGreen : .buttonGray
+            })
+            .addDisposableTo(disposeBag)
+        
+        continueButton.rx
+            .tap
+            .asObservable()
+            .flatMapLatest { [unowned self] (Void) -> Observable<LoginViewModel.LoginResult> in
+                self.showProgress("Signing in...")
+                
+                return self.viewModel.login()
+            }.subscribe(onNext: { [unowned self] result in
+                self.hideHud()
+                
+                if case .failure(let error) = result {
+                    self.showError(error)
+                }
+            }).addDisposableTo(disposeBag)
     }
-    
-    @IBAction func continueAction(_ sender: UIButton) {
-        let usernameOrEmail = usernameOrEmailTextField.text!
-        let password = passwordTextField.text!
-        
-        let credentials = Credentials(usernameOrEmail: usernameOrEmail, password: password)
-        let service = UserService()
-        
-        showProgress("Signing in")
-        service.login(with: credentials) { [weak self] result in
-            self?.hideHud()
-            
-            switch result {
-            case .success(let user):
-                KeychainStorage().setUser(user)
-                NotificationCenter.default.post(name: NSNotification.Name.SessionStatusChanged, object: SessionStatus.signedIn)
-            case .failure(let error):
-                self?.showError(error)
-            }
-        }
-    }
-    
-    func isFormValid() -> Bool {
-        let usernameOrEmail = usernameOrEmailTextField.text!
-        let password = passwordTextField.text!
-        
-        return (Validations.isValid(email: usernameOrEmail)
-            || Validations.isValid(username: usernameOrEmail))
-            && Validations.isValid(password: password)
-    }
-    
     
     func hideKeyboardOnTap() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        let tapGesture = UITapGestureRecognizer()
+        
+        tapGesture.rx.event.subscribe(onNext: { [unowned self] _ in
+            self.view.endEditing(true)
+        }).addDisposableTo(disposeBag)
+        
         view.addGestureRecognizer(tapGesture)
-    }
-    
-    func tapHandler() {
-        view.endEditing(true)
     }
     
     func setupKeyboard() {

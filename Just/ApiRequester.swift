@@ -88,3 +88,50 @@ final class ApiRequester {
         }
     }
 }
+
+import RxSwift
+
+extension ApiRequester {
+    
+    fileprivate func _request(request: Request, params: RequestParams? = nil) -> Observable<Result<Any>> {
+        let manager = self.manager
+        
+        return Observable.create { observer -> Disposable in
+        
+            manager.request(request.url, method: request.method, parameters: params?.params, encoding: JSONEncoding(), headers: nil)
+                .validate()
+                .responseJSON { response in
+                    observer.onNext(response.result)
+                    observer.onCompleted()
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func request(request: Request, params: RequestParams? = nil) -> Observable<Void> {
+        return self._request(request: request, params: params).map { _ in () }
+    }
+    
+    func request<T: JSONDecodable>(request: Request, params: RequestParams? = nil) -> Observable<ApiResponse<T>> {
+        return self._request(request: request, params: params)
+            .map {
+                if let json = $0.value as? [String: Any], let object = try? T(object: json) {
+                    return .success(object)
+                } else {
+                    return .failure($0.error)
+                }
+            }
+    }
+
+    func request<T: JSONDecodable>(request: Request, params: RequestParams? = nil) -> Observable<ApiResponse<[T]>> {
+        return self._request(request: request, params: params)
+            .map {
+                if let jsons = $0.value as? [[String: Any]], let objects = try? [T](JSONArray: jsons) {
+                    return .success(objects)
+                } else {
+                    return .failure($0.error)
+                }
+            }
+    }
+}

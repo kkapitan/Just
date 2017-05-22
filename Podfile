@@ -14,6 +14,7 @@ target 'Just' do
   pod 'RxSwift'
   pod 'RxOptional'
   pod 'RxCocoa'
+  pod 'RxDataSources'
   pod 'RxRealm'
   
   # Pods for Just

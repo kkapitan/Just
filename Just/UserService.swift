@@ -26,17 +26,10 @@ final class UserService {
         return requester.request(request: request, params: params)
     }
     
-    func logout(completion: @escaping (ApiResponse<Void>) -> ()) {
+    func logout() -> Observable<ApiResponse<Void>> {
         let requester = ApiRequester()
         let request = LogoutRequest()
         
-        requester.request(request: request, completion: completion)
-    }
-    
-    func getCurrentUser(completion: @escaping (ApiResponse<User>) -> ()) {
-        let requester = ApiRequester()
-        let request = CurrentUserRequest()
-        
-        requester.request(request: request, completion: completion)
+        return requester.request(request: request)
     }
 }

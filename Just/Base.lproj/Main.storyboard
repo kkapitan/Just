@@ -504,9 +504,6 @@
                                 <state key="normal" title="Sign out">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="signOutAction" destination="Isk-7D-bCZ" eventType="touchUpInside" id="e0J-ZO-CMG"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.15686274510000001" green="0.20784313730000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -520,13 +517,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="SETTINGS" id="BJf-r7-Hi6">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="Z7i-gf-0Jr">
-                            <connections>
-                                <action selector="cancelButtonAction:" destination="Isk-7D-bCZ" id="znr-uF-EJQ"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="Z7i-gf-0Jr"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="Z7i-gf-0Jr" id="gc4-x2-cF0"/>
+                        <outlet property="signOutButton" destination="RLZ-8f-lsn" id="Rph-Ov-Wk0"/>
                         <outlet property="tableView" destination="03o-WZ-eKI" id="Epy-48-2Oj"/>
                     </connections>
                 </viewController>

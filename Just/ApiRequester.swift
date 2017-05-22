@@ -109,8 +109,14 @@ extension ApiRequester {
         }
     }
     
-    func request(request: Request, params: RequestParams? = nil) -> Observable<Void> {
-        return self._request(request: request, params: params).map { _ in () }
+    func request(request: Request, params: RequestParams? = nil) -> Observable<ApiResponse<Void>> {
+        return self._request(request: request, params: params).map {
+            if let error = $0.error {
+                return .failure(error)
+            }
+            
+            return .success(())
+        }
     }
     
     func request<T: JSONDecodable>(request: Request, params: RequestParams? = nil) -> Observable<ApiResponse<T>> {

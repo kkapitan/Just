@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class DashboardItemCell: UITableViewCell, Reusable, NibLoadable {
     
@@ -21,6 +22,8 @@ final class DashboardItemCell: UITableViewCell, Reusable, NibLoadable {
     @IBOutlet weak var tickButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    
+    fileprivate(set) var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,7 +48,9 @@ final class DashboardItemCell: UITableViewCell, Reusable, NibLoadable {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         applyState(.normal, animated: false)
+        disposeBag = DisposeBag()
     }
     
     func swipeGestureAction(recognizer: UISwipeGestureRecognizer) {

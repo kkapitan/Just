@@ -7,228 +7,10 @@
 //
 
 import UIKit
+
 import RealmSwift
 import RxSwift
 import RxDataSources
-
-final class TaskListViewModel: NSObject, UITableViewDelegate {
-    
-    enum Action {
-        case fetch
-        case delete
-        case update
-        case create
-        case edit(Task)
-    }
-    
-    enum ActionResult {
-        case success(Action)
-        case failure(Action, Error?)
-    }
-    
-    typealias Section = SectionModel<String, Task>
-    
-    fileprivate let storage: TasksStorage = {
-        return try! .init()
-    }()
-    
-    fileprivate let tasksService: TasksService = {
-        return .init()
-    }()
-    
-    fileprivate let listsService: ListService = {
-        return .init()
-    }()
-    
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate let taskForm = Variable<TaskForm?>(nil)
-    
-    let title = Variable<String?>(nil)
-    let pickedList = Variable<List?>(nil)
-    let date = Variable<Date?>(nil)
-    
-    let dataSource = RxTableViewSectionedReloadDataSource<Section>()
-    let list: Variable<List>
-    
-    let actionResult = PublishSubject<ActionResult>()
-    
-    init(list: List) {
-        self.list = Variable(list)
-        
-        super.init()
-        
-        prepareTaskForm()
-        prepareDataSource()
-    }
-    
-    func prepareTaskForm() {
-        Observable.combineLatest(
-            title.asObservable().filterNil(),
-            pickedList.asObservable().filterNil(),
-            date.asObservable()
-        ) { (title, list, due) -> TaskForm in
-            
-            var form = TaskForm()
-            form.title = title
-            form.listId = list.id
-            form.due = due
-            
-            return form
-        }
-            .bindTo(taskForm)
-            .addDisposableTo(disposeBag)
-    }
-    
-    func prepareDataSource() {
-        dataSource.configureCell = { [unowned self] _, tableView, _, item in
-            
-            let cell: DashboardItemCell = tableView.dequeue()
-        
-            cell.title = item.title
-            cell.taskDescription = item.taskDescription
-            cell.status = item.priority
-            cell.isDone = item.isDone
-            
-//            cell.deleteButton.rx
-//                .tap
-//                .asObservable()
-//                .map { item }
-//                .flatMap(self.deleteAction(task:))
-//                .bindTo(self.actionResult)
-//                .addDisposableTo(self.disposeBag)
-//            
-//            cell.tickButton.rx
-//                .tap
-//                .asObservable()
-//                .map { item }
-//                .flatMap(self.doneAction(task:))
-//                .bindTo(self.actionResult)
-//                .addDisposableTo(self.disposeBag)
-//            
-//            cell.editButton.rx
-//                .tap
-//                .asObservable()
-//                .map { item }
-//                .flatMap(self.editAction(task:))
-//                .bindTo(self.actionResult)
-//                .addDisposableTo(self.disposeBag)
-            
-            return cell
-        }
-    }
-    
-    func sections() -> Observable<[Section]> {
-        return list.asObservable().flatMap { [unowned self] list in
-            return Observable.combineLatest(
-                self.storage.tasks(for: list, done: false),
-                self.storage.tasks(for: list, done: true)
-            ) { (notDone, done) -> [Section] in
-                
-                return [
-                    Section(model: "", items: notDone),
-                    Section(model: "", items: done)
-                ]
-            }
-        }
-    }
-    
-    func createTask() {
-        guard let form = taskForm.value else {
-            actionResult.onNext(.failure(.create, nil))
-            return
-        }
-
-        tasksService.createTask(with: form)
-            .map { [unowned self] result in
-                switch result {
-                case .success(let task):
-                    try! self.storage.add(task)
-                    
-                    return .success(.create)
-                case .failure(let error):
-                    return .failure(.create, error)
-                }
-            }
-            .bindTo(actionResult)
-            .addDisposableTo(disposeBag)
-    }
-
-    func fetchTasks(list: List) -> Observable<ActionResult> {
-        return listsService
-            .fetchTasks(for: list)
-            .map { [unowned self] result in
-                switch result {
-                case .success(let list):
-                    try! self.storage.add(list.tasks, update: true)
-                    return .success(.fetch)
-                case .failure(let error):
-                    return .failure(.fetch, error)
-                }
-            }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let titleView = SectionTitleView.view
-        titleView.title = title(forSection: section)
-        
-        return titleView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30.0
-    }
-    
-    func title(forSection section: Int) -> String {
-        switch section {
-        case 0:
-            return "RECENT"
-        case 1:
-            return "DONE"
-        default:
-            fatalError("Wrong section id")
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.leastNonzeroMagnitude
-    }
-    
-    func doneAction(task: Task) -> Observable<ActionResult> {
-        
-        return tasksService
-            .updateStatus(task: task)
-            .map { [unowned self] result in
-                switch result {
-                case .success(let updatedTask):
-                    try! self.storage.add(updatedTask, update: true)
-                    
-                    return .success(.update)
-                case .failure(let error):
-                    return .failure(.update, error)
-            }
-        }
-    }
-    
-    func editAction(task: Task) -> Observable<ActionResult> {
-        return Observable.just(.success(.edit(task)))
-    }
-    
-    func deleteAction(task: Task) -> Observable<ActionResult> {
-        try! storage.remove(task)
-        
-        return tasksService
-            .deleteTask(task: task)
-            .map {
-                switch $0 {
-                case .success:
-                    return .success(.delete)
-                case .failure(let error):
-                    return .failure(.delete, error)
-                }
-            }
-    }
-}
 
 final class TaskListViewController: UITableViewController {
     
@@ -343,7 +125,7 @@ final class TaskListViewController: UITableViewController {
         return dashboardInputView
     }
     
-    func listButtonAction(sender: UIButton) {
+    func showListPickerPopover(_ button: UIButton) {
         let listPicker = Wireframe.Main().listPicker()
         let contentSize = CGSize(width: 184, height: 260)
         
@@ -355,10 +137,10 @@ final class TaskListViewController: UITableViewController {
             .bindTo(dashboardInputView.viewModel.list)
             .addDisposableTo(disposeBag)
 
-        presentPopover(listPicker, sourceView: sender, size: contentSize)
+        presentPopover(listPicker, sourceView: button, size: contentSize)
     }
     
-    func clockButtonAction(sender: UIButton) {
+    func showDatePickerPopover(_ button: UIButton) {
         let datePicker = Wireframe.Main().datePicker()
         let contentSize = CGSize(width: 300, height: 250)
         
@@ -370,7 +152,7 @@ final class TaskListViewController: UITableViewController {
             .bindTo(dashboardInputView.viewModel.date)
             .addDisposableTo(disposeBag)
     
-        presentPopover(datePicker, sourceView: sender, size: contentSize)
+        presentPopover(datePicker, sourceView: button, size: contentSize)
     }
     
     func presentPopover(_ popover: UIViewController, sourceView: UIView, size: CGSize) {
@@ -388,21 +170,55 @@ final class TaskListViewController: UITableViewController {
     }
 
     func setupInputView() {
-        dashboardInputView.listButton
-            .addTarget(self, action: #selector(listButtonAction), for: .touchUpInside)
         
-        dashboardInputView.clockButton
-            .addTarget(self, action: #selector(clockButtonAction), for: .touchUpInside)
+        dashboardInputView
+            .listButton.rx
+            .tap
+            .asObservable()
+            .subscribe(onNext: { [unowned self] _ in
+                self.showListPickerPopover(self.dashboardInputView.listButton)
+            })
+            .addDisposableTo(disposeBag)
         
-        dashboardInputView.inputTextField.delegate = self
+        dashboardInputView
+            .clockButton.rx
+            .tap
+            .asObservable()
+            .subscribe(onNext: { [unowned self] _ in
+                self.showDatePickerPopover(self.dashboardInputView.clockButton)
+            })
+            .addDisposableTo(disposeBag)
+        
+        dashboardInputView
+            .inputTextField.rx
+            .controlEvent(.editingDidBegin)
+            .asObservable()
+            .subscribe(onNext: { [unowned self] _ in
+                self.editingDidBegin()
+            })
+            .addDisposableTo(disposeBag)
+        
+        dashboardInputView
+            .inputTextField.rx
+            .controlEvent(.editingDidEnd)
+            .asObservable()
+            .subscribe(onNext: { [unowned self] _ in
+                self.editingDidEnd()
+            })
+            .addDisposableTo(disposeBag)
+        
+        dashboardInputView
+            .inputTextField.rx
+            .controlEvent(.editingDidEndOnExit)
+            .asObservable()
+            .subscribe(onNext: { [unowned self] _ in
+                self.viewModel.createTask()
+            })
+            .addDisposableTo(disposeBag)
     }
 }
 
 extension TaskListViewController {
-
-}
-
-extension TaskListViewController: UITextFieldDelegate {
     
     var overlayView: UIView {
         let tag = 100
@@ -418,7 +234,7 @@ extension TaskListViewController: UITextFieldDelegate {
         }()
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func editingDidBegin() {
         dashboardInputView.activate()
         dashboardInputView.viewModel.list.value = viewModel.list.value
         
@@ -435,7 +251,7 @@ extension TaskListViewController: UITextFieldDelegate {
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func editingDidEnd() {
         dashboardInputView.deactivate()
         tableView.isScrollEnabled = true
         
@@ -444,11 +260,6 @@ extension TaskListViewController: UITextFieldDelegate {
         }) { _ in
             self.overlayView.removeFromSuperview()
         }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        viewModel.createTask()
-        return true
     }
     
     func overlayTapAction() {

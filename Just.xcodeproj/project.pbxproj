@@ -50,6 +50,7 @@
 		024763CD1EDA0730000583C3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024763CC1EDA0730000583C3 /* SettingsViewModel.swift */; };
 		024763CF1EDA0737000583C3 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024763CE1EDA0737000583C3 /* RegistrationViewModel.swift */; };
 		024763D11EDA073F000583C3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024763D01EDA073F000583C3 /* LoginViewModel.swift */; };
+		024763D31EDA2FD1000583C3 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024763D21EDA2FD1000583C3 /* TaskListViewModel.swift */; };
 		026F195F1EC8970000A8B9EF /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F195E1EC8970000A8B9EF /* ApiClient.swift */; };
 		026F19611EC8970600A8B9EF /* ApiRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19601EC8970600A8B9EF /* ApiRequester.swift */; };
 		026F19631EC8971500A8B9EF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19621EC8971500A8B9EF /* Request.swift */; };
@@ -142,6 +143,7 @@
 		024763CC1EDA0730000583C3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		024763CE1EDA0737000583C3 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		024763D01EDA073F000583C3 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		024763D21EDA2FD1000583C3 /* TaskListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		026F195E1EC8970000A8B9EF /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		026F19601EC8970600A8B9EF /* ApiRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequester.swift; sourceTree = "<group>"; };
 		026F19621EC8971500A8B9EF /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				0242DA2B1E991E4C007BA970 /* TaskListViewController.swift */,
+				024763D21EDA2FD1000583C3 /* TaskListViewModel.swift */,
 			);
 			name = TaskList;
 			sourceTree = "<group>";
@@ -806,6 +809,7 @@
 				026F19961ECB8C6300A8B9EF /* Storage.swift in Sources */,
 				0242DA421E994B56007BA970 /* MainNavigationController.swift in Sources */,
 				0242DA401E99477A007BA970 /* Validations.swift in Sources */,
+				024763D31EDA2FD1000583C3 /* TaskListViewModel.swift in Sources */,
 				02A1D3481ED0C1010038C551 /* TasksStorage.swift in Sources */,
 				0231B30C1E9A65CE00868DB6 /* Setting.swift in Sources */,
 				0242DA361E992026007BA970 /* DatePickerViewController.swift in Sources */,

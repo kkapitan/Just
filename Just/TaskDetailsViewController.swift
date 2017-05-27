@@ -36,6 +36,17 @@ final class TaskDetailsViewModel: NSObject, UITableViewDelegate {
     fileprivate let task: Variable<Task>
     fileprivate let disposeBag = DisposeBag()
     
+    enum Action {
+        case delete
+        case update
+        case save
+    }
+    
+    enum ActionResult {
+        case success(Action)
+        case failure(Action, Error?)
+    }
+    
     enum TaskEntry {
         case title(String)
         case description(String?)
@@ -61,7 +72,6 @@ final class TaskDetailsViewModel: NSObject, UITableViewDelegate {
     let actionResult = PublishSubject<ActionResult>()
     let dataSource = RxTableViewSectionedReloadDataSource<Section>()
     
-    
     init(task: Task) {
         self.task = Variable(task)
         
@@ -77,6 +87,11 @@ final class TaskDetailsViewModel: NSObject, UITableViewDelegate {
     }
     
     fileprivate func prepareProperties() {
+        enablesEdition.asObservable()
+            .map { _ in self.task.value }
+            .bindTo(task)
+            .addDisposableTo(disposeBag)
+        
         task.asObservable()
             .map { $0.title }
             .bindTo(title)
@@ -226,6 +241,12 @@ final class TaskDetailsViewModel: NSObject, UITableViewDelegate {
                     .bindTo(self.date)
                     .addDisposableTo(self.disposeBag)
                 
+                self.date
+                    .asObservable()
+                    .filterNil()
+                    .bindTo(self.datePicker.rx.date)
+                    .addDisposableTo(self.disposeBag)
+                
                 cell.statusTextField.inputView = self.priorityPicker
                 cell.dateTextField.inputView = self.datePicker
                 
@@ -259,17 +280,6 @@ final class TaskDetailsViewModel: NSObject, UITableViewDelegate {
                 return cell
             }
         }
-    }
-    
-    enum Action {
-        case delete
-        case update
-        case save
-    }
-    
-    enum ActionResult {
-        case success(Action)
-        case failure(Action, Error?)
     }
     
     func fetchDetails() {
@@ -376,10 +386,6 @@ final class TaskDetailsViewModel: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat.leastNonzeroMagnitude
     }
-    
-    deinit {
-        print("∂śdsadasiadjasodaą")
-    }
 }
 
 final class TaskDetailsViewController: UITableViewController, UITextViewDelegate {
@@ -392,19 +398,22 @@ final class TaskDetailsViewController: UITableViewController, UITextViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel = TaskDetailsViewModel(task: task)
+        
         tableView.registerNib(for: DetailsDescriptionCell.self)
         tableView.registerNib(for: DetailsStatusCell.self)
         tableView.registerNib(for: DetailsActionCell.self)
         tableView.registerNib(for: DetailsTitleCell.self)
         
-        
+        tableView.delegate = viewModel
         tableView.dataSource = nil
     
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        viewModel = TaskDetailsViewModel(task: task)
+        setupBindings()
+    }
     
-        tableView.delegate = viewModel
+    func setupBindings() {
         
         viewModel
             .enablesEdition
@@ -450,16 +459,14 @@ final class TaskDetailsViewController: UITableViewController, UITextViewDelegate
                 self.hideHud()
                 
                 switch result {
-                case .success(.delete), .failure(.delete, nil):
+                case .success(.delete), .failure(.delete, _):
                     self.navigationController?.popViewController(animated: true)
+                case .failure(_, let error):
+                    self.showError(error)
                 default:
                     self.tableView.reloadData()
                 }
             })
             .addDisposableTo(disposeBag)
-    }
-    
-    deinit {
-        print("iadjasoda")
     }
 }

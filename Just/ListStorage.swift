@@ -8,7 +8,8 @@
 
 import Foundation
 import RealmSwift
-
+import RxRealm
+import RxSwift
 
 final class ListStorage: Storage {
     typealias T = List
@@ -19,7 +20,9 @@ final class ListStorage: Storage {
         self.realm = try Realm()
     }
     
-    func lists() -> [List] {
-        return get().map(List.init(entity:))
+    func lists() -> Observable<[List]> {
+        return Observable.collection(from: get()).map {
+            return $0.map(List.init(entity:))
+        }
     }
 }

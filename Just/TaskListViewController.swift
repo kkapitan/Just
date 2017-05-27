@@ -8,8 +8,11 @@
 
 import UIKit
 import RealmSwift
+import RxSwift
 
 final class TaskListViewController: UITableViewController {
+    
+    fileprivate let disposeBag = DisposeBag()
     
     let dashboardInputView: DashboardInputView = {
         return .view
@@ -99,15 +102,19 @@ final class TaskListViewController: UITableViewController {
         guard let list = list else { return }
         
         let service = ListService()
-        service.fetchTasks(for: list) { [weak self] result in
-            switch result {
-            case .success(let list):
-                try! self?.storage.add(list.tasks, update: true)
-                self?.tableView.reloadData()
-            case .failure(let error):
-                self?.showError(error)
-            }
-        }
+        
+        service
+            .fetchTasks(for: list)
+            .subscribe(onNext: { [weak self] result in
+                switch result {
+                case .success(let list):
+                    try! self?.storage.add(list.tasks, update: true)
+                    self?.tableView.reloadData()
+                case .failure(let error):
+                    self?.showError(error)
+                }
+            })
+            .addDisposableTo(disposeBag)
     }
 
     func createTask() {
@@ -142,13 +149,17 @@ final class TaskListViewController: UITableViewController {
     @IBAction func listsButtonAction(_ sender: Any) {
         let listPicker = Wireframe.Main().listPicker()
         
-        listPicker.selected = list
-        listPicker.allowAdding = true
-        listPicker.onSelect = { [unowned self] list in
-            self.list = list
-            self.tableView.reloadData()
-            self.fetchTasks()
-        }
+        listPicker.viewModel = ListPickerViewModel(list: list, allowAdding: true)
+        
+        listPicker
+            .selected
+            .subscribe(onNext: { [unowned self] list in
+                self.list = list
+                self.tableView.reloadData()
+
+                self.fetchTasks()
+            })
+            .addDisposableTo(disposeBag)
         
         present(listPicker, animated: true)
     }
@@ -182,11 +193,15 @@ final class TaskListViewController: UITableViewController {
         let listPicker = Wireframe.Main().listPicker()
         let contentSize = CGSize(width: 184, height: 260)
         
-        listPicker.selected = dashboardInputView.list
-        listPicker.onSelect = { [unowned self] list in
-            self.dashboardInputView.list = list
-        }
+        listPicker.viewModel = ListPickerViewModel(list: dashboardInputView.list, allowAdding: false)
         
+        listPicker
+            .selected
+            .subscribe(onNext: { [unowned self] list in
+                self.dashboardInputView.list = list
+            })
+            .addDisposableTo(disposeBag)
+
         presentPopover(listPicker, sourceView: sender, size: contentSize)
     }
     

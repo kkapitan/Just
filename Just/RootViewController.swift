@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum SessionStatus {
     case signedIn
@@ -16,6 +17,8 @@ enum SessionStatus {
 final class RootViewController: UIViewController {
     
     fileprivate var isInitialPresentation: Bool = true
+    
+    fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,21 +82,24 @@ final class RootViewController: UIViewController {
         let storage = try! ListStorage()
         let service = ListService()
         
-        service.fetchLists { [weak self] result in
-            switch result {
-            case .success(let lists):
-                try! storage.add(lists, update: true)
-                
-                let taskList = Wireframe.Main().taskList()
-                let navigationController = MainNavigationController(rootViewController: taskList)
-                
-                taskList.list = lists.first
-                
-                self?.present(navigationController, animated: true)
-            case .failure(let error):
-                self?.showError(error)
-            }
-        }
+        service
+            .fetchLists()
+            .subscribe(onNext: { [weak self] result in
+                switch result {
+                case .success(let lists):
+                    try! storage.add(lists, update: true)
+                    
+                    let taskList = Wireframe.Main().taskList()
+                    let navigationController = MainNavigationController(rootViewController: taskList)
+                    
+                    taskList.list = lists.first
+                    
+                    self?.present(navigationController, animated: true)
+                case .failure(let error):
+                    self?.showError(error)
+                }
+            })
+            .addDisposableTo(disposeBag)
     }
     
     deinit {

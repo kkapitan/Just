@@ -7,29 +7,30 @@
 //
 
 import Foundation
+import RxSwift
 
 final class ListService {
     
-    func fetchTasks(for list: List, completion: @escaping (ApiResponse<List>) -> ()) {
+    func fetchTasks(for list: List) -> Observable<ApiResponse<List>> {
         let requester = ApiRequester()
         let request = FetchListRequest(list: list)
     
-        requester.request(request: request, completion: completion)
+        return requester.request(request: request)
     }
     
-    func fetchLists(completion: @escaping (ApiResponse<[List]>) -> ()) {
+    func fetchLists()  -> Observable<ApiResponse<[List]>> {
         let requester = ApiRequester()
         let request = FetchListsRequest()
         
-        requester.request(request: request, completion: completion)
+        return requester.request(request: request)
     }
     
-    func createList(with form: ListForm, completion: @escaping (ApiResponse<List>) -> ()) {
+    func createList(with form: ListForm) -> Observable<ApiResponse<List>> {
         let requester = ApiRequester()
         let request = CreateListRequest()
         let params = CreateListParams(form: form)
         
-        requester.request(request: request, params: params, completion: completion)
+        return requester.request(request: request, params: params)
     }
     
 }

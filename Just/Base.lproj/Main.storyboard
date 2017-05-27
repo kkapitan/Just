@@ -724,16 +724,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FO8-y8-ZcZ">
                                 <rect key="frame" x="12" y="29" width="29" height="28"/>
                                 <state key="normal" image="small_tick_button_ic"/>
-                                <connections>
-                                    <action selector="cancelButtonAction:" destination="EaR-2f-djW" eventType="touchUpInside" id="atu-5j-WPX"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvn-2b-HcJ">
                                 <rect key="frame" x="331" y="29" width="28" height="28"/>
                                 <state key="normal" image="plus_button_ic"/>
-                                <connections>
-                                    <action selector="addButtonAction" destination="EaR-2f-djW" eventType="touchUpInside" id="g0L-Ql-3qW"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3a-jN-Ptr">
                                 <rect key="frame" x="173" y="30" width="29" height="25"/>
@@ -765,6 +759,7 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="qvn-2b-HcJ" id="ELf-1f-qiT"/>
+                        <outlet property="cancelButton" destination="FO8-y8-ZcZ" id="hF3-5I-Uio"/>
                         <outlet property="tableView" destination="wSr-qW-V3E" id="8U5-KN-uoP"/>
                     </connections>
                 </viewController>

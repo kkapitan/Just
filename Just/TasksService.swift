@@ -6,16 +6,9 @@
 //  Copyright © 2017 CappSoft. All rights reserved.
 //
 
-import Foundation
+import RxSwift
 
 final class TasksService {
-    
-    func fetchTaskDetails(for task: Task, completion: @escaping (ApiResponse<Task>) -> ()) {
-        let requester = ApiRequester()
-        let request = FetchTaskRequest(task: task)
-        
-        requester.request(request: request, completion: completion)
-    }
     
     func updateStatus(task: Task, completion: @escaping (ApiResponse<Task>) -> ()) {
         let requester = ApiRequester()
@@ -46,5 +39,46 @@ final class TasksService {
         let request = DeleteTaskRequest(task: task)
         
         requester.request(request: request, completion: completion)
+    }
+}
+
+extension TasksService {
+    
+    func fetchTaskDetails(for task: Task) -> Observable<ApiResponse<Task>> {
+        let requester = ApiRequester()
+        let request = FetchTaskRequest(task: task)
+        
+        return requester.request(request: request)
+    }
+    
+    func updateStatus(task: Task) -> Observable<ApiResponse<Task>> {
+        let requester = ApiRequester()
+        let request = UpdateTaskRequest(task: task)
+        let params = UpdateStatusParams(task: task)
+        
+        return requester.request(request: request, params: params)
+    }
+    
+    func createTask(with form: TaskForm) -> Observable<ApiResponse<Task>> {
+        let requester = ApiRequester()
+        let request = CreateTaskRequest()
+        let params = CreateTaskParams(form: form)
+        
+        return requester.request(request: request, params: params)
+    }
+    
+    func updateTask(task: Task, with form: TaskForm) -> Observable<ApiResponse<Task>> {
+        let requester = ApiRequester()
+        let request = UpdateTaskRequest(task: task)
+        let params = UpdateTaskParams(form: form)
+        
+        return requester.request(request: request, params: params)
+    }
+    
+    func deleteTask(task: Task) -> Observable<ApiResponse<Void>> {
+        let requester = ApiRequester()
+        let request = DeleteTaskRequest(task: task)
+        
+        return requester.request(request: request)
     }
 }

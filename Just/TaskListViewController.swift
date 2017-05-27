@@ -257,7 +257,6 @@ extension TaskListViewController {
         let taskDetails = Wireframe.Main().taskDetails()
         
         taskDetails.task = task
-        taskDetails.enablesEdition = true
         
         navigationController?.pushViewController(taskDetails, animated: true)
     }

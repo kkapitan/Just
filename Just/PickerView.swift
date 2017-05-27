@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol PickerItem {
     var title: String { get }
@@ -14,9 +15,10 @@ protocol PickerItem {
 
 final class PickerView<T: PickerItem>: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     typealias SelectionBlock = (T) -> ()
-    var onSelect: SelectionBlock?
     
-    let items: [T]
+    let selected = PublishSubject<T>()
+    
+    fileprivate let items: [T]
     
     init(items: [T]) {
         self.items = items
@@ -40,7 +42,7 @@ final class PickerView<T: PickerItem>: UIPickerView, UIPickerViewDataSource, UIP
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        onSelect?(items[row])
+        selected.onNext(items[row])
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

@@ -8,151 +8,330 @@
 
 import UIKit
 
-final class TaskDetailsViewController: UITableViewController, UITextViewDelegate {
+import RxSwift
+import RxCocoa
+import RxDataSources
+
+final class TaskDetailsViewModel: NSObject, UITableViewDelegate {
     
-    var enablesEdition: Bool = false
-    
-    var taskForm: TaskForm?
-    var task: Task!
-    
-    let storage: TasksStorage = {
-        return try! .init()
-    }()
-    
-    let priorityPicker: PickerView = {
-        return  PickerView(items: Priority.all)
-    }()
-    
-    let datePicker: DatePicker = {
+    fileprivate let service: TasksService = {
         return .init()
     }()
     
-    func fetchDetails() {
-        let service = TasksService()
-        service.fetchTaskDetails(for: task) { [weak self] (result) in
-            switch result {
-            case .success(let updatedTask):
-                self?.task = updatedTask
-                try! self?.storage.add(updatedTask, update: true)
+    fileprivate let storage: TasksStorage = {
+        return try! .init()
+    }()
+    
+    fileprivate let priorityPicker: PickerView = {
+        return  PickerView(items: Priority.all)
+    }()
+    
+    fileprivate let datePicker: UIDatePicker = {
+        return .init()
+    }()
+    
+    fileprivate let taskForm = Variable<TaskForm?>(nil)
+    fileprivate let items = Variable<[Section]>([])
+    
+    fileprivate let task: Variable<Task>
+    fileprivate let disposeBag = DisposeBag()
+    
+    enum TaskEntry {
+        case title(String)
+        case description(String?)
+        case status(Priority, Date?)
+        case actions(Bool)
+    }
+    
+    typealias Section = SectionModel<String, (TaskEntry, Bool)>
+    
+    // Input
+    let enablesEdition = Variable<Bool>(false)
+    
+    let priority = Variable<Priority?>(nil)
+    let date = Variable<Date?>(nil)
+    
+    let title = Variable<String?>(nil)
+    let taskDescription = Variable<String?>(nil)
+    
+    let listId = Variable<Int?>(nil)
+    let isDone = Variable<Bool?>(nil)
+    
+    // Output
+    let actionResult = PublishSubject<ActionResult>()
+    let dataSource = RxTableViewSectionedReloadDataSource<Section>()
+    
+    
+    init(task: Task) {
+        self.task = Variable(task)
+        
+        super.init()
+        
+        fetchDetails()
+        prepareProperties()
+    
+        prepareFormObservable()
+        prepareItemsObservable()
+        
+        prepareDataSource()
+    }
+    
+    fileprivate func prepareProperties() {
+        task.asObservable()
+            .map { $0.title }
+            .bindTo(title)
+            .addDisposableTo(disposeBag)
+        
+        task.asObservable()
+            .map { $0.taskDescription }
+            .bindTo(taskDescription)
+            .addDisposableTo(disposeBag)
+        
+        task.asObservable()
+            .map { $0.dueDate }
+            .bindTo(date)
+            .addDisposableTo(disposeBag)
+        
+        task.asObservable()
+            .map { $0.priority }
+            .bindTo(priority)
+            .addDisposableTo(disposeBag)
+        
+        task.asObservable()
+            .map { $0.isDone }
+            .bindTo(isDone)
+            .addDisposableTo(disposeBag)
+        
+        task.asObservable()
+            .map { $0.listId }
+            .bindTo(listId)
+            .addDisposableTo(disposeBag)
+    }
+    
+    fileprivate func prepareFormObservable() {
+        
+        Observable.combineLatest(
+            title.asObservable().filterNil(),
+            priority.asObservable().filterNil(),
+            date.asObservable(),
+            taskDescription.asObservable(),
+            listId.asObservable().filterNil(),
+            isDone.asObservable().filterNil()
+        ) {
+            var form = TaskForm()
+            form.title = $0
+            form.priority = $1
+            form.due = $2
+            form.description = $3
+            form.listId = $4
+            form.isDone = $5
+            
+            return form
+        }
+        .bindTo(taskForm)
+        .addDisposableTo(disposeBag)
+    }
+    
+    fileprivate func prepareItemsObservable() {
+    
+        Observable.combineLatest(
+            task.asObservable(),
+            enablesEdition.asObservable()) { (task, edit) -> [(TaskDetailsViewModel.TaskEntry, Bool)] in
                 
-                self?.tableView.reloadData()
+                return [
+                    (.title(task.title), edit),
+                    (.status(task.priority, task.dueDate), edit),
+                    (.description(task.taskDescription), edit),
+                    (.actions(task.isDone), edit),
+                ].filter {
+                    if case .actions = $0.0 { return !edit }
+                    
+                    return true
+                }
+            }.map {
+                $0.map { Section(model: "", items: [$0]) }
+            }
+            .bindTo(items)
+            .addDisposableTo(disposeBag)
+    }
+    
+    func sections() -> Observable<[Section]> {
+        return items.asObservable()
+    }
+    
+    func prepareDataSource() {
+        
+        dataSource.configureCell = { [unowned self] _, tableView, _, item in
+            switch item {
+            case (.title(let title), let editing):
+                let cell: DetailsTitleCell = tableView.dequeue()
+                
+                cell.title = title
+                cell.allowEditing = editing
+            
+                self.title
+                    .asObservable()
+                    .bindTo(cell.titleTextField.rx.text)
+                    .addDisposableTo(self.disposeBag)
+                
+                cell.titleTextField.rx
+                    .text
+                    .asObservable()
+                    .bindTo(self.title)
+                    .addDisposableTo(self.disposeBag)
+                
+                return cell
+            case (.description(let description), let editing):
+                let cell: DetailsDescriptionCell = tableView.dequeue()
+                
+                cell.taskDescription = description
+                cell.allowEditing = editing
+                
+                cell.descriptionTextView.rx
+                    .text
+                    .asObservable()
+                    .bindTo(self.taskDescription)
+                    .addDisposableTo(self.disposeBag)
+                
+                self.taskDescription
+                    .asObservable()
+                    .bindTo(cell.descriptionTextView.rx.text)
+                    .addDisposableTo(self.disposeBag)
+                
+                return cell
+            case (.status(let priority, let date), let editing):
+                let cell: DetailsStatusCell = tableView.dequeue()
+                
+                cell.allowEditing = editing
+                cell.date = date
+                cell.status = priority
+                
+                self.priority
+                    .asObservable()
+                    .subscribe(onNext: { cell.status = $0 })
+                    .addDisposableTo(self.disposeBag)
+                
+                self.priorityPicker
+                    .selected
+                    .bindTo(self.priority)
+                    .addDisposableTo(self.disposeBag)
+                
+                self.date
+                    .asObservable()
+                    .subscribe(onNext: { cell.date = $0 })
+                    .addDisposableTo(self.disposeBag)
+                
+                self.datePicker.rx
+                    .date
+                    .bindTo(self.date)
+                    .addDisposableTo(self.disposeBag)
+                
+                cell.statusTextField.inputView = self.priorityPicker
+                cell.dateTextField.inputView = self.datePicker
+                
+                return cell
+            case (.actions(let done), _):
+                let cell: DetailsActionCell = tableView.dequeue()
+                cell.isDone = done
+                
+                cell.tickButton.rx
+                    .tap
+                    .asObservable()
+                    .flatMap { _ in return self.updateStatus() }
+                    .bindTo(self.actionResult)
+                    .addDisposableTo(self.disposeBag)
+                
+                cell.trashButton.rx
+                    .tap
+                    .asObservable()
+                    .flatMap { _ in return self.deleteTask() }
+                    .bindTo(self.actionResult)
+                    .addDisposableTo(self.disposeBag)
+                
+                cell.editButton.rx
+                    .tap
+                    .asObservable()
+                    .subscribe(onNext: { [unowned self] in
+                        self.enablesEdition.value = true
+                    })
+                    .addDisposableTo(self.disposeBag)
+                
+                return cell
+            }
+        }
+    }
+    
+    enum Action {
+        case delete
+        case update
+        case save
+    }
+    
+    enum ActionResult {
+        case success(Action)
+        case failure(Action, Error?)
+    }
+    
+    func fetchDetails() {
+        service.fetchTaskDetails(for: task.value).map { (result) -> Task? in
+            guard case .success(let task) = result else { return nil }
+            
+            return task
+        }
+        .filterNil()
+        .bindTo(task)
+        .addDisposableTo(disposeBag)
+    }
+    
+    func saveDetails() -> Observable<ActionResult> {
+        guard let form = taskForm.value else {
+            return Observable.just(.failure(.save, nil))
+        }
+        
+        return service.updateTask(task: task.value, with: form).map { [unowned self] in
+            switch $0 {
+            case .success(let task):
+                try self.storage.add(task, update: true)
+                
+                self.task.value = task
+                self.enablesEdition.value = false
+                
+                return .success(.save)
             case .failure(let error):
-                self?.showError(error)
+                return .failure(.save, error)
             }
         }
     }
     
-    func enableEdition(_ edition: Bool) {
-        enablesEdition = edition
-        tableView.reloadData()
+    func deleteTask() -> Observable<ActionResult> {
+        try! self.storage.remove(task.value)
         
-        if enablesEdition {
-            let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveAction))
-            
-            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelAction))
-            
-            navigationItem.leftBarButtonItem = cancelButton
-            navigationItem.rightBarButtonItem = saveButton
-        } else {
-            navigationItem.leftBarButtonItem = nil
-            navigationItem.rightBarButtonItem = nil
-        }
-    }
-    
-    func saveAction() {
-        let service = TasksService()
-        guard let form = taskForm, let title = form.title, !title.isEmpty else { return }
-        
-        service.updateTask(task: task, with: form) { [weak self] result in
-            switch result {
-            case .success(let updatedTask):
-                self?.task = updatedTask
-                try! self?.storage.add(updatedTask, update: true)
-                self?.enableEdition(false)
+        return service.deleteTask(task: task.value).map {
+            switch $0 {
+            case .success:
+                return .success(.delete)
             case .failure(let error):
-                self?.showError(error)
+                return .failure(.delete, error)
             }
         }
     }
     
-    func cancelAction() {
-        enableEdition(false)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.registerNib(for: DetailsDescriptionCell.self)
-        tableView.registerNib(for: DetailsStatusCell.self)
-        tableView.registerNib(for: DetailsActionCell.self)
-        tableView.registerNib(for: DetailsTitleCell.self)
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
-        taskForm = TaskForm(task: task)
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return enablesEdition ? 3 : 4
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        switch indexPath.section {
-        case 0:
-            let cell: DetailsTitleCell = tableView.dequeue()
-            cell.title = task.title
-            cell.allowEditing = enablesEdition
-            
-            cell.titleTextField.addTarget(self, action: #selector(titleChangedAction), for: .editingChanged)
-            
-            return cell
-        case 1:
-            let cell: DetailsStatusCell = tableView.dequeue()
-            cell.date = task.dueDate
-            cell.status = task.priority
-            
-            cell.allowEditing = enablesEdition
-            
-            cell.dateTextField.inputView = datePicker
-            datePicker.onSelect = { [weak cell, weak self] date in
-                cell?.date = date
-                self?.taskForm?.due = date
+    func updateStatus() -> Observable<ActionResult> {
+        return service.updateStatus(task: task.value).map { [unowned self] in
+            switch $0 {
+            case .success(let task):
+                try self.storage.add(task, update: true)
+                
+                self.task.value = task
+                
+                return .success(.update)
+            case .failure(let error):
+                return .failure(.update, error)
             }
-            
-            cell.statusTextField.inputView = priorityPicker
-            priorityPicker.onSelect = { [weak cell, weak self] item in
-                cell?.status = item
-                self?.taskForm?.priority = item
-            }
-            
-            return cell
-        case 2:
-            let cell: DetailsDescriptionCell = tableView.dequeue()
-            cell.taskDescription = task.taskDescription
-            cell.allowEditing = enablesEdition
-            cell.descriptionTextView.delegate = self
-            
-            return cell
-        case 3:
-            let cell: DetailsActionCell = tableView.dequeue()
-            cell.isDone = task.isDone
-            
-            cell.editButton.addTarget(self, action: #selector(editAction(_:forEvent:)), for: .touchUpInside)
-            cell.tickButton.addTarget(self, action: #selector(doneAction(_:forEvent:)), for: .touchUpInside)
-            cell.trashButton.addTarget(self, action: #selector(deleteAction(_:forEvent:)), for: .touchUpInside)
-            
-            return cell
-        default:
-            fatalError("Wrong section id")
         }
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let titleView = SectionTitleView.view
         titleView.title = title(forSection: section)
@@ -160,7 +339,7 @@ final class TaskDetailsViewController: UITableViewController, UITextViewDelegate
         return titleView
     }
     
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
             return 62
@@ -175,7 +354,7 @@ final class TaskDetailsViewController: UITableViewController, UITextViewDelegate
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30.0
     }
     
@@ -194,43 +373,93 @@ final class TaskDetailsViewController: UITableViewController, UITextViewDelegate
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat.leastNonzeroMagnitude
     }
     
-    func doneAction(_ sender: UIButton, forEvent: UIEvent) {
+    deinit {
+        print("∂śdsadasiadjasodaą")
+    }
+}
+
+final class TaskDetailsViewController: UITableViewController, UITextViewDelegate {
+    
+    let disposeBag = DisposeBag()
+    
+    var task: Task!
+    var viewModel: TaskDetailsViewModel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        let service = TasksService()
-        service.updateStatus(task: task) { [weak self] result in
-            switch result {
-            case .success(let updatedTask):
-                self?.task = updatedTask
-                try! self?.storage.add(updatedTask, update: true)
+        tableView.registerNib(for: DetailsDescriptionCell.self)
+        tableView.registerNib(for: DetailsStatusCell.self)
+        tableView.registerNib(for: DetailsActionCell.self)
+        tableView.registerNib(for: DetailsTitleCell.self)
+        
+        
+        tableView.dataSource = nil
+    
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        viewModel = TaskDetailsViewModel(task: task)
+    
+        tableView.delegate = viewModel
+        
+        viewModel
+            .enablesEdition
+            .asObservable()
+            .subscribe(onNext: { [unowned self] edit in
+                if edit {
+                    let saveButton = UIBarButtonItem(title: "Save", style: .done, target: nil, action: nil)
+                    let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
+                    
+                    cancelButton.rx
+                        .tap
+                        .asObservable()
+                        .map { false }
+                        .bindTo(self.viewModel.enablesEdition)
+                        .addDisposableTo(self.disposeBag)
+                    
+                    saveButton.rx
+                        .tap
+                        .asObservable()
+                        .flatMapLatest(self.viewModel.saveDetails)
+                        .bindTo(self.viewModel.actionResult)
+                        .addDisposableTo(self.disposeBag)
+                    
+                    self.navigationItem.leftBarButtonItem = cancelButton
+                    self.navigationItem.rightBarButtonItem = saveButton
+                } else {
+                    self.navigationItem.leftBarButtonItem = nil
+                    self.navigationItem.rightBarButtonItem = nil
+                }
                 
-                self?.tableView.reloadData()
-            case .failure(let error):
-                self?.showError(error)
-            }
-        }
-    }
-    
-    func editAction(_ sender: UIButton, forEvent: UIEvent) {
-        enableEdition(true)
-    }
-    
-    func deleteAction(_ sender: UIButton, forEvent: UIEvent) {
-        let service = TasksService()
-        service.deleteTask(task: task) { _ in }
-        try! storage.add(task, update: true)
+                self.tableView.reloadData()
+            })
+            .addDisposableTo(disposeBag)
         
-        navigationController?.popViewController(animated: true)
+        viewModel
+            .sections()
+            .bindTo(tableView.rx.items(dataSource: viewModel.dataSource))
+            .addDisposableTo(disposeBag)
+        
+        viewModel
+            .actionResult
+            .subscribe(onNext: { [unowned self] result in
+                self.hideHud()
+                
+                switch result {
+                case .success(.delete), .failure(.delete, nil):
+                    self.navigationController?.popViewController(animated: true)
+                default:
+                    self.tableView.reloadData()
+                }
+            })
+            .addDisposableTo(disposeBag)
     }
     
-    func titleChangedAction(textField: UITextField) {
-        taskForm?.title = textField.text
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        taskForm?.description = textView.text
+    deinit {
+        print("iadjasoda")
     }
 }

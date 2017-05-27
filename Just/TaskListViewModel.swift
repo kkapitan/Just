@@ -95,7 +95,7 @@ final class TaskListViewModel: NSObject, UITableViewDelegate {
                 .asObservable()
                 .map { item }
                 .flatMap(self.deleteAction(task:))
-                .bindTo(self.actionResult)
+                .bindNext(self.actionResult.onNext)
                 .addDisposableTo(cell.disposeBag)
             
             cell.tickButton.rx
@@ -103,7 +103,7 @@ final class TaskListViewModel: NSObject, UITableViewDelegate {
                 .asObservable()
                 .map { item }
                 .flatMap(self.doneAction(task:))
-                .bindTo(self.actionResult)
+                .bindNext(self.actionResult.onNext)
                 .addDisposableTo(cell.disposeBag)
             
             cell.editButton.rx
@@ -111,7 +111,7 @@ final class TaskListViewModel: NSObject, UITableViewDelegate {
                 .asObservable()
                 .map { item }
                 .flatMap(self.editAction(task:))
-                .bindTo(self.actionResult)
+                .bindNext(self.actionResult.onNext)
                 .addDisposableTo(cell.disposeBag)
             
             return cell
@@ -150,7 +150,7 @@ final class TaskListViewModel: NSObject, UITableViewDelegate {
                     return .failure(.create, error)
                 }
             }
-            .bindTo(actionResult)
+            .bindNext(actionResult.onNext)
             .addDisposableTo(disposeBag)
     }
     

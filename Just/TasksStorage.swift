@@ -8,6 +8,8 @@
 
 import Foundation
 import RealmSwift
+import RxRealm
+import RxSwift
 
 final class TasksStorage: Storage {
     typealias T = Task
@@ -18,10 +20,15 @@ final class TasksStorage: Storage {
         self.realm = try Realm()
     }
     
-    func tasks(for list: List, done: Bool) -> [Task] {
+    func tasks(for list: List, done: Bool) -> Observable<[Task]> {
         let predicate = NSPredicate(format: "isDone == %@ AND listId == %@", NSNumber(value: done), NSNumber(value: list.id))
         
+        let items = get()
+            .filter(predicate)
+            .sorted(byKeyPath: "id", ascending: false)
         
-        return get().filter(predicate).sorted(byKeyPath: "id", ascending: false).map(Task.init(entity:))
+        return Observable.collection(from: items).map {
+            return $0.map(Task.init(entity:))
+        }
     }
 }

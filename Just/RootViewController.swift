@@ -92,7 +92,9 @@ final class RootViewController: UIViewController {
                     let taskList = Wireframe.Main().taskList()
                     let navigationController = MainNavigationController(rootViewController: taskList)
                     
-                    taskList.list = lists.first
+                    if let list = lists.first {
+                        taskList.viewModel = TaskListViewModel(list: list)
+                    }
                     
                     self?.present(navigationController, animated: true)
                 case .failure(let error):

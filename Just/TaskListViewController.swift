@@ -9,81 +9,173 @@
 import UIKit
 import RealmSwift
 import RxSwift
+import RxDataSources
 
-final class TaskListViewController: UITableViewController {
+final class TaskListViewModel: NSObject, UITableViewDelegate {
     
-    fileprivate let disposeBag = DisposeBag()
+    enum Action {
+        case fetch
+        case delete
+        case update
+        case create
+        case edit(Task)
+    }
     
-    let dashboardInputView: DashboardInputView = {
-        return .view
-    }()
+    enum ActionResult {
+        case success(Action)
+        case failure(Action, Error?)
+    }
     
-    var list: List?
-
-    let storage: TasksStorage = {
+    typealias Section = SectionModel<String, Task>
+    
+    fileprivate let storage: TasksStorage = {
         return try! .init()
     }()
     
-    var sections: [[Task]] {
-        return list.map {
-            [
-                storage.tasks(for: $0, done: false),
-                storage.tasks(for: $0, done: true)
-            ]
-        } ?? []
+    fileprivate let tasksService: TasksService = {
+        return .init()
+    }()
+    
+    fileprivate let listsService: ListService = {
+        return .init()
+    }()
+    
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate let taskForm = Variable<TaskForm?>(nil)
+    
+    let title = Variable<String?>(nil)
+    let pickedList = Variable<List?>(nil)
+    let date = Variable<Date?>(nil)
+    
+    let dataSource = RxTableViewSectionedReloadDataSource<Section>()
+    let list: Variable<List>
+    
+    let actionResult = PublishSubject<ActionResult>()
+    
+    init(list: List) {
+        self.list = Variable(list)
+        
+        super.init()
+        
+        prepareTaskForm()
+        prepareDataSource()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.registerNib(for: DashboardItemCell.self)
-        tableView.estimatedRowHeight = 85.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
-        setupInputView()
-        fetchTasks()
+    func prepareTaskForm() {
+        Observable.combineLatest(
+            title.asObservable().filterNil(),
+            pickedList.asObservable().filterNil(),
+            date.asObservable()
+        ) { (title, list, due) -> TaskForm in
+            
+            var form = TaskForm()
+            form.title = title
+            form.listId = list.id
+            form.due = due
+            
+            return form
+        }
+            .bindTo(taskForm)
+            .addDisposableTo(disposeBag)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    func prepareDataSource() {
+        dataSource.configureCell = { [unowned self] _, tableView, _, item in
+            
+            let cell: DashboardItemCell = tableView.dequeue()
         
-        tableView.reloadData()
+            cell.title = item.title
+            cell.taskDescription = item.taskDescription
+            cell.status = item.priority
+            cell.isDone = item.isDone
+            
+//            cell.deleteButton.rx
+//                .tap
+//                .asObservable()
+//                .map { item }
+//                .flatMap(self.deleteAction(task:))
+//                .bindTo(self.actionResult)
+//                .addDisposableTo(self.disposeBag)
+//            
+//            cell.tickButton.rx
+//                .tap
+//                .asObservable()
+//                .map { item }
+//                .flatMap(self.doneAction(task:))
+//                .bindTo(self.actionResult)
+//                .addDisposableTo(self.disposeBag)
+//            
+//            cell.editButton.rx
+//                .tap
+//                .asObservable()
+//                .map { item }
+//                .flatMap(self.editAction(task:))
+//                .bindTo(self.actionResult)
+//                .addDisposableTo(self.disposeBag)
+            
+            return cell
+        }
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+    func sections() -> Observable<[Section]> {
+        return list.asObservable().flatMap { [unowned self] list in
+            return Observable.combineLatest(
+                self.storage.tasks(for: list, done: false),
+                self.storage.tasks(for: list, done: true)
+            ) { (notDone, done) -> [Section] in
+                
+                return [
+                    Section(model: "", items: notDone),
+                    Section(model: "", items: done)
+                ]
+            }
+        }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let task = sections[indexPath.section][indexPath.row]
-        let cell: DashboardItemCell = tableView.dequeue()
-        
-        cell.title = task.title
-        cell.taskDescription = task.taskDescription
-        cell.status = task.priority
-        cell.isDone = task.isDone
-        
-        cell.editButton.addTarget(self, action: #selector(editAction(_:forEvent:)), for: .touchUpInside)
-        cell.tickButton.addTarget(self, action: #selector(doneAction(_:forEvent:)), for: .touchUpInside)
-        cell.deleteButton.addTarget(self, action: #selector(deleteAction(_:forEvent:)), for: .touchUpInside)
-        
-        return cell
+    func createTask() {
+        guard let form = taskForm.value else {
+            actionResult.onNext(.failure(.create, nil))
+            return
+        }
+
+        tasksService.createTask(with: form)
+            .map { [unowned self] result in
+                switch result {
+                case .success(let task):
+                    try! self.storage.add(task)
+                    
+                    return .success(.create)
+                case .failure(let error):
+                    return .failure(.create, error)
+                }
+            }
+            .bindTo(actionResult)
+            .addDisposableTo(disposeBag)
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func fetchTasks(list: List) -> Observable<ActionResult> {
+        return listsService
+            .fetchTasks(for: list)
+            .map { [unowned self] result in
+                switch result {
+                case .success(let list):
+                    try! self.storage.add(list.tasks, update: true)
+                    return .success(.fetch)
+                case .failure(let error):
+                    return .failure(.fetch, error)
+                }
+            }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let titleView = SectionTitleView.view
         titleView.title = title(forSection: section)
-            
+        
         return titleView
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30.0
     }
     
@@ -98,67 +190,139 @@ final class TaskListViewController: UITableViewController {
         }
     }
     
-    func fetchTasks() {
-        guard let list = list else { return }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNonzeroMagnitude
+    }
+    
+    func doneAction(task: Task) -> Observable<ActionResult> {
         
-        let service = ListService()
-        
-        service
-            .fetchTasks(for: list)
-            .subscribe(onNext: { [weak self] result in
+        return tasksService
+            .updateStatus(task: task)
+            .map { [unowned self] result in
                 switch result {
-                case .success(let list):
-                    try! self?.storage.add(list.tasks, update: true)
-                    self?.tableView.reloadData()
+                case .success(let updatedTask):
+                    try! self.storage.add(updatedTask, update: true)
+                    
+                    return .success(.update)
                 case .failure(let error):
-                    self?.showError(error)
+                    return .failure(.update, error)
+            }
+        }
+    }
+    
+    func editAction(task: Task) -> Observable<ActionResult> {
+        return Observable.just(.success(.edit(task)))
+    }
+    
+    func deleteAction(task: Task) -> Observable<ActionResult> {
+        try! storage.remove(task)
+        
+        return tasksService
+            .deleteTask(task: task)
+            .map {
+                switch $0 {
+                case .success:
+                    return .success(.delete)
+                case .failure(let error):
+                    return .failure(.delete, error)
+                }
+            }
+    }
+}
+
+final class TaskListViewController: UITableViewController {
+    
+    fileprivate let disposeBag = DisposeBag()
+    
+    fileprivate let dashboardInputView: DashboardInputView = {
+        return .view
+    }()
+    
+    var viewModel: TaskListViewModel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.registerNib(for: DashboardItemCell.self)
+        
+        tableView.estimatedRowHeight = 85.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        tableView.dataSource = nil
+        tableView.delegate = viewModel
+        
+        setupInputView()
+        setupBindings()
+    }
+    
+    func setupBindings() {
+        
+        tableView.rx
+            .modelSelected(Task.self)
+            .subscribe(onNext: { [unowned self] task in
+                let taskDetails = Wireframe.Main().taskDetails()
+                
+                taskDetails.task = task
+                
+                self.navigationController?.pushViewController(taskDetails, animated: true)
+            })
+            .addDisposableTo(disposeBag)
+        
+        viewModel
+            .sections()
+            .bindTo(tableView.rx.items(dataSource: viewModel.dataSource))
+            .addDisposableTo(disposeBag)
+        
+        viewModel
+            .actionResult
+            .asObserver()
+            .subscribe(onNext: { [unowned self] result in
+                switch result {
+                case .success(.edit(let task)):
+                    
+                    let taskDetails = Wireframe.Main().taskDetails()
+                    taskDetails.task = task
+                    
+                    self.navigationController?.pushViewController(taskDetails, animated: true)
+            
+                case .failure(_, let error):
+                    self.showError(error)
+                default:
+                    break
                 }
             })
             .addDisposableTo(disposeBag)
-    }
-
-    func createTask() {
-        let service = TasksService()
         
-        var form = TaskForm()
-        form.title = dashboardInputView.viewModel.text.value
-        form.due = dashboardInputView.viewModel.date.value
-        form.listId = dashboardInputView.viewModel.list.value?.id
+        dashboardInputView
+            .viewModel
+            .date
+            .asObservable()
+            .bindTo(viewModel.date)
+            .addDisposableTo(disposeBag)
         
-        showProgress("Creating...")
-        service.createTask(with: form) { [weak self] result in
-            self?.hideHud()
-            
-            switch result {
-            case .success(let task):
-                try! self?.storage.add(task)
-                
-                self?.showSuccess("Success!")
-                self?.tableView.reloadData()
-            case .failure(let error):
-                self?.showError(error)
-            }
-        }
+        dashboardInputView
+            .viewModel
+            .list
+            .asObservable()
+            .bindTo(viewModel.pickedList)
+            .addDisposableTo(disposeBag)
         
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.leastNonzeroMagnitude
+        dashboardInputView
+            .viewModel
+            .text
+            .asObservable()
+            .bindTo(viewModel.title)
+            .addDisposableTo(disposeBag)
     }
     
     @IBAction func listsButtonAction(_ sender: Any) {
         let listPicker = Wireframe.Main().listPicker()
         
-        listPicker.viewModel = ListPickerViewModel(list: list, allowAdding: true)
+        listPicker.viewModel = ListPickerViewModel(list: viewModel.list.value, allowAdding: true)
         
         listPicker
             .selected
-            .subscribe(onNext: { [unowned self] list in
-                self.list = list
-                self.tableView.reloadData()
-
-                self.fetchTasks()
-            })
+            .bindTo(viewModel.list)
             .addDisposableTo(disposeBag)
         
         present(listPicker, animated: true)
@@ -169,16 +333,6 @@ final class TaskListViewController: UITableViewController {
         let navigationController = MainNavigationController(rootViewController: settings)
         
         present(navigationController, animated: true)
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let task = sections[indexPath.section][indexPath.row]
-        let taskDetails = Wireframe.Main().taskDetails()
-        
-        taskDetails.task = task
-        
-        navigationController?.pushViewController(taskDetails, animated: true)
     }
     
     override var canBecomeFirstResponder: Bool {
@@ -233,7 +387,6 @@ final class TaskListViewController: UITableViewController {
         present(popover, animated: true)
     }
 
-    
     func setupInputView() {
         dashboardInputView.listButton
             .addTarget(self, action: #selector(listButtonAction), for: .touchUpInside)
@@ -246,46 +399,7 @@ final class TaskListViewController: UITableViewController {
 }
 
 extension TaskListViewController {
-    func doneAction(_ sender: UIButton, forEvent: UIEvent) {
-        guard let indexPath = tableView.indexPath(forEvent: forEvent) else { return }
-        
-        let task = sections[indexPath.section][indexPath.row]
-        
-        let service = TasksService()
-        service.updateStatus(task: task) { [weak self] result in
-            switch result {
-            case .success(let updatedTask):
-                try! self?.storage.add(updatedTask, update: true)
-                self?.tableView.reloadData()
-            case .failure(let error):
-                self?.showError(error)
-            }
-        }
-    }
-    
-    func editAction(_ sender: UIButton, forEvent: UIEvent) {
-        guard let indexPath = tableView.indexPath(forEvent: forEvent) else { return }
-        
-        let task = sections[indexPath.section][indexPath.row]
-        
-        let taskDetails = Wireframe.Main().taskDetails()
-        
-        taskDetails.task = task
-        
-        navigationController?.pushViewController(taskDetails, animated: true)
-    }
-    
-    func deleteAction(_ sender: UIButton, forEvent: UIEvent) {
-        guard let indexPath = tableView.indexPath(forEvent: forEvent) else { return }
 
-        let task = sections[indexPath.section][indexPath.row]
-        
-        let service = TasksService()
-        service.deleteTask(task: task) { _ in }
-        try! storage.remove(task)
-
-        tableView.reloadData()
-    }
 }
 
 extension TaskListViewController: UITextFieldDelegate {
@@ -306,7 +420,7 @@ extension TaskListViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         dashboardInputView.activate()
-        dashboardInputView.viewModel.list.value = list
+        dashboardInputView.viewModel.list.value = viewModel.list.value
         
         tableView.isScrollEnabled = false
         
@@ -333,7 +447,7 @@ extension TaskListViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        createTask()
+        viewModel.createTask()
         return true
     }
     

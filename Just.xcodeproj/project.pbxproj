@@ -62,8 +62,6 @@
 		026F19741EC8C5AF00A8B9EF /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19731EC8C5AF00A8B9EF /* UIViewController+Common.swift */; };
 		026F19761EC8EC2000A8B9EF /* Collection+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19751EC8EC2000A8B9EF /* Collection+Equatable.swift */; };
 		026F19961ECB8C6300A8B9EF /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F19951ECB8C6300A8B9EF /* Storage.swift */; };
-		029B24761EC272070009F828 /* EditTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B24751EC272070009F828 /* EditTitleCell.swift */; };
-		029B24781EC2721C0009F828 /* EditTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029B24771EC2721C0009F828 /* EditTitleCell.xib */; };
 		02A1D3461ED0C0FC0038C551 /* ListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1D3451ED0C0FC0038C551 /* ListStorage.swift */; };
 		02A1D3481ED0C1010038C551 /* TasksStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1D3471ED0C1010038C551 /* TasksStorage.swift */; };
 		02A1D34A1ED0C10D0038C551 /* TaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1D3491ED0C10D0038C551 /* TaskEntity.swift */; };
@@ -156,8 +154,6 @@
 		026F19731EC8C5AF00A8B9EF /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		026F19751EC8EC2000A8B9EF /* Collection+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Equatable.swift"; sourceTree = "<group>"; };
 		026F19951ECB8C6300A8B9EF /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		029B24751EC272070009F828 /* EditTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTitleCell.swift; sourceTree = "<group>"; };
-		029B24771EC2721C0009F828 /* EditTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTitleCell.xib; sourceTree = "<group>"; };
 		02A1D3451ED0C0FC0038C551 /* ListStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListStorage.swift; sourceTree = "<group>"; };
 		02A1D3471ED0C1010038C551 /* TasksStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksStorage.swift; sourceTree = "<group>"; };
 		02A1D3491ED0C10D0038C551 /* TaskEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEntity.swift; sourceTree = "<group>"; };
@@ -389,15 +385,6 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
-		029B24741EC2716A0009F828 /* Progress */ = {
-			isa = PBXGroup;
-			children = (
-				029B24751EC272070009F828 /* EditTitleCell.swift */,
-				029B24771EC2721C0009F828 /* EditTitleCell.xib */,
-			);
-			name = Progress;
-			sourceTree = "<group>";
-		};
 		02D383B21E867A7C00F5F61C = {
 			isa = PBXGroup;
 			children = (
@@ -447,7 +434,6 @@
 		02D383DE1E86976D00F5F61C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				029B24741EC2716A0009F828 /* Progress */,
 				02DCFF7E1EBFA2100096A5D0 /* ListEntry */,
 				0242DA0D1E87F93F007BA970 /* SectionSwitch */,
 				0242DA0C1E87F937007BA970 /* SettingsNavigation */,
@@ -660,7 +646,6 @@
 				02D383E81E86998A00F5F61C /* DetailsActionCell.xib in Resources */,
 				02D383C41E867A7C00F5F61C /* Main.storyboard in Resources */,
 				02DCFF821EBFA23D0096A5D0 /* ListEntryCell.xib in Resources */,
-				029B24781EC2721C0009F828 /* EditTitleCell.xib in Resources */,
 				02D383E61E86992D00F5F61C /* DetailsTitleCell.xib in Resources */,
 				02D383E21E8698D900F5F61C /* DetailsDescriptionCell.xib in Resources */,
 				02D383E41E8698F600F5F61C /* DetailsStatusCell.xib in Resources */,
@@ -817,7 +802,6 @@
 				0242D9EC1E87E275007BA970 /* Priority.swift in Sources */,
 				026F195F1EC8970000A8B9EF /* ApiClient.swift in Sources */,
 				0242DA2C1E991E4C007BA970 /* TaskListViewController.swift in Sources */,
-				029B24761EC272070009F828 /* EditTitleCell.swift in Sources */,
 				0242DA1E1E990CD0007BA970 /* SettingsSwitchCell.swift in Sources */,
 				026F19961ECB8C6300A8B9EF /* Storage.swift in Sources */,
 				0242DA421E994B56007BA970 /* MainNavigationController.swift in Sources */,

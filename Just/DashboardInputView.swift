@@ -8,6 +8,14 @@
 
 import UIKit
 
+import RxSwift
+
+final class DashboardInputViewModel {
+    let list = Variable<List?>(nil)
+    let text = Variable<String?>(nil)
+    let date = Variable<Date?>(nil)
+}
+
 final class DashboardInputView: UIView, Reusable, NibLoadable {
    
     @IBOutlet weak var clockButton: UIButton!
@@ -17,13 +25,16 @@ final class DashboardInputView: UIView, Reusable, NibLoadable {
     
     @IBOutlet weak var listLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
+
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
+    fileprivate let disposeBag = DisposeBag()
+    
+    let viewModel = DashboardInputViewModel()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         applyState(.inactive, animated: false)
-        inputTextField.delegate = self
         
         // Set padding for text field
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: inputTextField.frame.height))
@@ -36,6 +47,39 @@ final class DashboardInputView: UIView, Reusable, NibLoadable {
         layer.shadowOffset = CGSize.zero
         layer.shadowRadius = 1.0
         layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        
+        setupBindings()
+    }
+    
+    func setupBindings() {
+        let formatter: DateFormatter = .short
+        
+        inputTextField.rx
+            .text
+            .asObservable()
+            .bindTo(viewModel.text)
+            .addDisposableTo(disposeBag)
+        
+        viewModel.text
+            .asObservable()
+            .bindTo(inputTextField.rx.text)
+            .addDisposableTo(disposeBag)
+        
+        viewModel
+            .date
+            .asObservable()
+            .map {
+                $0.flatMap(formatter.string(from:)) ?? ""
+            }
+            .bindTo(dateLabel.rx.text)
+            .addDisposableTo(disposeBag)
+        
+        viewModel
+            .list
+            .asObservable()
+            .map { $0?.name ?? "" }
+            .bindTo(listLabel.rx.text)
+            .addDisposableTo(disposeBag)
     }
     
     func activate() {
@@ -45,31 +89,6 @@ final class DashboardInputView: UIView, Reusable, NibLoadable {
     func deactivate() {
         applyState(.inactive, animated: true)
     }
-    
-    var date: Date? {
-        didSet {
-            if let date = date {
-                let formatter: DateFormatter = .short
-                dateLabel.text = formatter.string(from: date)
-            } else {
-                dateLabel.text = ""
-            }
-        }
-    }
-    
-    var list: List? {
-        didSet {
-            listLabel.text = list?.name ?? ""
-        }
-    }
-    
-    var text: String? {
-        return inputTextField.text
-    }
-}
-
-extension DashboardInputView: UITextFieldDelegate {
-    
 }
 
 extension DashboardInputView {
@@ -81,11 +100,11 @@ extension DashboardInputView {
     
     func applyState(_ state: State, animated: Bool) {
         leadingConstraint.constant = state.offset
-        inputTextField.text = state.text
+        viewModel.text.value = state.text
         
         if state.clearsInput {
-            date = nil
-            list = nil
+            viewModel.date.value = nil
+            viewModel.list.value = nil
         }
         
         guard animated else { return }

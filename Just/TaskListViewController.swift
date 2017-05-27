@@ -121,9 +121,9 @@ final class TaskListViewController: UITableViewController {
         let service = TasksService()
         
         var form = TaskForm()
-        form.title = dashboardInputView.text
-        form.due = dashboardInputView.date
-        form.listId = dashboardInputView.list?.id
+        form.title = dashboardInputView.viewModel.text.value
+        form.due = dashboardInputView.viewModel.date.value
+        form.listId = dashboardInputView.viewModel.list.value?.id
         
         showProgress("Creating...")
         service.createTask(with: form) { [weak self] result in
@@ -193,13 +193,12 @@ final class TaskListViewController: UITableViewController {
         let listPicker = Wireframe.Main().listPicker()
         let contentSize = CGSize(width: 184, height: 260)
         
-        listPicker.viewModel = ListPickerViewModel(list: dashboardInputView.list, allowAdding: false)
+        let list = dashboardInputView.viewModel.list.value
+        listPicker.viewModel = ListPickerViewModel(list: list, allowAdding: false)
         
         listPicker
             .selected
-            .subscribe(onNext: { [unowned self] list in
-                self.dashboardInputView.list = list
-            })
+            .bindTo(dashboardInputView.viewModel.list)
             .addDisposableTo(disposeBag)
 
         presentPopover(listPicker, sourceView: sender, size: contentSize)
@@ -209,14 +208,14 @@ final class TaskListViewController: UITableViewController {
         let datePicker = Wireframe.Main().datePicker()
         let contentSize = CGSize(width: 300, height: 250)
         
-        datePicker.onPick = { [unowned self] date in
-            self.dashboardInputView.date = date
-        }
+        datePicker.selected.value = dashboardInputView.viewModel.date.value
         
-        datePicker.onClear = { [unowned self] in
-            self.dashboardInputView.date = nil
-        }
-        
+        datePicker
+            .selected
+            .asObservable()
+            .bindTo(dashboardInputView.viewModel.date)
+            .addDisposableTo(disposeBag)
+    
         presentPopover(datePicker, sourceView: sender, size: contentSize)
     }
     
@@ -307,7 +306,7 @@ extension TaskListViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         dashboardInputView.activate()
-        dashboardInputView.list = list
+        dashboardInputView.viewModel.list.value = list
         
         tableView.isScrollEnabled = false
         

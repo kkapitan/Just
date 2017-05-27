@@ -660,16 +660,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7Y-oO-9ly">
                                 <rect key="frame" x="12" y="29" width="29" height="28"/>
                                 <state key="normal" image="small_tick_button_ic"/>
-                                <connections>
-                                    <action selector="tickAction:" destination="gjH-zv-MpN" eventType="touchUpInside" id="pWa-b8-SaY"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dL4-Ti-HjY">
                                 <rect key="frame" x="331" y="29" width="28" height="28"/>
                                 <state key="normal" image="small_cross_button_ic"/>
-                                <connections>
-                                    <action selector="crossAction:" destination="gjH-zv-MpN" eventType="touchUpInside" id="bKh-gI-tgH"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNX-uH-Drj">
                                 <rect key="frame" x="150" y="30" width="75" height="25"/>
@@ -695,12 +689,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="crossButton" destination="dL4-Ti-HjY" id="068-eZ-gPm"/>
                         <outlet property="picker" destination="ZFS-Xp-s3h" id="aYd-Sk-ao2"/>
+                        <outlet property="tickButton" destination="h7Y-oO-9ly" id="sU7-2t-YQ8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1FL-7j-T2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="859"/>
+            <point key="canvasLocation" x="1980" y="858.62068965517244"/>
         </scene>
         <!--List Picker View Controller-->
         <scene sceneID="qaX-Iy-ubV">
